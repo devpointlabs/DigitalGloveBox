@@ -23,21 +23,57 @@ class Register extends React.Component {
   }
   
   render() {
-    const { email, password, passwordConfirmation, } = this.state;
+    const { email, password, passwordConfirmation, first_name, last_name, comm_prefs, postal_code, phone_number } = this.state;
     
     return (
       <Segment basic>
         <Header as='h1' textAlign='center'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
+        <Form.Input
+            label="First Name"
+            required
+            autoFocus
+            name='first_name'
+            value={first_name}
+            placeholder='First Name'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Last Name"
+            required
+            name='last_name'
+            value={last_name}
+            placeholder='Last Name'
+            onChange={this.handleChange}
+          />
           <Form.Input
             label="Email"
             required
-            autoFocus
             name='email'
             value={email}
             placeholder='Email'
             onChange={this.handleChange}
           />
+
+          <Form.Input
+            label="Phone Number"
+            optional
+            name='phone_number'
+            value={phone_number}
+            placeholder='(XXX) XXX XXXX'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Zip Code"
+            optional
+            name='postal_code'
+            value={postal_code}
+            placeholder='Zip Code'
+            onChange={this.handleChange}
+          />
+
+          <span> DOB </span>
+
           <Form.Input
             label="Password"
             required
@@ -56,6 +92,15 @@ class Register extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
+
+          <Form.Checkbox
+            label="Check if you'd like to receive rich content on how to better manage your car"
+            value= {comm_prefs}
+            name='comms_prefs'
+            // checked={this.comm_prefs === true}
+            onChange={this.handleChange}
+          />
+          
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>

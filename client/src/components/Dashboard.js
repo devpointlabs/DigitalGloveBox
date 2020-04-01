@@ -1,10 +1,12 @@
 import React from 'react'
+import Car from './cars/Car'
 
 const Dashboard = () => {
 
   return(
     <div>
-      SHOW ME THE MONEYYYYY!!!!!
+      <h1>Dashboard</h1>
+      <Car />
     </div>
   )
 }

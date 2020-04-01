@@ -5,21 +5,27 @@ import { Container } from 'semantic-ui-react';
 import './App.css';
 
 import Dashboard from './components/Dashboard'
+import Login from './components/Login'
+import Register from './components/Register'
+import Navbar from './components/Navbar';
+import FetchUser from './components/FetchUser';
+import ProtectedRoute from './components/ProtectedRoute';
 
-function App() {
+const App = () => {
   return (
    <>
    
-    {/* navbar */}
-    <Container>
-      <Switch>
-        <Route exact path='/' component={Dashboard}/>
-        {/* <Route exact path='/' component={Dashboard}/>
-        <Route exact path='/login' component={Login}/>
-        <Route exact path='/register' component={Register}/>
-        <Route component={NoMatch}/> */}
-      </Switch>
-    </Container>
+    <Navbar />
+    <FetchUser>
+      <Container>
+        <Switch>
+          <ProtectedRoute exact path="/" component={Dashboard} />
+          <Route exact path='/login' component={Login}/>
+          <Route exact path='/register' component={Register}/>
+          {/* <Route component={NoMatch}/> */}
+        </Switch>
+      </Container>
+    </FetchUser>
    </>
   );
 }

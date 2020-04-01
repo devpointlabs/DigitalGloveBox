@@ -1,39 +1,48 @@
 class Api::CarsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_car, only: [:show, :update, :destroy]
-  before_action :set_user
 
   def index
-    render json user.cars
+    render json: current_user.car.all
   end
 
   def show
-    render json: user.create
+    render json: current_user.@car
   end
 
   def create
-    render json: user.cars.create(car_params)
+    car = current_user.car.new(car_params)
+
+    if current_user.car.save
+      render json: car
+    else
+      render json: current_user.car.errors, status: 422
+    end
+    
   end
 
   def update
-    # come back later
+    if current_user.@car.update(car_params)
+      render json: current_user.@car
+    else
+      render json: current_user.@car.errors, status:422
+    end
   end
 
   def destroy
-    Car.find(params[:id]).destory
+    @car.destroy
   end
 
+
+  
   private 
 
   def set_car
-    @car = Car.find(params[:id])
+    @car = current_user.car.find(params[:id])
   end
 
-  def set_user
-    @user = User.find(params[:current_user])
-  end 
-
   def car_params
-    params.require(:car).permit()
+    params.require(:car).permit(:make,:model,:year,:color,:license_plate,:policy_exp,:roadside_ass,:miles,:vin,:policy_number,:insurance_prov_num,:user_id)
   end 
 end
+

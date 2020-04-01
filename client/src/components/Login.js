@@ -67,56 +67,20 @@ export default class ConnectedLogin extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, {useState} from 'react'
+// import React, {useState, useContext} from 'react'
 
 // import { AuthConsumer } from '../providers/AuthProvider'
 // import { Segment, Header, Form, Button } from 'semantic-ui-react'
 
 // const Login = (props) => {
-  
+
+//   const auth = useContext(AuthConsumer)
 //   const [login, setLogin] = useState({ email: '', password: '' })
 
 //   const {email, password} = login
-//   const { auth: {handleLogin}, history } = props
+//   const { handleLogin } = auth
+//   const { history } = props
+
 
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
@@ -159,12 +123,4 @@ export default class ConnectedLogin extends React.Component {
 //   )
 // }
 
-// export default class ConnectedLogin extends React.Component {
-//   render(){
-//     return(
-//       <AuthConsumer>
-//         { auth => <Login {...this.props} auth={auth}/> }
-//       </AuthConsumer>
-//     )
-//   }
-// }
+// export default Login

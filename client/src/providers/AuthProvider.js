@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 export const AuthConsumer = AuthContext.Consumer;
 

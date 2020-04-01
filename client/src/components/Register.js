@@ -80,49 +80,20 @@ export default class ConnectedRegister extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, {useState } from 'react'
+// import React, {useState, useContext } from 'react'
 // import { Segment, Header, Form, Button } from 'semantic-ui-react';
 
 // import { AuthConsumer } from "../providers/AuthProvider";
 
 // const Register = (props) => {
 
+//   const auth = useContext(AuthConsumer)
 //   const [register, setRegister] = useState({ email: '', password: '', passwordConfirmation: '', });
   
 //   const { email, password, passwordConfirmation } = register;
-//   const{ auth: {handleRegister,}, history,} = props;
-//   console.log(handleRegister)
-
+//   const{ handleRegister} = auth;
+//   const { history } = props
 //   const handleSubmit = (e) => {
-//     console.log(password)
 //     e.preventDefault();
     
 //     if (password === passwordConfirmation)

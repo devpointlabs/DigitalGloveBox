@@ -1,9 +1,9 @@
 class Api::CarsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_car, only: [:show, :update, :destroy]
+  before_action :set_cars, only: [:show, :update, :destroy]
 
   def index
-    render json: current_user.car.all
+    render json: current_user.cars.all
   end
 
   def show
@@ -11,12 +11,12 @@ class Api::CarsController < ApplicationController
   end
 
   def create
-    car = current_user.car.new(car_params)
+    car = current_user.cars.new(car_params)
 
-    if current_user.car.save
+    if current_user.cars.save
       render json: car
     else
-      render json: current_user.car.errors, status: 422
+      render json: current_user.cars.errors, status: 422
     end
     
   end
@@ -25,7 +25,7 @@ class Api::CarsController < ApplicationController
     if current_user.car.update(car_params)
       render json: current_user.car
     else
-      render json: current_user.car.errors, status:422
+      render json: current_user.cars.errors, status:422
     end
   end
 
@@ -38,7 +38,7 @@ class Api::CarsController < ApplicationController
   private 
 
   def set_cars
-    @car = current_user.car.find(params[:id])
+    @car = current_user.cars.find(params[:id])
   end
 
   def car_params

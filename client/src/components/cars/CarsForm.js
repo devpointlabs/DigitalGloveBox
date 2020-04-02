@@ -25,7 +25,7 @@ const CarsForm = (props) => {
 
   const car = {roadside_ass:roadside_ass}
 
-  const handleChangeCheckbox = () => setRoadside_ass(() => ({ roadside_ass: !roadside_ass }))
+  // const handleChangeCheckbox = () => setRoadside_ass(() => ({ roadside_ass: !roadside_ass }))
 
 
   const handleSubmit = (e) =>{
@@ -145,12 +145,12 @@ const CarsForm = (props) => {
          
         /> 
 
-      <Form.Checkbox
+      {/* <Form.Checkbox
             label="Do you have roadside assistance?"
             name='roadside_ass'
             onChange={handleChangeCheckbox()}
             checked={roadside_ass}
-      /> 
+      />  */}
 
 
       <Form.Button>Submit</Form.Button>

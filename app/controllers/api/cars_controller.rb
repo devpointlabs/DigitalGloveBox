@@ -7,7 +7,7 @@ class Api::CarsController < ApplicationController
   end
 
   def show
-    render json: current_user.@car
+    render json: current_user.car
   end
 
   def create
@@ -22,10 +22,10 @@ class Api::CarsController < ApplicationController
   end
 
   def update
-    if current_user.@car.update(car_params)
-      render json: current_user.@car
+    if current_user.car.update(car_params)
+      render json: current_user.car
     else
-      render json: current_user.@car.errors, status:422
+      render json: current_user.car.errors, status:422
     end
   end
 

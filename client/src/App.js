@@ -10,7 +10,7 @@ import Register from './components/Register'
 import Navbar from './components/Navbar';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
-import NoMatch from './components/NoMatch';
+import Account from './components/users/Account'
 
 const App = () => {
   return (
@@ -21,9 +21,11 @@ const App = () => {
       <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Dashboard} />
+          <ProtectedRoute exact path='/account' component={Account}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
-          <Route component={NoMatch}/>
+          
+          {/* <Route component={NoMatch}/> */}
         </Switch>
       </Container>
     </FetchUser>

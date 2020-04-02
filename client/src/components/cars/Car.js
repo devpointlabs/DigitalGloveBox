@@ -1,20 +1,19 @@
 import React,{useState,useContext }from 'react';
 import { Image, Item,  } from 'semantic-ui-react'
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 
 const Car = (props) => {
   
-  const [cars, setCars] = useState([])
-  const {user} = useContext(AuthContext)
+  // const [cars, setCars] = useState([])
+  // const {user} = useContext(AuthContext)
   const {car} = props
 
   return(
     <Item key={car.id}>
     {/* <Item.Image image={car.image} /> */}
     <Item.Content>
-      <Item.Header as='a'>{car.year} {car.make} {car.model}</Item.Header>
+        <Item.Header as='a'>{car.year} {car.make} {car.model}</Item.Header>
         <Item.Description>{paragraph}</Item.Description>
         <Link to='/'>Car Profile</Link>
     </Item.Content>

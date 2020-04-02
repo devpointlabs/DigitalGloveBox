@@ -28,8 +28,15 @@ const Cars = (props) => {
   //   console.log('added')
   // }
 
-  // deleteCar = () => {
-  //   console.log('deleted')
+  // deleteCar = (id) => {
+  //   const {id} = this.props;
+  //   axios.delete(`/api/users/${user.id}/cars/${id}`)
+  //   .then(() => {
+  //     const newCars = cars.filter ( car => car.id != id)
+  //     this.setCars({
+  //       cars: newCars
+  //     })
+  //   })
   // }
 
   // editCar = () => {
@@ -37,10 +44,10 @@ const Cars = (props) => {
   // }
 
   const renderCars = () =>{
-    return cars.map( car => (
-      
+    return cars.map( car => (      
       <div key = {`car-${car.id}`}>
       <Car car={car} {...car}/>
+      {/* <CarProfile car={car} {...car} delete={deleteCar()}/> */}
       </div >
     ))
   }

@@ -1,37 +1,29 @@
-import React from 'react';
-import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
-import axios from 'axios';
+import React,{useState,useContext }from 'react';
+import { Image, Item,  } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
 
-export default class Car extends React.Component {
-  state = { car:{} }
+const Car = (props) => {
+  
+  // const [cars, setCars] = useState([])
+  // const {user} = useContext(AuthContext)
+  const {car} = props
 
-  componentDidMount(user_id, id){
-    axios.get(`/api/users/${user_id}/cars/${id}`)
-    .then(res => {
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-
-
-  render(){
-    // const { year, make, model } = this.state
-    return(
-      <Item>
-        {/* <Item.Image /> some way to pull car image from the database? */}
-        <Item.Content>
-        {/* <Item.Header as='a'>{year} {make} {model}</Item.Header> */}
-          <Item.Description>{paragraph}</Item.Description>
-          <Button>Car Profile</Button>
-        </Item.Content>
-      </Item>
-    )
-  }
-
+  return(
+    <Item key={car.id}>
+    {/* <Item.Image image={car.image} /> */}
+    <Item.Content>
+        <Item.Header as='a'>{car.year} {car.make} {car.model}</Item.Header>
+        <Item.Description>{paragraph}</Item.Description>
+        <Link to='/'>Car Profile</Link>
+    </Item.Content>
+  </Item>
+  )
 }
 
+
 const paragraph = (
-  'All of your cars documents, information, and recent services all in one convenient place!'
+  'All of your cars documents, information, and recent services in one convenient place!'
 )
+
+export default Car

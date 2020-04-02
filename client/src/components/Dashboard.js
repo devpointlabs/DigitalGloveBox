@@ -1,10 +1,14 @@
 import React from 'react'
+import connectedCar from './cars/Car'
+import Cars from './cars/Cars'
+
 
 const Dashboard = () => {
 
   return(
     <div>
-      SHOW ME THE MONEYYYYY!!!!!
+      <h1>Dashboard</h1>
+      <Cars />
     </div>
   )
 }

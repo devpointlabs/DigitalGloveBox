@@ -4,18 +4,20 @@ import { Button, Form, Segment, Header, } from 'semantic-ui-react';
 import { AuthConsumer, } from "../providers/AuthProvider";
 
 class Register extends React.Component {
-  state = { email: '', password: '', passwordConfirmation: '', };
+  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', phone_number:'', postal_code:'', comm_prefs: true };
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
+    const { email, password, passwordConfirmation, first_name, last_name, phone_number, postal_code, comm_prefs } = this.state;
     const { auth: { handleRegister, }, history, } = this.props;
 
     if (password === passwordConfirmation)
-      handleRegister({ email, password, passwordConfirmation, }, history);
+      handleRegister({ email, password, passwordConfirmation, first_name, last_name, phone_number, postal_code, comm_prefs}, history);
     else
       alert('Passwords Do Not Match!')
   }
+
+  handleChangeCheckbox = () => this.setState((prevState) => ({ comm_prefs: !prevState.comm_prefs }))
   
   handleChange = (e) => {
     const { name, value, } = e.target;
@@ -50,6 +52,7 @@ class Register extends React.Component {
             label="Email"
             required
             name='email'
+            type='email'
             value={email}
             placeholder='Email'
             onChange={this.handleChange}
@@ -81,6 +84,7 @@ class Register extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
+          
           <Form.Input
             label="Password Confirmation"
             required
@@ -93,10 +97,9 @@ class Register extends React.Component {
 
           <Form.Checkbox
             label="Check if you'd like to receive rich content on how to better manage your car"
-            value= {comm_prefs}
-            name='comms_prefs'
-            // checked={this.comm_prefs === true}
-            onChange={this.handleChange}
+            name='comm_prefs'
+            onChange={this.handleChangeCheckbox}
+            checked={comm_prefs}
           />
           
           <Segment textAlign='center' basic>

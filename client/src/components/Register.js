@@ -72,8 +72,6 @@ class Register extends React.Component {
             onChange={this.handleChange}
           />
 
-          <span> DOB </span>
-
           <Form.Input
             label="Password"
             required

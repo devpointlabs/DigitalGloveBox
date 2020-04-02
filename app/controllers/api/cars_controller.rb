@@ -37,7 +37,7 @@ class Api::CarsController < ApplicationController
   
   private 
 
-  def set_car
+  def set_cars
     @car = current_user.car.find(params[:id])
   end
 

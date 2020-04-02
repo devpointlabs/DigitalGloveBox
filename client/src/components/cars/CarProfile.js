@@ -4,7 +4,6 @@ import axios from 'axios'
 
 
 const CarProfile = (props) => {
-    // 
 
   const { id } = props.match.params
   // const { delete } = props
@@ -32,7 +31,7 @@ const CarProfile = (props) => {
   
     <div>
       <h1>Car Profile</h1>
-      <Button onClick>Edit</Button>
+      <Button>Edit</Button>
       <Button>Delete </Button>
        {/* onClick={delete (car.id)} */}
       <Button>Documents</Button>
@@ -60,18 +59,3 @@ const CarProfile = (props) => {
 }
 
 export default CarProfile
-
-// class CarProfile extends React.Component {
-
-  // state = { car: [] };
-
-  // componentDidMount() {
-  //   // const { carId } = this.props;
-  //   // axios.get(`/api/users/${user_id}/cars/${id}`)
-  //   // .then(res => {
-  //   //   console.log(res);
-  //   //   this.setState({
-  //   //     car: res.data
-  //   //   })
-  //   // })
-  // }

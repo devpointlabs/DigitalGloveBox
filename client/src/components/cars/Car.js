@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 export default class Car extends React.Component {
   state = { cars: [] }
 
-  componentDidMount(user, id){
-    axios.get(`/api/users/${user}/cars/${id}`)
+
+  componentDidMount(auth,cars){
+    axios.get(`/api/users/${auth.user.id}/cars/${cars.id}`)
     .then(res => {
       console.log('mounted')
       console.log(this.state)

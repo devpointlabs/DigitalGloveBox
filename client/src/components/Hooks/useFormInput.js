@@ -9,11 +9,3 @@ export const useFormInput = (initialValue) => {
   };
 };
 
-export const useFormCheckbox = () =>{
- 
-    const [value,setValue] = useState(false)
-      return{
-       value,
-      onChange: (e) => setValue(!setValue)
-     }
-}

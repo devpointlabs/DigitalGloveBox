@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
     user.email = params[:email] ? params[:email] : user.email
     user.phone_number = params[:phone_number] ? params[:phone_number] : user.phone_number
     user.postal_code = params[:postal_code] ? params[:postal_code] : user.postal_code
-    user.first_name = params[:comm_prefs] ? params[:comm_prefs] : user.comm_prefs
+    user.comm_prefs = params[:comm_prefs] ? params[:comm_prefs] : user.comm_prefs
     
     if user.save
       render json: user

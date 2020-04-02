@@ -13,7 +13,7 @@ class Account extends React.Component {
         email: '',
         phone_number: '',
         postal_code: '',
-        comms_prefs: true,
+        comm_prefs: null,
       }};
   
   componentDidMount(){
@@ -37,15 +37,25 @@ class Account extends React.Component {
     }})
   }
   
-  
 
-  handleChangeCheckbox = () => this.setState((prevState) => ({ formValues: { comm_prefs: !prevState.comm_prefs }}))
+
+  
+  // handleChangeCheckbox = () => this.setState((prevState) => console.log (!prevState.formValues.comm_prefs) )
+  
+  handleChangeCheckbox = () => {
+    const { formValues } = this.state;
+    this.setState({formValues: { ...formValues, comm_prefs: !formValues.comm_prefs  }})
+  }
+
+
+  // handleChangeCheckbox = () => this.setState({formValues: {comm_prefs: (prevState) => ( !prevState.formValues.comm_prefs) }})
 
   handleSubmit = (e) => {
     e.preventDefault();
     const { formValues: {first_name, last_name, email, phone_number,postal_code, comm_prefs } } = this.state;
     const { auth: { user, updateUser, }, } = this.props;
-    updateUser(user.id, { first_name, last_name, email, phone_number,postal_code, comm_prefs });
+    // debugger
+    updateUser(user.id, { first_name, last_name, email, phone_number, postal_code, comm_prefs });
     this.setState({
       editing: false,
       formValues: {

@@ -11,7 +11,6 @@ import Navbar from './components/Navbar';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import NoMatch from './components/NoMatch';
-import Car from './components/cars/Car';
 
 const App = () => {
   return (
@@ -24,7 +23,6 @@ const App = () => {
           <ProtectedRoute exact path="/" component={Dashboard} />
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
-          <Route exact path ='/api/users/:group_id/cars/:id' component={Car} />
           <Route component={NoMatch}/>
         </Switch>
       </Container>

@@ -3,7 +3,7 @@ class Api::CarsController < ApplicationController
   before_action :set_cars, only: [:show, :update, :destroy]
 
   def index
-    render json: current_user.car.all
+    render json: current_user.cars.all
   end
 
   def show

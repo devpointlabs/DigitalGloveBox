@@ -4,18 +4,20 @@ import { Button, Form, Segment, Header, } from 'semantic-ui-react';
 import { AuthConsumer, } from "../providers/AuthProvider";
 
 class Register extends React.Component {
-  state = { email: '', password: '', passwordConfirmation: '', };
+  state = { email: '', password: '', passwordConfirmation: '', first_name: '', last_name: '', phone_number:'', postal_code:'', comm_prefs: true };
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { email, password, passwordConfirmation } = this.state;
+    const { email, password, passwordConfirmation, first_name, last_name, phone_number, postal_code, comm_prefs } = this.state;
     const { auth: { handleRegister, }, history, } = this.props;
 
     if (password === passwordConfirmation)
-      handleRegister({ email, password, passwordConfirmation, }, history);
+      handleRegister({ email, password, passwordConfirmation, first_name, last_name, phone_number, postal_code, comm_prefs}, history);
     else
       alert('Passwords Do Not Match!')
   }
+
+  handleChangeCheckbox = () => this.setState((prevState) => ({ comm_prefs: !prevState.comm_prefs }))
   
   handleChange = (e) => {
     const { name, value, } = e.target;
@@ -23,21 +25,56 @@ class Register extends React.Component {
   }
   
   render() {
-    const { email, password, passwordConfirmation, } = this.state;
+    const { email, password, passwordConfirmation, first_name, last_name, comm_prefs, postal_code, phone_number } = this.state;
     
     return (
       <Segment basic>
         <Header as='h1' textAlign='center'>Register</Header>
         <Form onSubmit={this.handleSubmit}>
+        <Form.Input
+            label="First Name"
+            required
+            autoFocus
+            name='first_name'
+            value={first_name}
+            placeholder='First Name'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Last Name"
+            required
+            name='last_name'
+            value={last_name}
+            placeholder='Last Name'
+            onChange={this.handleChange}
+          />
           <Form.Input
             label="Email"
             required
-            autoFocus
             name='email'
+            type='email'
             value={email}
             placeholder='Email'
             onChange={this.handleChange}
           />
+
+          <Form.Input
+            label="Phone Number"
+            optional
+            name='phone_number'
+            value={phone_number}
+            placeholder='(XXX) XXX XXXX'
+            onChange={this.handleChange}
+          />
+          <Form.Input
+            label="Zip Code"
+            optional
+            name='postal_code'
+            value={postal_code}
+            placeholder='Zip Code'
+            onChange={this.handleChange}
+          />
+
           <Form.Input
             label="Password"
             required
@@ -47,6 +84,7 @@ class Register extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
+          
           <Form.Input
             label="Password Confirmation"
             required
@@ -56,6 +94,14 @@ class Register extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
+
+          <Form.Checkbox
+            label="Check if you'd like to receive rich content on how to better manage your car"
+            name='comm_prefs'
+            onChange={this.handleChangeCheckbox}
+            checked={comm_prefs}
+          />
+          
           <Segment textAlign='center' basic>
             <Button primary type='submit'>Submit</Button>
           </Segment>

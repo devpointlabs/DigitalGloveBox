@@ -16,7 +16,18 @@ const Navbar = (props) => {
             name='logout'
             onClick={ () => handleLogout(history)}
           />
+
+          <Link to='/account'>
+            <Menu.Item
+              id='account'
+              name='account'
+              active={location.pathname === '/account'}
+            />
+          </Link>
         </Menu.Menu>
+
+        
+
       )} else {
           return(
             <Menu.Menu position='right'>
@@ -34,6 +45,7 @@ const Navbar = (props) => {
                   active={location.pathname === '/register'}
                 />
               </Link>
+             
             </Menu.Menu>
           )
       }

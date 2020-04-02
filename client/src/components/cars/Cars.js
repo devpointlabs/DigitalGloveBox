@@ -47,7 +47,7 @@ const Cars = (props) => {
     return cars.map( car => (      
       <div key = {`car-${car.id}`}>
       <Car car={car} {...car}/>
-      {/* <CarProfile car={car} {...car} delete={deleteCar()}/> */}
+      <CarProfile car={car} {...car} delete={deleteCar()}/>
       </div >
     ))
   }

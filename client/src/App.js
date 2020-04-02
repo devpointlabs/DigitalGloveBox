@@ -1,9 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
-
 import './App.css';
-
 import Dashboard from './components/Dashboard'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -12,6 +10,7 @@ import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import NoMatch from './components/NoMatch';
 import CarProfile from './components/cars/CarProfile'
+import Account from './components/users/Account'
 
 const App = () => {
   return (
@@ -25,7 +24,7 @@ const App = () => {
           <ProtectedRoute exact path='/account' component={Account}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
-          <Route exact path='/api/users/:user_id/cars/:id' component={CarProfile}/>          
+          <Route exact path='/car_profile/:id' component={CarProfile}/>          
           <Route component={NoMatch}/>
         </Switch>
       </Container>

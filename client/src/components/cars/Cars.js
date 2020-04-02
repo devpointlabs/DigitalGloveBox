@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Car from './Car';
+import CarProfile from './CarProfile';
 
 const Cars = (props) => {
   
@@ -28,30 +29,22 @@ const Cars = (props) => {
   //   console.log('added')
   // }
 
-  // deleteCar = (id) => {
-  //   const {id} = this.props;
-  //   axios.delete(`/api/users/${user.id}/cars/${id}`)
-  //   .then(() => {
-  //     const newCars = cars.filter ( car => car.id != id)
-  //     this.setCars({
-  //       cars: newCars
-  //     })
-  //   })
-  // }
+  
 
-  // editCar = () => {
-  //   console.log('edited')
-  // }
+  const editCar = () => {
+    console.log('edited')
+  }
 
   const renderCars = () =>{
     return cars.map( car => (      
       <div key = {`car-${car.id}`}>
-      <Car car={car} {...car}/>
-      <CarProfile car={car} {...car} delete={deleteCar()}/>
+      <Car car={car}/>
       </div >
     ))
   }
 
+ 
+  
   return(
     <Item>
       {renderCars()}

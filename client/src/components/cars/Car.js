@@ -1,14 +1,17 @@
 import React from 'react';
-import { Button, Icon, Image, Item, Label } from 'semantic-ui-react'
+import { Button, Image, Item,  } from 'semantic-ui-react'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Car extends React.Component {
-  state = { car:{} }
+  state = { cars: [] }
 
-  componentDidMount(user_id, id){
-    axios.get(`/api/users/${user_id}/cars/${id}`)
+  componentDidMount(user, id){
+    axios.get(`/api/users/${user}/cars/${id}`)
     .then(res => {
-      console.log(res)
+      console.log('mounted')
+      console.log(this.state)
+      this.setState({ cars: res.data })
     })
     .catch(err => {
       console.log(err)
@@ -17,14 +20,14 @@ export default class Car extends React.Component {
 
 
   render(){
-    // const { year, make, model } = this.state
+    const { image, year, make, model } = this.state
     return(
       <Item>
-        {/* <Item.Image /> some way to pull car image from the database? */}
+        {/* <Item.Image image={image} /> */}
         <Item.Content>
-        {/* <Item.Header as='a'>{year} {make} {model}</Item.Header> */}
+        <Item.Header as='a'>{year} {make} {model}</Item.Header>
           <Item.Description>{paragraph}</Item.Description>
-          <Button>Car Details</Button>
+          <Link to='/'>Car Profile</Link>
         </Item.Content>
       </Item>
     )
@@ -33,5 +36,5 @@ export default class Car extends React.Component {
 }
 
 const paragraph = (
-  'All of your cars documents, information, and recent services all in one convenient place!'
+  'All of your cars documents, information, and recent services in one convenient place!'
 )

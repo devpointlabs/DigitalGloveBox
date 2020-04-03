@@ -39,7 +39,7 @@ const CarProfile = (props) => {
   
     <div>
       <h1>Car Profile</h1>
-      <Link to={{pathname: `/car_profile/${id}/edit`, car: car }}>
+      <Link to={{pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
         <Button>Edit</Button>
       </Link>
       

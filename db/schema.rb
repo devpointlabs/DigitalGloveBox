@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_210605) do
+ActiveRecord::Schema.define(version: 2020_04_03_221924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_03_31_210605) do
     t.integer "year"
     t.string "color"
     t.string "license_plate"
-    t.date "policy_exp"
     t.boolean "roadside_ass"
     t.integer "miles"
     t.string "vin"
@@ -30,6 +29,8 @@ ActiveRecord::Schema.define(version: 2020_03_31_210605) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "insurance_provider"
+    t.string "policy_exp"
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 

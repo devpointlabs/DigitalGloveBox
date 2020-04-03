@@ -9,41 +9,61 @@ const EditCarProfile = (props) =>{
 //   useEffect onUnload() {
 //     browserHistory.push('/');
 // }
+const [carEdit, setCarEdit] = useState({})
 
+  useEffect( () => {
+    const { user_id, id } = props.match.params;
+    
+    axios.get(`/api/users/${user_id}/cars/${id}`).then(res => {
+      setCarEdit(res.data)
+    }).catch(err => {
+      console.log(err)
+    })}, [])
+
+
+// if (sessionStorage.getItem("is_reloaded")) alert('Reloaded!');
+// sessionStorage.setItem("is_reloaded", true);
+// const unLoad = () => {
+//       window.location.push('/');
+//   }
   // useEffect(() => {
-  // /* componentDidMount code + componentDidUpdate code */
-  // return (
-  //   <Redirect 
-  //   to={{
-  //     pathname: "/",
-  //     state: { from: props.location, },
-  //   }}
-  //   />
-  // )});
+    
+  // return()
+    // <Redirect 
+    // to={{
+    //   pathname: "/",
+    //   state: { from: props.location, },
+    // }}
+    // />
+  //   // Router.refresh();
+  //   // refresh: function () {
+  //   //   Router.dispatch(location.getCurrentPath(), null);
+  //   //   },
+  //   if (sessionStorage.getItem("is_reloaded")) alert('Reloaded!');
+  //   sessionStorage.setItem("is_reloaded", true);
+  // )}, []);
 
-  const car = props.location.car
+  // const car = props.location.car
 
-  const defaultValues= {
-    make: car.make,
-    model: car.model,
-    year: car.year,
-    color: car.color,
-    license_plate: car.license_plate,
-    vin: car.vin,
-    miles: car.miles,
-    policy_number: car.policy_number,
-    policy_exp: car.policy_exp,
-    roadside_ass: car.roadside_ass,
-   insurance_prov_num: car.insurance_prov_num,
-  }
-
-  const [carEdit, setCarEdit] = useState({...defaultValues})
-  const { user_id, id} = car
+  // const defaultValues= {
+  //   make: car.make,
+  //   model: car.model,
+  //   year: car.year,
+  //   color: car.color,
+  //   license_plate: car.license_plate,
+  //   vin: car.vin,
+  //   miles: car.miles,
+  //   policy_number: car.policy_number,
+  //   policy_exp: car.policy_exp,
+  //   roadside_ass: car.roadside_ass,
+  //   insurance_prov_num: car.insurance_prov_num,
+  // }
+  const { user_id, id } = props.match.params;
 
     const handleSubmit = e => {
       e.preventDefault()
       axios.put(`/api/users/${user_id}/cars/${id}`, carEdit).then(res => {
-        setCarEdit({...defaultValues});
+        setCarEdit({...carEdit});
         props.history.goBack()
       }).catch( (err) => {
         console.log(err.response)
@@ -51,7 +71,7 @@ const EditCarProfile = (props) =>{
     }
 
     const handleChangeCheckbox= e => {
-    setCarEdit({roadside_ass: !car.roadside_ass})}    
+    setCarEdit({roadside_ass: !carEdit.roadside_ass})}    
 
     const handleChange = e => {
       const { name, value } = e.target
@@ -100,7 +120,7 @@ const EditCarProfile = (props) =>{
 
             <Form.Input
               label="Policy Expiration"
-              
+              type = 'date'
               name='policy_exp'
               value={carEdit.policy_exp}
               placeholder='XX/XX'
@@ -128,8 +148,6 @@ const EditCarProfile = (props) =>{
         <Button>Update</Button>
     </Form>
 
-    )
-
-}
+    )}
 
 export default EditCarProfile

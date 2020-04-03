@@ -1,39 +1,50 @@
-import React from 'react'
+import React,{ useState, useEffect} from 'react'
 import { Table, Button, } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+
+import { AuthConsumer } from '../../providers/AuthProvider'
 
 
 const CarProfile = (props) => {
-
+  const [car, setCar] = useState({})
+  console.log(props)
   const { id } = props.match.params
-  // const { delete } = props
-  console.log(car)
+  const user_id = props.auth.user.id
 
-  // useEffect
-  // axios for a car show from backend
+  useEffect( () => {
+    axios.get(`/api/users/${user_id}/cars/${id}`).then(res => {
+      (setCar( res.data ))
+    }).catch(err => {
+      console.log(err)
+    })}, [])
 
-  //Edit Car
+  const deleteCar = () => {
+      axios.delete(`/api/users/${user_id}/cars/${id}`
+      ).then(res => props.history.goBack()).catch(e => console.log(e))
+    }
 
-  //Delete Car
-
-  // deleteCar = (id) => {
-  //   const {id} = this.props;
-  //   axios.delete(`/api/users/${user.id}/cars/${id}`)
-  //   .then(() => {
-  //     const newCars = cars.filter ( car => car.id != id)
-  //     this.setCars({
-  //       cars: newCars
-  //     })
-  //   })
-  // }
+  const roadsideAssCheck= ()=> {
+    if (car.roadside_ass === true){  
+      return(
+        <Table.Cell>Roadside Assistance &#9989;</Table.Cell>
+      )
+    } else {
+      return(
+        <Table.Cell>Roadside Assistance &#10060; </Table.Cell>
+      )}
+  }
 
   return (
   
     <div>
       <h1>Car Profile</h1>
-      <Button>Edit</Button>
-      <Button>Delete </Button>
-       {/* onClick={delete (car.id)} */}
+      <Link to={{pathname: `/car_profile/${id}/edit`, car: car }}>
+        <Button>Edit</Button>
+      </Link>
+      
+      <Button onClick={deleteCar}>Delete </Button>
+      
       <Button>Documents</Button>
       <h1>{car.year} {car.make} {car.model}</h1>
       <img>{car.image}</img>
@@ -49,7 +60,7 @@ const CarProfile = (props) => {
             <Table.Cell>Insurance Provider {car.policy_number}</Table.Cell>
             <Table.Cell>Policy Expiry {car.policy_exp}</Table.Cell>
             <Table.Cell>Policy Number {car.policy_number}</Table.Cell>
-            <Table.Cell>Roadside Assistance {car.roadside_ass}</Table.Cell>
+            {roadsideAssCheck()}
             <Table.Cell>Insurance Provider Number {car.insurance_prov_num}</Table.Cell>
           </Table.Row>
         </Table.Body>
@@ -58,4 +69,11 @@ const CarProfile = (props) => {
   )
 }
 
-export default CarProfile
+const ConnectedCarProfile = (props) => (
+  <AuthConsumer> 
+      { auth =>
+        <CarProfile {...props} auth={auth} />
+      }
+      </AuthConsumer>
+)
+export default ConnectedCarProfile

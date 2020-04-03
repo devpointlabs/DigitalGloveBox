@@ -15,8 +15,9 @@ class Account extends React.Component {
         postal_code: '',
         comm_prefs: null,
       }};
-  
+      
   componentDidMount(){
+  
     const { auth: {user: { first_name, last_name, email, phone_number, postal_code, comm_prefs }}} = this.props;
     this.setState({ formValues: {first_name, last_name, email, phone_number,postal_code, comm_prefs} });
   };
@@ -66,7 +67,6 @@ class Account extends React.Component {
 
   optInView = () => {
     const { auth: { user } } = this.props;
-    console.log(user)
     if (user.comm_prefs === true){
         return(
       <Header as="h5"> You are subscribed to our communications! &#127752; </Header>)

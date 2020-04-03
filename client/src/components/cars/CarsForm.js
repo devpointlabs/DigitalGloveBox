@@ -145,13 +145,7 @@ const CarsForm = (props) => {
          
         /> 
 
-      {/* <Form.Checkbox
-            label="Do you have roadside assistance?"
-            name='roadside_ass'
-            onChange={handleChangeCheckbox()}
-            checked={roadside_ass}
-      />  */}
-
+  
 
       <Form.Button>Submit</Form.Button>
     </Form>

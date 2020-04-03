@@ -14,7 +14,7 @@ class Api::CarsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    render json: user.cars.create(card_params)
+    render json: user.cars.create(car_params)
 
     # if user.cars.save
      

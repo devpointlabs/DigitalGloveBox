@@ -25,16 +25,6 @@ const Cars = (props) => {
   },[])
 
 
-  // addCar = () => {
-  //   console.log('added')
-  // }
-
-  
-
-  const editCar = () => {
-    console.log('edited')
-  }
-
   const renderCars = () =>{
     return cars.map( car => (      
       <div key = {`car-${car.id}`}>
@@ -46,7 +36,9 @@ const Cars = (props) => {
  
   
   return(
+
     <Item>
+       <Link to={{pathname: `/add_car` }}>Add Car</Link>
       {renderCars()}
     </Item>
   )

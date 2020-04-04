@@ -1,201 +1,115 @@
-import React,{useState, useEffect,useContext} from 'react'
+import React,{useState,useContext} from 'react'
 import axios from 'axios';
 import { Form, Button} from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom'
 import { AuthContext } from '../../providers/AuthProvider';
+import {useFormInput,} from "../Hooks/useFormInput";
 
 const AddCar = (props) =>{
   
   const {user} = useContext(AuthContext)
-  const [addCars, setAddCars] = useState([])
-  
+  const make = useFormInput("")
+  const year = useFormInput("")
+  const model = useFormInput("")
+  const color = useFormInput("")
+  const license_plate= useFormInput("")
+  const policy_exp = useFormInput("")
+  const [roadside_ass, setRoadside_ass] = useState(false)
+  const miles = useFormInput("")
+  const vin = useFormInput ("")
+  const policy_number = useFormInput ("")
+  const insurance_prov_num = useFormInput ("")
 
-useEffect( () => {
-  axios.get(`/api/users/${user.id}/cars`)
-  .then(res => {    
-    setAddCars(res.data)
-    console.log(res.data)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-},[])
-
-// const [make,setMake] = useState('')
-// const [model,setModel] = useState('')
-// const [year,setYear] = useState('')
-// const [color,setColor] = useState('')
-// const [license_plate,setLicense_plate] = useState('')
-// const [vin,setvin] = useState('')
-// const [miles,setMiles] = useState('')
-// const [policy_number,setPolicy_number] = useState('')
-// const [policy_exp,setPolicy_exp] = useState('')
-// const [roadside_ass,setRoadside_ass] = useState('')
-// const [insurance_prov_num,setInsurance_prov_num] = useState('')
-
-// const car = cars
-
-// const defaultValues= {
-  // make: car.make,
-  // model: car.model,
-  // year: car.year,
-  // color: car.color,
-  // license_plate: car.license_plate,
-  // vin: car.vin,
-  // miles: car.miles,
-  // policy_number: car.policy_number,
-  // policy_exp: car.policy_exp,
-  // roadside_ass: car.roadside_ass,
-  // insurance_prov_num: car.insurance_prov_num,
-// }
-
-// const [carAdd, setCarAdd] = useState({})
-  
-// const car = {
-//   make: make,
-//   model:model,
-//   year: year,
-//   color: color,
-//   license_plate: license_plate,
-//   vin: vin,
-//   miles: miles,
-//   policy_number: policy_number,
-//   policy_exp: policy_exp,
-//   roadside_ass: roadside_ass,
-//   insurance_prov_num: insurance_prov_num,
-
-// }
     const handleSubmit = e => {
       e.preventDefault()
-      axios.post(`/api/users/${user.id}/cars`, addCars)
-      .then(res => {
-        console.log(res.data)
-        setAddCars(res.data);
-        
-        //go back to dash page
-
-      }).catch( (err) => {
+      axios.post(`/api/users/${user.id}/cars`,{make:make.value,model:model.value,year:year.value,color:color.value,
+      license_plate:license_plate.value,policy_exp:policy_exp.value,
+      roadside_ass,miles:miles.value,vin:vin.value,policy_number:policy_number.value,
+      insurance_prov_num:insurance_prov_num.value,})
+      .then
+        (res => props.history.goBack())
+      .catch( (err) => {
         console.log(err)
       })
     }
     
-
-    
-
-    const handleChangeCheckbox= e => {
-      setAddCars({roadside_ass: !addCars.roadside_ass})}    
-
-    const handleChange = e => {
-      const { name, value } = e.target
-      setAddCars({
-        [name]: value,
-      })
-    }
-
-
-
-    
     return(
       <Form onSubmit={handleSubmit}>
-      
             <Form.Input
               label="Year"
-              required
               autoFocus
               name='year'
-              value={addCars.year}
               placeholder='Year'
-              onChange={handleChange}
+              {...year}
             />
             <Form.Input
-              label="Make"
-              required
-              
+              label="Make"       
               name='make'
-              value={addCars.Make}
               placeholder='Make'
-              onChange={handleChange}
+              {...make}
             />
             <Form.Input
               label="Model"
-              required
-              
               name='model'
-              value={addCars.model}
               placeholder='Model'
-              onChange={handleChange}
+              {...model}
             />
             <Form.Input
               label="Color"
-              required
               name='color'
-              value={addCars.color}
               placeholder='Color'
-              onChange={handleChange}
+              {...color}
             />
             <Form.Input
               label="License Plate"
-              required
               name='license_plate'
-              value={addCars.license_plate}
               placeholder='License Plate'
-              onChange={handleChange}
+              {...license_plate}
             />
             <Form.Input
               label="Vin Number"
-              required
+              
               name='vin'
-              value={addCars.vin}
               placeholder='Vin Number'
-              onChange={handleChange}
+              {...vin}
             />
             <Form.Input
               label="Miles"
-              required
+              
               name='miles'
-              value={addCars.miles}
               placeholder='Total Miles'
-              onChange={handleChange}
+              {...miles}
             />
-
             <Form.Input
               label="Policy Number"
-              optional
+              optional = "true"
               name='policy_number'
-              value={addCars.policy_number}
               placeholder='Policy Number'
-              onChange={handleChange}
+              {...policy_number}
             />
-
             <Form.Input
               label="Policy Expiration"
+              type = 'date'
+              optional = "true"
               name='policy_exp'
-              value={addCars.policy_exp}
               placeholder='XX/XX'
-              onChange={handleChange}
+              {...policy_exp}
             />
-
             <Form.Input
               label="Insurance Provider"
+              optional = "true"
               name='insurance_prov_num'
-              value={addCars.insurance_prov_num}
               placeholder='Insurance Provider'
-              onChange={handleChange}
+              {...insurance_prov_num}
             />
-
           <Form.Checkbox
             label="Roadside Assistance? Check for yes."
             name='roadside_ass'
-            onChange={handleChangeCheckbox}
-            checked={addCars.roadside_ass}
+            onChange={(e) => setRoadside_ass(!roadside_ass)}
+            checked={roadside_ass}
           />
-
-
         <Button>Add Car</Button>
     </Form>
-
     )
-
 }
 
 export default AddCar

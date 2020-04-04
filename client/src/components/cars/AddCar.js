@@ -6,14 +6,14 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 const AddCar = (props) =>{
   
-const [cars, setCars] = useState([])
+  const {user} = useContext(AuthContext)
+  const [addCars, setAddCars] = useState([])
   
-const {user} = useContext(AuthContext)
 
 useEffect( () => {
   axios.get(`/api/users/${user.id}/cars`)
   .then(res => {    
-    setCars(res.data)
+    setAddCars(res.data)
     console.log(res.data)
   })
   .catch(err => {
@@ -21,33 +21,59 @@ useEffect( () => {
   })
 },[])
 
+// const [make,setMake] = useState('')
+// const [model,setModel] = useState('')
+// const [year,setYear] = useState('')
+// const [color,setColor] = useState('')
+// const [license_plate,setLicense_plate] = useState('')
+// const [vin,setvin] = useState('')
+// const [miles,setMiles] = useState('')
+// const [policy_number,setPolicy_number] = useState('')
+// const [policy_exp,setPolicy_exp] = useState('')
+// const [roadside_ass,setRoadside_ass] = useState('')
+// const [insurance_prov_num,setInsurance_prov_num] = useState('')
 
-const car = cars
+// const car = cars
 
-const defaultValues= {
-  make: car.make,
-  model: car.model,
-  year: car.year,
-  color: car.color,
-  license_plate: car.license_plate,
-  vin: car.vin,
-  miles: car.miles,
-  policy_number: car.policy_number,
-  policy_exp: car.policy_exp,
-  roadside_ass: car.roadside_ass,
-  insurance_prov_num: car.insurance_prov_num,
-}
+// const defaultValues= {
+  // make: car.make,
+  // model: car.model,
+  // year: car.year,
+  // color: car.color,
+  // license_plate: car.license_plate,
+  // vin: car.vin,
+  // miles: car.miles,
+  // policy_number: car.policy_number,
+  // policy_exp: car.policy_exp,
+  // roadside_ass: car.roadside_ass,
+  // insurance_prov_num: car.insurance_prov_num,
+// }
 
-const [carAdd, setCarAdd] = useState({...defaultValues})
+// const [carAdd, setCarAdd] = useState({})
   
+// const car = {
+//   make: make,
+//   model:model,
+//   year: year,
+//   color: color,
+//   license_plate: license_plate,
+//   vin: vin,
+//   miles: miles,
+//   policy_number: policy_number,
+//   policy_exp: policy_exp,
+//   roadside_ass: roadside_ass,
+//   insurance_prov_num: insurance_prov_num,
 
+// }
     const handleSubmit = e => {
       e.preventDefault()
-      axios.post(`/api/users/${user.id}/cars`, carAdd)
+      axios.post(`/api/users/${user.id}/cars`, addCars)
       .then(res => {
         console.log(res.data)
-        setCarAdd(res.data)
-        props.history.goBack()
+        setAddCars(res.data);
+        
+        //go back to dash page
+
       }).catch( (err) => {
         console.log(err)
       })
@@ -57,11 +83,11 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
     
 
     const handleChangeCheckbox= e => {
-    setCarAdd({roadside_ass: !car.roadside_ass})}    
+      setAddCars({roadside_ass: !addCars.roadside_ass})}    
 
     const handleChange = e => {
       const { name, value } = e.target
-      setCarAdd({
+      setAddCars({
         [name]: value,
       })
     }
@@ -77,7 +103,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               required
               autoFocus
               name='year'
-              value={setCarAdd.year}
+              value={addCars.year}
               placeholder='Year'
               onChange={handleChange}
             />
@@ -86,7 +112,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               required
               
               name='make'
-              value={setCarAdd.Make}
+              value={addCars.Make}
               placeholder='Make'
               onChange={handleChange}
             />
@@ -95,7 +121,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               required
               
               name='model'
-              value={setCarAdd.license_plate}
+              value={addCars.model}
               placeholder='Model'
               onChange={handleChange}
             />
@@ -103,7 +129,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               label="Color"
               required
               name='color'
-              value={setCarAdd.color}
+              value={addCars.color}
               placeholder='Color'
               onChange={handleChange}
             />
@@ -111,7 +137,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               label="License Plate"
               required
               name='license_plate'
-              value={setCarAdd.license_plate}
+              value={addCars.license_plate}
               placeholder='License Plate'
               onChange={handleChange}
             />
@@ -119,7 +145,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               label="Vin Number"
               required
               name='vin'
-              value={setCarAdd.vin}
+              value={addCars.vin}
               placeholder='Vin Number'
               onChange={handleChange}
             />
@@ -127,7 +153,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               label="Miles"
               required
               name='miles'
-              value={setCarAdd.miles}
+              value={addCars.miles}
               placeholder='Total Miles'
               onChange={handleChange}
             />
@@ -136,7 +162,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
               label="Policy Number"
               optional
               name='policy_number'
-              value={setCarAdd.policy_number}
+              value={addCars.policy_number}
               placeholder='Policy Number'
               onChange={handleChange}
             />
@@ -144,7 +170,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
             <Form.Input
               label="Policy Expiration"
               name='policy_exp'
-              value={setCarAdd.policy_exp}
+              value={addCars.policy_exp}
               placeholder='XX/XX'
               onChange={handleChange}
             />
@@ -152,7 +178,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
             <Form.Input
               label="Insurance Provider"
               name='insurance_prov_num'
-              value={setCarAdd.insurance_prov_num}
+              value={addCars.insurance_prov_num}
               placeholder='Insurance Provider'
               onChange={handleChange}
             />
@@ -161,7 +187,7 @@ const [carAdd, setCarAdd] = useState({...defaultValues})
             label="Roadside Assistance? Check for yes."
             name='roadside_ass'
             onChange={handleChangeCheckbox}
-            checked={setCarAdd.roadside_ass}
+            checked={addCars.roadside_ass}
           />
 
 

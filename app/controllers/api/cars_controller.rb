@@ -7,7 +7,7 @@ class Api::CarsController < ApplicationController
   end
 
   def show
-    render json: current_user.cars.find(params[:id])
+    render json: @car
   end
 
   def create
@@ -16,7 +16,7 @@ class Api::CarsController < ApplicationController
 
   def update
     @car.update_attributes(car_params)
-    render json: current_user.cars.find(params[:id])
+    render json: @car
   end
 
   def destroy
@@ -30,7 +30,7 @@ class Api::CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:make,:model,:year,:color,:license_plate,:policy_exp,:roadside_ass,:miles,:vin,:policy_number,:insurance_prov_num,:user_id, :insurance_provider)
+    params.require(:car).permit(:make,:model,:year,:color,:license_plate,:policy_exp,:roadside_ass,:miles,:vin,:policy_number,:insurance_prov_num,:user_id,:insurance_provider)
   end 
 end
 

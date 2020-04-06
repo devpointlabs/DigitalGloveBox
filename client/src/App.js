@@ -12,6 +12,7 @@ import NoMatch from './components/NoMatch';
 import CarProfile from './components/cars/CarProfile'
 import Account from './components/users/Account'
 import EditCarProfile from './components/cars/EditCarProfile';
+import AddCar from './components/cars/AddCar';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
           <Route exact path='/car_profile/:id' component={CarProfile}/>
+          <Route exact path='/add_car' component={AddCar}/>            
           <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
           <Route component={NoMatch}/>
         </Switch>

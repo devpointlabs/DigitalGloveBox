@@ -28,11 +28,11 @@ export default class DocumentNavbar extends React.Component {
             active={activeItem === 'service records'}
             onClick={this.handleItemClick}
           />
-            <Menu.Item
-              name='OTHER'
-              active={activeItem === 'other'}
-              onClick={this.handleItemClick}
-            />
+          <Menu.Item
+            name='OTHER'
+            active={activeItem === 'other'}
+            onClick={this.handleItemClick}
+          />
         </Menu>
       </div>
     )

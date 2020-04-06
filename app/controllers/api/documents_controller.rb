@@ -9,6 +9,7 @@ class Api::DocumentsController < ApplicationController
    def create
   
     document = @car.documents.new(document_params)
+
     if document.save
       render json: document
     else 
@@ -17,7 +18,7 @@ class Api::DocumentsController < ApplicationController
   end
 
   def show
-    render json: @car.@document
+    render json: @car.document
   end
 
   def update
@@ -43,6 +44,6 @@ class Api::DocumentsController < ApplicationController
   end
 
   def document_params
-    params.require(:document).permit(:name, :category, :file, :car_id)
+    params.require(:document).permit(:size, :lastModified, :_relativePath, :lastModifiedDate, :name, :category, :file, :car_id, :webkitRelativePath, :type,)
   end
 end

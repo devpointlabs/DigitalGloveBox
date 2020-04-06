@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_221924) do
+ActiveRecord::Schema.define(version: 2020_04_06_223123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 2020_04_03_221924) do
     t.bigint "car_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "_relativePath"
+    t.integer "lastModified"
+    t.datetime "lastModifiedDate"
+    t.integer "size"
+    t.string "type"
+    t.string "webkitRelativePath"
     t.index ["car_id"], name: "index_documents_on_car_id"
   end
 

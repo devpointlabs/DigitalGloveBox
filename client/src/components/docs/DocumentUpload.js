@@ -3,6 +3,7 @@ import { Button, Icon } from 'semantic-ui-react'
 import DocumentNavbar from './DocumentNavbar'
 import axios from 'axios'
 import { AuthConsumer } from '../../providers/AuthProvider'
+import Filepond from './Filepond'
 
 const DocumentUpload = (props) => {
 
@@ -28,6 +29,7 @@ const DocumentUpload = (props) => {
       <DocumentNavbar />
       <br />
       <Button><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
+      <Filepond  car_id={ id }/>
     </>
   )
 }
@@ -40,4 +42,4 @@ const ConnectedDocumentUpload = (props) => (
   </AuthConsumer>
 )
 
-export default ConnectedDocumentUpload 
+export default ConnectedDocumentUpload

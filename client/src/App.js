@@ -13,6 +13,7 @@ import CarProfile from './components/cars/CarProfile'
 import Account from './components/users/Account'
 import EditCarProfile from './components/cars/EditCarProfile';
 import AddCar from './components/cars/AddCar';
+import DocumentUpload from './components/docs/DocumentUpload';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <ProtectedRoute exact path='/account' component={Account}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/register' component={Register}/>
+          <Route exact path='/car_profile/:id/documents' component={DocumentUpload}/>
           <Route exact path='/car_profile/:id' component={CarProfile}/>
           <Route exact path='/add_car' component={AddCar}/>            
           <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            

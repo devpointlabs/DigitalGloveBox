@@ -43,7 +43,9 @@ const CarProfile = (props) => {
       
       <Button onClick={deleteCar}>Delete</Button>
       
-      <Button>Documents</Button>
+      <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
+        <Button>Document</Button>
+      </Link>
       <h1>{car.year} {car.make} {car.model}</h1>
       <img alt="user_car">{car.image}</img>
 

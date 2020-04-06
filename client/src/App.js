@@ -13,6 +13,7 @@ import CarProfile from './components/cars/CarProfile'
 import Account from './components/users/Account'
 import EditCarProfile from './components/cars/EditCarProfile';
 import AddCar from './components/cars/AddCar';
+import DocumentUpload from './components/docs/DocumentUpload';
 
 const App = () => {
   return (

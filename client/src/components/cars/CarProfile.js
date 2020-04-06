@@ -15,7 +15,7 @@ const CarProfile = (props) => {
       (setCar( res.data ))
     }).catch(err => {
       console.log(err)
-    })}, [])
+    })}, [user_id, id])
 
   const deleteCar = () => {
     axios.delete(`/api/users/${user_id}/cars/${id}`

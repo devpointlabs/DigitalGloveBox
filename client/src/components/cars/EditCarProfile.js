@@ -91,7 +91,7 @@ const EditCarProfile = (props) =>{
         label="Insurance Provider Number"
         name='insurance_prov_num'
         value={carEdit.insurance_prov_num}
-        placeholder='Insurance Provider'
+        placeholder='Insurance Provider Number'
         onChange={handleChange}
       />
       <Form.Checkbox

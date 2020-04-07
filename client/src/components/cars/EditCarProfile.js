@@ -12,7 +12,7 @@ const EditCarProfile = (props) =>{
       setCarEdit(res.data)
     }).catch(err => {
       console.log(err)
-    })}, [])
+    })}, [props.match.params])
 
   const { user_id, id } = props.match.params;
 

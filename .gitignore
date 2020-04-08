@@ -19,6 +19,7 @@
 .byebug_history
 
 node_modules/
+.env 
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

@@ -18,6 +18,8 @@ const DocumentUpload = (props) => {
       console.log(err)
     }
     )}, [user_id, id])
+
+    
   
   return (
     <>
@@ -29,7 +31,8 @@ const DocumentUpload = (props) => {
       <DocumentNavbar />
       <br />
       <Button><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
-      <Filepond  car_id={ id }/>
+      <Filepond allowMultiple={true} server={"http://localhost:3001"} car_id={ id }/>
+
     </>
   )
 }

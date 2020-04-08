@@ -1,15 +1,14 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import axios from 'axios';
-import { Form, Button} from 'semantic-ui-react';
+import { Form, Button, Dropdown} from 'semantic-ui-react';
 import { AuthContext } from '../../providers/AuthProvider';
 import {useFormInput,} from "../Hooks/useFormInput";
 
 const AddCar = (props) =>{
   
-  const {user} = useContext(AuthContext)
-  const make = useFormInput("")
-  const year = useFormInput("")
+  const { user } = useContext(AuthContext)
   const model = useFormInput("")
+  const year = useFormInput("")
   const color = useFormInput("")
   const license_plate= useFormInput("")
   const policy_exp = useFormInput("")
@@ -19,7 +18,92 @@ const AddCar = (props) =>{
   const policy_number = useFormInput ("")
   const insurance_prov_num = useFormInput ("")
   const insurance_provider = useFormInput("")
+  const [carData,setCarData] = useState([])
+  const [yearOptions,setYearOptions] = useState('')
+  const make = useFormInput("")
+  // console.log(carData)
+  // console.log(yearOptions)
 
+
+
+      // const getMakes = `https://parseapi.back4app.com/classes/Car_Model_List_${make}`
+
+    
+  useEffect(()=>{
+
+    fetch(
+      'https://parseapi.back4app.com/classes/Car_Model_List?limit=10000',
+      {
+        headers: {
+          'X-Parse-Application-Id': 'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your app's application id
+          'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
+        },
+        
+      }
+    )
+    .then(results => results.json())
+      .then(data => {
+      // axios post to a method in our controller => 
+        // then that controller organizes our cars into year, make, whatever we want. 
+        // axios.post('/api/cars/all_cars', data)
+      // mapCars(data.results)
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }, [])
+
+
+  // const mapCars =(cars)=>{
+  //   return cars.map(car => {
+
+  //   } 
+  // )}
+  
+//   const mapCars= () =>{
+//     let yearArray = carData.filter((Year, index) => carData.indexOf(carData.Year) === carData.index);
+//     console.log(yearArray)
+//     setYearOptions(yearArray)
+//     }
+//   carData = [{year:''},{year:''},{year:''}]
+//   year = [2020,1313,12323,124124,]
+
+//   //   arr = arr.filter (function (value, index, array) { 
+//   //     return array.indexOf (value) == index;
+//   // });
+
+//   function getDistinctArray(yearArray) {
+//     return [...new Set(yearArray)];
+// }
+
+// var noDupe = Array.from(new Set(names))
+
+
+
+  // const getMakes = () => {
+  //   fetch(
+  //     `https://parseapi.back4app.com/classes/Car_Model_List_${make}`
+  //     {
+  //       headers: {
+  //         'X-Parse-Application-Id': 'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your app's application id
+  //         'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
+  //       }
+  //     }
+  //   )
+  // }
+
+
+
+
+  
+
+
+// const handleMake = () => {
+  // set state to the value
+  // set make value
+// }
+
+  
     const handleSubmit = e => {
       e.preventDefault()
       axios.post(`/api/users/${user.id}/cars`,{make:make.value,model:model.value,year:year.value,color:color.value,
@@ -32,16 +116,20 @@ const AddCar = (props) =>{
         console.log(err)
       })
     }
+          
 
+    
     return(
       <Form onSubmit={handleSubmit}>
-            <Form.Input
-              label="Year"
-              autoFocus
-              required
-              name='year'
+      {/* <select onChange={this.handleMake}>
+        {mapCars()}
+      </select> */}
+            <Dropdown
+              fluid
+              search
+              selection
               placeholder='Year'
-              {...year}
+              options={yearOptions}
             />
             <Form.Input
               label="Make"       

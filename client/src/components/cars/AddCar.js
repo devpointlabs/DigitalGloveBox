@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Form, Button, Dropdown} from 'semantic-ui-react';
 import { AuthContext } from '../../providers/AuthProvider';
 import {useFormInput,} from "../Hooks/useFormInput";
+import Parse from 'parse'
 
 const AddCar = (props) =>{
   
@@ -18,39 +19,77 @@ const AddCar = (props) =>{
   const policy_number = useFormInput ("")
   const insurance_prov_num = useFormInput ("")
   const insurance_provider = useFormInput("")
-  const [carData,setCarData] = useState([])
+  const [carData,setCarData] = useState('')
   const [yearOptions,setYearOptions] = useState('')
   const make = useFormInput("")
-  // console.log(carData)
+  console.log(carData)
   // console.log(yearOptions)
 
+  const Parse = require('parse/node');
 
+  Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
+  Parse.initialize(
+    'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your Application ID
+    'pcGAl1MYs6UOiRESbDkIpyl9evmaAkKEL8IM8hko', // This is your Javascript key
+    '3OVHmZwktkpL4NANQ8728JIUnMMZfF49o8JwwiM6' // This is your Master key (never use it in the frontend)
+  );
 
       // const getMakes = `https://parseapi.back4app.com/classes/Car_Model_List_${make}`
-
+//Make=Audi
     
   useEffect(()=>{
 
-    fetch(
-      'https://parseapi.back4app.com/classes/Car_Model_List?limit=10000',
-      {
-        headers: {
-          'X-Parse-Application-Id': 'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your app's application id
-          'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
-        },
-        
-      }
-    )
-    .then(results => results.json())
-      .then(data => {
-      // axios post to a method in our controller => 
-        // then that controller organizes our cars into year, make, whatever we want. 
-        // axios.post('/api/cars/all_cars', data)
-      // mapCars(data.results)
+    const Car_Model_List = Parse.Object.extend('Car_Model_List');
+    const query = new Parse.Query(Car_Model_List);
+    query.equalTo("Make", 'A string');
+    query.equalTo("Year", 1);
+    query.equalTo("Model", 'A string');
+    query.equalTo("Category", 'A string');
+    query.distinct("Make").then(results => {
+      console.log(results)
+      if (typeof document !== 'undefined') document.write(`Unique Make: ${JSON.stringify(results)}`);
+      console.log(`Unique Make: ${JSON.stringify(results)}`);
     })
-    .catch(err => {
-      console.log(err);
+  
+    ;
+    query.find().then((results) => {
+        
+      // You can use the "get" method to get the value of an attribute
+      // Ex: response.get("<ATTRIBUTE_NAME>")
+      if (typeof document !== 'undefined') document.write(`Car_Model_List found: ${JSON.stringify(results)}`);
+      console.log('Car_Model_List found', results);
+    }, (error) => {
+      if (typeof document !== 'undefined') document.write(`Error while fetching Car_Model_List: ${JSON.stringify(error)}`);
+      console.error('Error while fetching Car_Model_List', error);
     });
+    
+
+
+
+
+
+  //   fetch(
+  //     'https://parseapi.back4app.com/classes/Car_Model_List',
+  //     {
+  //       headers: {
+  //         'X-Parse-Application-Id': 'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your app's application id
+  //         'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
+  //       },
+        
+  //     }
+  //   )
+  //   .then(results => results.json())
+  //     .then(data => {
+  //       console.log (data)
+  //     // axios post to a method in our controller => 
+  //       // then that controller organizes our cars into year, make, whatever we want. 
+  //       // axios.post('/api/cars/all_cars', data)
+  //     // mapCars(data.results)
+  //     setCarData(data.results)
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
   }, [])
 
 

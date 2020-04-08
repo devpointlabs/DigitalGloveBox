@@ -13,6 +13,9 @@ import CarProfile from './components/cars/CarProfile'
 import Account from './components/users/Account'
 import EditCarProfile from './components/cars/EditCarProfile';
 import AddCar from './components/cars/AddCar';
+import Parse from 'parse';
+import Home from './components/cars/Home'
+import Home2 from './components/cars/Home2';
 
 const App = () => {
   return (
@@ -29,6 +32,8 @@ const App = () => {
           <Route exact path='/car_profile/:id' component={CarProfile}/>
           <Route exact path='/add_car' component={AddCar}/>            
           <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
+          <Route exact path='/Home' component={Home}/>            
+          <Route exact path='/Home2' component={Home2}/>            
           <Route component={NoMatch}/>
         </Switch>
       </Container>

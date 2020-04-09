@@ -42,7 +42,7 @@ const AddCar = (props) =>{
     const Car_Model_List = Parse.Object.extend('Car_Model_List');
     const query = new Parse.Query(Car_Model_List);
     query.equalTo("Make", 'A string');
-    query.equalTo("Year", 1);
+    query.equalTo("Year", 2000);
     query.equalTo("Model", 'A string');
     query.equalTo("Category", 'A string');
     query.distinct("Make").then(results => {
@@ -53,7 +53,7 @@ const AddCar = (props) =>{
   
     ;
     query.find().then((results) => {
-        
+
       // You can use the "get" method to get the value of an attribute
       // Ex: response.get("<ATTRIBUTE_NAME>")
       if (typeof document !== 'undefined') document.write(`Car_Model_List found: ${JSON.stringify(results)}`);

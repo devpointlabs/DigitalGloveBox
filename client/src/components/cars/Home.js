@@ -49,13 +49,15 @@ class Home extends React.Component {
 // }
 
 
+
   carApi=() =>{
     
     const Car_Model_List = Parse.Object.extend(
       "Car_Model_List"
     );
     const query = new Parse.Query(Car_Model_List);
-   query.equalTo("Year", this.state.years)
+   query.limit(1000);
+   query.equalTo("Year", this.state.years);
    console.log(this.state.years)
 
    query.find().then(
@@ -72,13 +74,12 @@ class Home extends React.Component {
     );
  
   }
- handleOnChange = (e, data) => {
-   console.log(data.value);
-   this.setState({years:data.value});
-   console.log(this.state.years)
-   this.carApi()
-  }
- 
+  handleOnChange = (e, data) => {
+    console.log(data.value);
+    this.setState({years:data.value});
+    console.log(this.state.years)
+    this.carApi()
+   }
 
   render() {
     var carMakeOfYear = this.state.carMakeOfYear

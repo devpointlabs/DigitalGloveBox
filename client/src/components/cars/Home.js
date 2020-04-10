@@ -49,33 +49,39 @@ class Home extends React.Component {
 // }
 
 
-  componentDidMount() {
+  carApi=() =>{
+    
     const Car_Model_List = Parse.Object.extend(
       "Car_Model_List"
     );
     const query = new Parse.Query(Car_Model_List);
-   query.equalTo("Year", 1999)
+   query.equalTo("Year", this.state.years)
+   console.log(this.state.years)
 
    query.find().then(
      (results) => {
 
        let data = JSON.stringify(results);
        let newData = JSON.parse(data)
-        console.log(newData)
        let makeArray = [...new Set(newData.map( d => d.Make ))];
        var carMakeOfYear = makeArray.map((str) => ({ value: str, text: str}));
        this.setState({carMakeOfYear: carMakeOfYear})
-      //  console.log(carMakeOfYear)
+       console.log(carMakeOfYear)
 
       }
     );
  
   }
-
+ handleOnChange = (e, data) => {
+   console.log(data.value);
+   this.setState({years:data.value});
+   console.log(this.state.years)
+   this.carApi()
+  }
+ 
 
   render() {
     var carMakeOfYear = this.state.carMakeOfYear
-    console.log(carMakeOfYear)
     return (
       <>
       <Dropdown 
@@ -84,7 +90,9 @@ class Home extends React.Component {
         search
         selection
         options={carYears}
-      />
+        onChange={this.handleOnChange}
+        
+        />
       <Dropdown 
         placeholder='Select Make'
         fluid
@@ -93,7 +101,8 @@ class Home extends React.Component {
         options={carMakeOfYear}
       />
       <h1>{this.state.cars}</h1>
-      <h1>{this.state.result}</h1>
+      <h1>{this.state.years}</h1>
+      
       </>
     )
   }

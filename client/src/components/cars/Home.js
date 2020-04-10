@@ -15,8 +15,7 @@ class Home extends React.Component {
       cars: [],
       make: [],
       carMakeOfYear: [],
-      years: [],
-      // yearsChosen: {}
+      yearsChosen: []
     
     };
     let install = new Parse.Installation()
@@ -49,7 +48,6 @@ class Home extends React.Component {
 // }
 
 
-
   carApi=() =>{
     
     const Car_Model_List = Parse.Object.extend(
@@ -57,8 +55,8 @@ class Home extends React.Component {
     );
     const query = new Parse.Query(Car_Model_List);
    query.limit(1000);
-   query.equalTo("Year", this.state.years);
-   console.log(this.state.years)
+   query.equalTo("Year", this.state.yearsChosen);
+   console.log(this.state.yearsChosen)
 
    query.find().then(
      (results) => {
@@ -69,15 +67,15 @@ class Home extends React.Component {
        var carMakeOfYear = makeArray.map((str) => ({ value: str, text: str}));
        this.setState({carMakeOfYear: carMakeOfYear})
        console.log(carMakeOfYear)
-
+        // let carMakeOfYear= [...new Set(makeArray.map(d=>d.))]
       }
     );
  
   }
   handleOnChange = (e, data) => {
     console.log(data.value);
-    this.setState({years:data.value});
-    console.log(this.state.years)
+    this.setState({yearsChosen:data.value});
+    console.log(this.state.yearsChosen)
     this.carApi()
    }
 
@@ -92,6 +90,8 @@ class Home extends React.Component {
         selection
         options={carYears}
         onChange={this.handleOnChange}
+        // onChange={this.carApi}
+
         
         />
       <Dropdown 
@@ -102,7 +102,7 @@ class Home extends React.Component {
         options={carMakeOfYear}
       />
       <h1>{this.state.cars}</h1>
-      <h1>{this.state.years}</h1>
+      <h1>yearsChosen: {this.state.yearsChosen}</h1>
       
       </>
     )

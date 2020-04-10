@@ -15,38 +15,36 @@ class Home extends React.Component {
       cars: [],
       make: [],
       carMakeOfYear: [],
-      yearsChosen: []
+      yearsChosen: [],
+      carChosen:[],
     
     };
+
+
     let install = new Parse.Installation()
-    install.set("deviceType", navigator.userAgent);
-    install.save().then((resp) => {
-      console.log('created install objext', resp);
-      this.setState({result: "New object created with object ID: " + resp.id})
-    }, err => {
-        console.log("error creating install object", err);
-        this.setState({result: "failed to create new object, with error code: " + err.message})
-    }
-    )
+  install.set("deviceType", navigator.userAgent);
+  install.save().then((resp) => {
+    console.log('created install objext', resp);
+    this.setState({result: "New object created with object ID: " + resp.id})
+  }, err => {
+      console.log("error creating install object", err);
+      this.setState({result: "failed to create new object, with error code: " + err.message})
+  }
+  )
+  
+
+
   }
 
-//     getMakesFromYearChosen = () => {
-        
-//     }
 
-//       <select onChange value={yearChosen}>
-
-//         {mapYears()}
-//       </select>
-
-// mapYears() +. {
-//   years.forEach(y => {
-
-//     <option value={y}>{y}</option>
-//   }
-//   )
-// }
-
+handleOnChange = (e, data) => {
+  console.log(data.value);
+  this.setState(
+    {yearsChosen:data.value}, ()=>{ //call back 
+      this.carApi()
+  });
+ 
+ }
 
   carApi=() =>{
     
@@ -63,6 +61,7 @@ class Home extends React.Component {
 
        let data = JSON.stringify(results);
        let newData = JSON.parse(data)
+       
        let makeArray = [...new Set(newData.map( d => d.Make ))];
        var carMakeOfYear = makeArray.map((str) => ({ value: str, text: str}));
        this.setState({carMakeOfYear: carMakeOfYear})
@@ -72,12 +71,6 @@ class Home extends React.Component {
     );
  
   }
-  handleOnChange = (e, data) => {
-    console.log(data.value);
-    this.setState({yearsChosen:data.value});
-    console.log(this.state.yearsChosen)
-    this.carApi()
-   }
 
   render() {
     var carMakeOfYear = this.state.carMakeOfYear
@@ -90,7 +83,6 @@ class Home extends React.Component {
         selection
         options={carYears}
         onChange={this.handleOnChange}
-        // onChange={this.carApi}
 
         
         />
@@ -101,8 +93,8 @@ class Home extends React.Component {
         selection
         options={carMakeOfYear}
       />
-      <h1>{this.state.cars}</h1>
-      <h1>yearsChosen: {this.state.yearsChosen}</h1>
+      <h1>state=yearsChosen: {this.state.yearsChosen}</h1>
+      <h1>state=carChosen:{this.state.carChosen}</h1>
       
       </>
     )

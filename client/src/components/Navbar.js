@@ -26,8 +26,6 @@ const Navbar = (props) => {
           </Link>
         </Menu.Menu>
 
-        
-
       )} else {
           return(
             <Menu.Menu position='right'>
@@ -59,27 +57,6 @@ const Navbar = (props) => {
             name='dashboard'
             id='dashboard'
             active={ location.pathname === '/' }
-          />
-        </Link>
-        <Link to='/add_car'>
-          <Menu.Item
-            name='addCar'
-            id='addCar'
-            active={ location.pathname === '/add_car' }
-          />
-        </Link>
-        <Link to='/Home'>
-          <Menu.Item
-            name='Home'
-            id='Home'
-            active={ location.pathname === '/Home' }
-          />
-        </Link>
-        <Link to='/Home2'>
-          <Menu.Item
-            name='Home2'
-            id='Home2'
-            active={ location.pathname === '/Home2' }
           />
         </Link>
           { rightNavItems()}

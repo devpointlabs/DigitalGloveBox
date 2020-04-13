@@ -1,9 +1,8 @@
-import React,{useState,useContext,useEffect, createContext} from 'react'
+import React,{useState,useContext,useEffect,} from 'react'
 import axios from 'axios';
-import { Form, Button, Dropdown} from 'semantic-ui-react';
+import { Form, Button, } from 'semantic-ui-react';
 import { AuthContext } from '../../providers/AuthProvider';
 import {useFormInput,} from "../Hooks/useFormInput";
-import Parse from 'parse';
 import {Redirect} from 'react-router-dom'
 
 const AddCar = (props) =>{
@@ -21,140 +20,21 @@ const AddCar = (props) =>{
   const policy_number = useFormInput ("")
   const insurance_prov_num = useFormInput ("")
   const insurance_provider = useFormInput("")
-  const [carData,setCarData] = useState('')
-  const [yearOptions,setYearOptions] = useState('')
+ 
   const [redirect,setRedirect]= useState(null)
-  console.log(carData)
-  // console.log(yearOptions)
 
-  const Parse = require('parse/node');
-
-  Parse.serverURL = 'https://parseapi.back4app.com'; // This is your Server URL
-  Parse.initialize(
-    'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your Application ID
-    'pcGAl1MYs6UOiRESbDkIpyl9evmaAkKEL8IM8hko', // This is your Javascript key
-    '3OVHmZwktkpL4NANQ8728JIUnMMZfF49o8JwwiM6' // This is your Master key (never use it in the frontend)
-  );
-
-      // const getMakes = `https://parseapi.back4app.com/classes/Car_Model_List_${make}`
-//Make=Audi
+ 
     
   useEffect(()=>{
         setModel(props.model)
         setYear(props.year)
         setMake(props.make)
-
-    // const Car_Model_List = Parse.Object.extend('Car_Model_List');
-    // const query = new Parse.Query(Car_Model_List);
-    // query.equalTo("Make", 'A string');
-    // query.equalTo("Year", 2000);
-    // query.equalTo("Model", 'A string');
-    // query.equalTo("Category", 'A string');
-    // query.distinct("Make").then(results => {
-    //   console.log(results)
-    //   if (typeof document !== 'undefined') document.write(`Unique Make: ${JSON.stringify(results)}`);
-    //   console.log(`Unique Make: ${JSON.stringify(results)}`);
-    // })
-  
-    // ;
-    // query.find().then((results) => {
-
-    //   // You can use the "get" method to get the value of an attribute
-    //   // Ex: response.get("<ATTRIBUTE_NAME>")
-    //   if (typeof document !== 'undefined') document.write(`Car_Model_List found: ${JSON.stringify(results)}`);
-    //   console.log('Car_Model_List found', results);
-    // }, (error) => {
-    //   if (typeof document !== 'undefined') document.write(`Error while fetching Car_Model_List: ${JSON.stringify(error)}`);
-    //   console.error('Error while fetching Car_Model_List', error);
-    // });
-    
-
-
-
-
-
-  //   fetch(
-  //     'https://parseapi.back4app.com/classes/Car_Model_List',
-  //     {
-  //       headers: {
-  //         'X-Parse-Application-Id': 'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your app's application id
-  //         'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
-  //       },
-        
-  //     }
-  //   )
-  //   .then(results => results.json())
-  //     .then(data => {
-  //       console.log (data)
-  //     // axios post to a method in our controller => 
-  //       // then that controller organizes our cars into year, make, whatever we want. 
-  //       // axios.post('/api/cars/all_cars', data)
-  //     // mapCars(data.results)
-  //     setCarData(data.results)
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
   }, [props.model, props.make, props.year])
 
-
-  // const mapCars =(cars)=>{
-  //   return cars.map(car => {
-
-  //   } 
-  // )}
-  
-//   const mapCars= () =>{
-//     let yearArray = carData.filter((Year, index) => carData.indexOf(carData.Year) === carData.index);
-//     console.log(yearArray)
-//     setYearOptions(yearArray)
-//     }
-//   carData = [{year:''},{year:''},{year:''}]
-//   year = [2020,1313,12323,124124,]
-
-//   //   arr = arr.filter (function (value, index, array) { 
-//   //     return array.indexOf (value) == index;
-//   // });
-
-//   function getDistinctArray(yearArray) {
-//     return [...new Set(yearArray)];
-// }
-
-// var noDupe = Array.from(new Set(names))
-
-
-
-  // const getMakes = () => {
-  //   fetch(
-  //     `https://parseapi.back4app.com/classes/Car_Model_List_${make}`
-  //     {
-  //       headers: {
-  //         'X-Parse-Application-Id': 'VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD', // This is your app's application id
-  //         'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
-  //       }
-  //     }
-  //   )o
-  // }
-
-
-
-
-  
-
-
-// const handleMake = () => {
-  // set state to the value
-  // set make value
-// }
-
-    
-    
-      if (redirect) {
-        return <Redirect to={redirect} />
-      }
+    if (redirect) {
+      return <Redirect to={redirect} />
+    }
       
-    
-  
     const handleSubmit = e => {
       e.preventDefault()
       axios.post(`/api/users/${user.id}/cars`,{make:make,model:model,year:year,color:color.value,
@@ -162,42 +42,15 @@ const AddCar = (props) =>{
       roadside_ass,miles:miles.value,vin:vin.value,policy_number:policy_number.value,
       insurance_prov_num:insurance_prov_num.value,insurance_provider:insurance_provider.value})
       .then
-      //go back to dashboard
         (res => setRedirect({redirect:"/"}))
       .catch( (err) => {
         console.log(err)
       })
     }
-          
-    // this.setState({ redirect: "/someRoute" });
-    
+              
     return(
       <Form onSubmit={handleSubmit}>
-      {/* <select onChange={this.handleMake}>
-        {mapCars()}
-      </select> */}
-        {/* <Home /> */}
-            {/* <Dropdown
-              fluid
-              search
-              selection
-              placeholder='Year'
-              options={yearOptions}
-            />
-            <Form.Input
-              label="Make"       
-              name='make'
-              required
-              placeholder='Make'
-              {...make}
-            />
-            <Form.Input
-              label="Model"
-              name='model'
-              required
-              placeholder='Model'
-              {...model}
-            /> */}
+      
             <Form.Input
               label="Color"
               name='color'

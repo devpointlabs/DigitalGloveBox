@@ -3,7 +3,7 @@ import Parse from 'parse';
 import { Dropdown } from 'semantic-ui-react'
 import AddCar from './AddCar';
 
-class Home extends React.Component {
+class carApi extends React.Component {
   constructor(props) {
     super(props);
     Parse.initialize(
@@ -35,24 +35,21 @@ class Home extends React.Component {
   }
 
   yearOnChange = (e, data) => {
-    console.log(data.value);
     this.setState(
-      {yearsChosen:data.value}, ()=>{ //call back 
+      {yearsChosen:data.value}, ()=>{ 
         this.carApi()
     });
   
   }
 
   makeOnChange =(e, data) =>{
-   console.log(data.value);
    this.setState(
-     {makeChosen: data.value}, ()=>{ //call back 
+     {makeChosen: data.value}, ()=>{ 
       this.carApi()
      })
   }
 
   modelOnChange = (e,data) =>{
-    console.log(data.value);
     this.setState(
       {modelChosen: data.value},
     )
@@ -65,7 +62,6 @@ class Home extends React.Component {
     const query = new Parse.Query(Car_Model_List);
     query.limit(1000);
     query.equalTo("Year", this.state.yearsChosen);
-    console.log(this.state.yearsChosen)
 
     query.find().then(
      (results) => {
@@ -75,8 +71,7 @@ class Home extends React.Component {
        
        let makeArray = [...new Set(newData.map( d => d.Make ))];
        let modelChosenArray = newData.filter((d) => {return d.Make == this.state.makeChosen})
-       console.log(modelChosenArray)
-       //map newData with yearChoosen makeChoosen
+       
        let modelArray = [...new Set(modelChosenArray.map( d => d.Model ))];
 
        let carModelofMake = modelArray.map((str) =>({value:str,text:str}));
@@ -85,9 +80,6 @@ class Home extends React.Component {
        var carMakeOfYear = makeArray.map((str) => ({ value: str, text: str}));
        this.setState({carMakeOfYear: carMakeOfYear})
 
-       console.log(carMakeOfYear)
-       console.log(carModelofMake)
-        // let carMakeOfYear= [...new Set(makeArray.map(d=>d.))]
       }
     );
  
@@ -128,15 +120,13 @@ class Home extends React.Component {
         required
 
       />
-      <h1>state=yearsChosen: {this.state.yearsChosen}</h1>
-      <h1>state=makeChosen:{this.state.makeChosen}</h1>
-      <h1>state=modelChosen:{this.state.modelChosen}</h1>
+     
       <AddCar year={this.state.yearsChosen} make={this.state.makeChosen} model={this.state.modelChosen}/>
       </>
     )
   }
 }
-export default Home;
+export default carApi;
 
 
 const carYears = [

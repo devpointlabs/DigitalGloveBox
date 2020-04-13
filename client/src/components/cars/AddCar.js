@@ -1,15 +1,17 @@
-import React,{useState,useContext,useEffect} from 'react'
+import React,{useState,useContext,useEffect, createContext} from 'react'
 import axios from 'axios';
 import { Form, Button, Dropdown} from 'semantic-ui-react';
 import { AuthContext } from '../../providers/AuthProvider';
 import {useFormInput,} from "../Hooks/useFormInput";
-import Parse from 'parse'
+import Parse from 'parse';
+import {Redirect} from 'react-router-dom'
 
 const AddCar = (props) =>{
   
   const { user } = useContext(AuthContext)
-  const model = useFormInput("")
-  const year = useFormInput("")
+  const [model, setModel] = useState("")
+  const [year, setYear] = useState("")
+  const [make, setMake] = useState("")
   const color = useFormInput("")
   const license_plate= useFormInput("")
   const policy_exp = useFormInput("")
@@ -21,7 +23,7 @@ const AddCar = (props) =>{
   const insurance_provider = useFormInput("")
   const [carData,setCarData] = useState('')
   const [yearOptions,setYearOptions] = useState('')
-  const make = useFormInput("")
+  const [redirect,setRedirect]= useState(null)
   console.log(carData)
   // console.log(yearOptions)
 
@@ -38,30 +40,33 @@ const AddCar = (props) =>{
 //Make=Audi
     
   useEffect(()=>{
+        setModel(props.model)
+        setYear(props.year)
+        setMake(props.make)
 
-    const Car_Model_List = Parse.Object.extend('Car_Model_List');
-    const query = new Parse.Query(Car_Model_List);
-    query.equalTo("Make", 'A string');
-    query.equalTo("Year", 2000);
-    query.equalTo("Model", 'A string');
-    query.equalTo("Category", 'A string');
-    query.distinct("Make").then(results => {
-      console.log(results)
-      if (typeof document !== 'undefined') document.write(`Unique Make: ${JSON.stringify(results)}`);
-      console.log(`Unique Make: ${JSON.stringify(results)}`);
-    })
+    // const Car_Model_List = Parse.Object.extend('Car_Model_List');
+    // const query = new Parse.Query(Car_Model_List);
+    // query.equalTo("Make", 'A string');
+    // query.equalTo("Year", 2000);
+    // query.equalTo("Model", 'A string');
+    // query.equalTo("Category", 'A string');
+    // query.distinct("Make").then(results => {
+    //   console.log(results)
+    //   if (typeof document !== 'undefined') document.write(`Unique Make: ${JSON.stringify(results)}`);
+    //   console.log(`Unique Make: ${JSON.stringify(results)}`);
+    // })
   
-    ;
-    query.find().then((results) => {
+    // ;
+    // query.find().then((results) => {
 
-      // You can use the "get" method to get the value of an attribute
-      // Ex: response.get("<ATTRIBUTE_NAME>")
-      if (typeof document !== 'undefined') document.write(`Car_Model_List found: ${JSON.stringify(results)}`);
-      console.log('Car_Model_List found', results);
-    }, (error) => {
-      if (typeof document !== 'undefined') document.write(`Error while fetching Car_Model_List: ${JSON.stringify(error)}`);
-      console.error('Error while fetching Car_Model_List', error);
-    });
+    //   // You can use the "get" method to get the value of an attribute
+    //   // Ex: response.get("<ATTRIBUTE_NAME>")
+    //   if (typeof document !== 'undefined') document.write(`Car_Model_List found: ${JSON.stringify(results)}`);
+    //   console.log('Car_Model_List found', results);
+    // }, (error) => {
+    //   if (typeof document !== 'undefined') document.write(`Error while fetching Car_Model_List: ${JSON.stringify(error)}`);
+    //   console.error('Error while fetching Car_Model_List', error);
+    // });
     
 
 
@@ -90,7 +95,7 @@ const AddCar = (props) =>{
   //   .catch(err => {
   //     console.log(err);
   //   });
-  }, [])
+  }, [props.model, props.make, props.year])
 
 
   // const mapCars =(cars)=>{
@@ -128,7 +133,7 @@ const AddCar = (props) =>{
   //         'X-Parse-REST-API-Key': 'yzmjPE0qXKB58pU4dAVyN0LgaDPM3cXFDig0xd6p', // This is your app's REST API key
   //       }
   //     }
-  //   )
+  //   )o
   // }
 
 
@@ -142,28 +147,37 @@ const AddCar = (props) =>{
   // set make value
 // }
 
+    
+    
+      if (redirect) {
+        return <Redirect to={redirect} />
+      }
+      
+    
   
     const handleSubmit = e => {
       e.preventDefault()
-      axios.post(`/api/users/${user.id}/cars`,{make:make.value,model:model.value,year:year.value,color:color.value,
+      axios.post(`/api/users/${user.id}/cars`,{make:make,model:model,year:year,color:color.value,
       license_plate:license_plate.value,policy_exp:policy_exp.value,
       roadside_ass,miles:miles.value,vin:vin.value,policy_number:policy_number.value,
       insurance_prov_num:insurance_prov_num.value,insurance_provider:insurance_provider.value})
       .then
-        (res => props.history.goBack())
+      //go back to dashboard
+        (res => setRedirect({redirect:"/"}))
       .catch( (err) => {
         console.log(err)
       })
     }
           
-
+    // this.setState({ redirect: "/someRoute" });
     
     return(
       <Form onSubmit={handleSubmit}>
       {/* <select onChange={this.handleMake}>
         {mapCars()}
       </select> */}
-            <Dropdown
+        {/* <Home /> */}
+            {/* <Dropdown
               fluid
               search
               selection
@@ -183,7 +197,7 @@ const AddCar = (props) =>{
               required
               placeholder='Model'
               {...model}
-            />
+            /> */}
             <Form.Input
               label="Color"
               name='color'

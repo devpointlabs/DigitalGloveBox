@@ -1,6 +1,7 @@
 import React from 'react';
 import Parse from 'parse';
-import {Dropdown} from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react'
+import AddCar from './AddCar';
 
 class Home extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class Home extends React.Component {
       makeChosen:[],
       carModelofMake:[],
       modelChosen:[],
-
     };
 
     let install = new Parse.Installation()
@@ -32,7 +32,6 @@ class Home extends React.Component {
       this.setState({result: "failed to create new object, with error code: " + err.message})
       }
     )
-  
   }
 
   yearOnChange = (e, data) => {
@@ -76,7 +75,8 @@ class Home extends React.Component {
        
        let makeArray = [...new Set(newData.map( d => d.Make ))];
        let modelChosenArray = newData.filter((d) => {return d.Make == this.state.makeChosen})
-       
+       console.log(modelChosenArray)
+       //map newData with yearChoosen makeChoosen
        let modelArray = [...new Set(modelChosenArray.map( d => d.Model ))];
 
        let carModelofMake = modelArray.map((str) =>({value:str,text:str}));
@@ -105,6 +105,8 @@ class Home extends React.Component {
         selection
         options={carYears}
         onChange={this.yearOnChange}
+        required
+
         />
       <Dropdown 
         placeholder='Select Make'
@@ -113,6 +115,8 @@ class Home extends React.Component {
         selection
         options={carMakeOfYear}
         onChange={this.makeOnChange}
+        required
+
       />
       <Dropdown 
         placeholder='Select Model'
@@ -121,11 +125,13 @@ class Home extends React.Component {
         selection
         options={carModelofMake}
         onChange = {this.modelOnChange}
+        required
+
       />
       <h1>state=yearsChosen: {this.state.yearsChosen}</h1>
       <h1>state=makeChosen:{this.state.makeChosen}</h1>
       <h1>state=modelChosen:{this.state.modelChosen}</h1>
-      
+      <AddCar year={this.state.yearsChosen} make={this.state.makeChosen} model={this.state.modelChosen}/>
       </>
     )
   }

@@ -17,6 +17,45 @@ import Parse from 'parse';
 import Home from './components/cars/Home'
 import Home2 from './components/cars/Home2';
 
+
+
+// class App extends React.Component {
+// constructor(props) {
+//     super(props);
+//     Parse.initialize(
+//       "VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD",
+//       "pcGAl1MYs6UOiRESbDkIpyl9evmaAkKEL8IM8hko"
+//     );
+//     Parse.serverURL = "https://parseapi.back4app.com/";
+//     this.state = {
+//       result: '',
+//       cars: [],
+//       make: [],
+//       carMakeOfYear: [],
+//       yearsChosen: [],
+//       makeChosen:[],
+//       carModelofMake:[],
+//       modelChosen:[],
+//     };
+
+//     let install = new Parse.Installation()
+//     install.set("deviceType", navigator.userAgent);
+//     install.save().then((resp) => {
+//     console.log('created install objext', resp);
+//     this.setState({result: "New object created with object ID: " + resp.id})
+//       }, err => {
+//       console.log("error creating install object", err);
+//       this.setState({result: "failed to create new object, with error code: " + err.message})
+//       }
+//     )
+//   }
+
+//   render() {
+//     return(
+
+//     )
+//   }
+// }
 const App = () => {
 
 

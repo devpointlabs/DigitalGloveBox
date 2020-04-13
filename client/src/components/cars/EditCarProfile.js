@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import axios from 'axios';
 import { Form, Button } from 'semantic-ui-react';
 
-const EditCarProfile = (props) =>{
+const EditCarProfile = (props) => {
 
   const [carEdit, setCarEdit] = useState({})
 

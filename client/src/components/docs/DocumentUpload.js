@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Icon } from 'semantic-ui-react'
-import DocumentNavbar from './DocumentNavbar'
 import axios from 'axios'
+import DocumentNavbar from './DocumentNavbar'
 import { AuthConsumer } from '../../providers/AuthProvider'
 import Filepond from './Filepond'
+import DocumentForm from './DocumentForm'
+
 
 const DocumentUpload = (props) => {
 
   const [car, setCar] = useState({})
+  const [toggleFormShow, setToggleFormShow] = useState(false)
   const { id }  = props.match.params
   const user_id = props.auth.user.id
 
@@ -19,8 +22,12 @@ const DocumentUpload = (props) => {
     }
     )}, [user_id, id])
 
-    
-  
+  const toggleForm = () => {
+    if (toggleFormShow === true){
+      return ( <DocumentForm car_id={id} /> )
+    }
+    } 
+
   return (
     <>
       <h1>Documents</h1>
@@ -30,8 +37,9 @@ const DocumentUpload = (props) => {
       <br />
       <DocumentNavbar />
       <br />
-      <Button><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
-      <Filepond allowMultiple={true} server={"http://localhost:3001"} car_id={ id }/>
+      <Button onClick={()=>{setToggleFormShow(!toggleFormShow)}}><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
+        {toggleForm()}
+      {/* <Filepond allowMultiple={true} server={"http://localhost:3001"} car_id={ id }/> */}
 
     </>
   )

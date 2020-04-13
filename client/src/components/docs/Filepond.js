@@ -20,17 +20,8 @@ export default class Filepond extends React.Component {
     super(props);
 
     this.state = {
-      // Set initial files, type 'local' means this is a file
-      // that has already been uploaded to the server (see docs)
-      files: [
-        {
-          source: "index.html",
-          options: {
-            type: "local",
-          },
-        },
-      ],
-    };
+      files: [],
+     };
   }
 
   handleInit() {
@@ -38,7 +29,7 @@ export default class Filepond extends React.Component {
   }
 
   render() {
-    const { car_id, server } = this.props;
+    const { car_id, document_id, server } = this.props;
 
     return (
       <div className="App">
@@ -67,7 +58,7 @@ export default class Filepond extends React.Component {
               formData.append(fieldName, file, file.name);
 
               const request = new XMLHttpRequest();
-              request.open("POST", `/api/cars/${car_id}/documents/`);
+              request.open("PUT", `/api/cars/${car_id}/documents/${document_id}`);
 
               // Should call the progress method to update the progress to 100% before calling load
               // Setting computable to false switches the loading indicator to infinite mode

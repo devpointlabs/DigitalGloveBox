@@ -1,40 +1,97 @@
-import React from 'react'
-import { Menu } from 'semantic-ui-react'
+import React, { useState, useEffect } from 'react'
+import { Menu, Button, Icon } from 'semantic-ui-react'
+import axios from 'axios'
+import DocumentsShow from './DocumentsShow'
+import DocumentForm from './DocumentForm'
 
-export default class DocumentNavbar extends React.Component {
+const DocumentNavbar = (props) => {
   
-  state = { activeItem: 'INSURANCE' }
+  const [ category, setCategory] = useState('insurance')
+  const [ docs, setDocs ] = useState([])
+  const [ toggleFormShow, setToggleFormShow ] = useState(false)
+  const {car_id} = props
+ 
+  let categoryDocuments = null
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  useEffect( () => {
+    axios.get(`/api/cars/${car_id}/documents/`).then(res => {
+    return setDocs(res.data )
+     
+    }).catch(err => {
+      console.log(err)
+    }
+    )}, [car_id])
 
-  render() {
-    const { activeItem } = this.state
-
-    return (
-      <div>
-        <Menu pointing secondary>
-          <Menu.Item
-            name='INSURANCE'
-            active={activeItem === 'insurance'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='REGISTRATION'
-            active={activeItem === 'registration'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='SERVICE RECORDS'
-            active={activeItem === 'service records'}
-            onClick={this.handleItemClick}
-          />
-            <Menu.Item
-              name='OTHER'
-              active={activeItem === 'other'}
-              onClick={this.handleItemClick}
-            />
-        </Menu>
-      </div>
-    )
+  const handleItemClick = (e, { name }) => {
+    setCategory(name);
   }
+
+  const renderCategoryDocs = () => {
+    switch (category){  
+      case "insurance":
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'insurance')
+        break;
+      case "registration":
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'registration')
+        break;
+      case "service records":
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'service records')
+        break;
+      case "other":
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'other')
+        break;
+      default: 
+      categoryDocuments = docs
+    }   
+      return(
+        <div>
+          <DocumentsShow docs={categoryDocuments} />
+        </div>
+      )   
+    }
+
+    const toggleForm = () => {
+      if (toggleFormShow === true){
+        return ( <DocumentForm car_id={car_id} /> )
+      }
+    }
+
+  return (
+    <div>
+      <Menu pointing secondary>
+        <Menu.Item
+          name='insurance'
+          active={category === 'insurance'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          name='registration'
+          active={category === 'registration'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          name='service records'
+          active={category === 'service records'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          name='other'
+          active={category === 'other'}
+          onClick={handleItemClick}
+        />
+      </Menu>
+      <br />
+      <Button onClick={()=>{setToggleFormShow(!toggleFormShow)}}><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
+      
+      {toggleForm()}
+      <br />
+      <br />
+      {renderCategoryDocs()}
+    </div>
+  ) 
 }
+
+export default DocumentNavbar
+
+
+

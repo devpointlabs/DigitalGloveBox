@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Icon } from 'semantic-ui-react'
-import DocumentNavbar from './DocumentNavbar'
 import axios from 'axios'
+import DocumentNavbar from './DocumentNavbar'
 import { AuthConsumer } from '../../providers/AuthProvider'
 
 const DocumentUpload = (props) => {
 
-  const [car, setCar] = useState({})
+  const [ car, setCar] = useState({})
   const { id }  = props.match.params
   const user_id = props.auth.user.id
 
@@ -17,7 +16,7 @@ const DocumentUpload = (props) => {
       console.log(err)
     }
     )}, [user_id, id])
-  
+
   return (
     <>
       <h1>Documents</h1>
@@ -25,9 +24,8 @@ const DocumentUpload = (props) => {
       <h1>{car.year} {car.make} {car.model}</h1>
       <img alt="user car">{car.image}</img>
       <br />
-      <DocumentNavbar />
+      <DocumentNavbar car_id={id}/>
       <br />
-      <Button><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
     </>
   )
 }
@@ -40,4 +38,4 @@ const ConnectedDocumentUpload = (props) => (
   </AuthConsumer>
 )
 
-export default ConnectedDocumentUpload 
+export default ConnectedDocumentUpload

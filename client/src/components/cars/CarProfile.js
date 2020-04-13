@@ -10,16 +10,12 @@ const CarProfile = (props) => {
   const { id } = props.match.params;
   const user_id = props.auth.user.id;
 
-  useEffect(() => {
-    axios
-      .get(`/api/users/${user_id}/cars/${id}`)
-      .then((res) => {
-        setCar(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  useEffect( () => {
+    axios.get(`/api/users/${user_id}/cars/${id}`).then(res => {
+      (setCar( res.data ))
+    }).catch(err => {
+      console.log(err)
+    })}, [user_id, id])
 
   const deleteCar = () => {
     axios

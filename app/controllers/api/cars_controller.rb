@@ -6,6 +6,11 @@ class Api::CarsController < ApplicationController
     render json: current_user.cars
   end
 
+  # def all_cars
+  #   render json: 
+  #   binding.pry
+  # end
+
   def show
     render json: @car
   end

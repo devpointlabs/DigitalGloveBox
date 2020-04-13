@@ -59,13 +59,6 @@ const Navbar = (props) => {
             active={ location.pathname === '/' }
           />
         </Link>
-        <Link to='/add_car'>
-          <Menu.Item
-            name='addCar'
-            id='addCar'
-            active={ location.pathname === '/add_car' }
-          />
-        </Link>
           { rightNavItems()}
       </Menu>
     </div>

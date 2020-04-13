@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Segment, Header, Button, Dropdown } from 'semantic-ui-react'
+import { Form, Header, Button, Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
 import Filepond from './Filepond'
 
@@ -9,7 +9,6 @@ const DocumentForm = (props) => {
   const [category, setCategory] = useState('')
   const [name, setName] = useState('')
   const { car_id } = props
-  const [doc, setDoc] = useState({})
   const [id, setId] = useState()
   const documentEdit = {category: category, name: name}
 
@@ -54,7 +53,7 @@ const DocumentForm = (props) => {
           />
           <br />
           <Form.Input
-            label="Name"
+            label="Document Name"
             required
             name='name'
             value={name}

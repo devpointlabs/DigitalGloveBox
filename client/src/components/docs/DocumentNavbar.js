@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Menu, Button, Icon, Dropdown } from 'semantic-ui-react'
+import { Menu, Button, Icon } from 'semantic-ui-react'
 import axios from 'axios'
 import DocumentsShow from './DocumentsShow'
 import DocumentForm from './DocumentForm'
@@ -9,7 +9,6 @@ const DocumentNavbar = (props) => {
   const [ category, setCategory] = useState('insurance')
   const [ docs, setDocs ] = useState([])
   const [ toggleFormShow, setToggleFormShow ] = useState(false)
-
   const {car_id} = props
  
   let categoryDocuments = null
@@ -21,7 +20,7 @@ const DocumentNavbar = (props) => {
     }).catch(err => {
       console.log(err)
     }
-    )}, [])
+    )}, [car_id])
 
   const handleItemClick = (e, { name }) => {
     setCategory(name);
@@ -89,8 +88,7 @@ const DocumentNavbar = (props) => {
       <br />
       {renderCategoryDocs()}
     </div>
-  )
-    
+  ) 
 }
 
 export default DocumentNavbar

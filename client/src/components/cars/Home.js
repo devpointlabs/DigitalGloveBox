@@ -16,56 +16,77 @@ class Home extends React.Component {
       make: [],
       carMakeOfYear: [],
       yearsChosen: [],
-      carChosen:[],
-    
+      makeChosen:[],
+      carModelofMake:[],
+      modelChosen:[],
+
     };
 
-
     let install = new Parse.Installation()
-  install.set("deviceType", navigator.userAgent);
-  install.save().then((resp) => {
+    install.set("deviceType", navigator.userAgent);
+    install.save().then((resp) => {
     console.log('created install objext', resp);
     this.setState({result: "New object created with object ID: " + resp.id})
-  }, err => {
+      }, err => {
       console.log("error creating install object", err);
       this.setState({result: "failed to create new object, with error code: " + err.message})
-  }
-  )
+      }
+    )
   
-
-
   }
 
+  yearOnChange = (e, data) => {
+    console.log(data.value);
+    this.setState(
+      {yearsChosen:data.value}, ()=>{ //call back 
+        this.carApi()
+    });
+  
+  }
 
-handleOnChange = (e, data) => {
-  console.log(data.value);
-  this.setState(
-    {yearsChosen:data.value}, ()=>{ //call back 
+  makeOnChange =(e, data) =>{
+   console.log(data.value);
+   this.setState(
+     {makeChosen: data.value}, ()=>{ //call back 
       this.carApi()
-  });
- 
- }
+     })
+  }
+
+  modelOnChange = (e,data) =>{
+    console.log(data.value);
+    this.setState(
+      {modelChosen: data.value},
+    )
+  }
 
   carApi=() =>{
-    
     const Car_Model_List = Parse.Object.extend(
       "Car_Model_List"
     );
     const query = new Parse.Query(Car_Model_List);
-   query.limit(1000);
-   query.equalTo("Year", this.state.yearsChosen);
-   console.log(this.state.yearsChosen)
+    query.limit(1000);
+    query.equalTo("Year", this.state.yearsChosen);
+    console.log(this.state.yearsChosen)
 
-   query.find().then(
+    query.find().then(
      (results) => {
 
        let data = JSON.stringify(results);
        let newData = JSON.parse(data)
        
        let makeArray = [...new Set(newData.map( d => d.Make ))];
+       let modelChosenArray = newData.filter((d) => {return d.Make == this.state.makeChosen})
+       
+       let modelArray = [...new Set(modelChosenArray.map( d => d.Model ))];
+
+       let carModelofMake = modelArray.map((str) =>({value:str,text:str}));
+       this.setState({carModelofMake: carModelofMake})
+
        var carMakeOfYear = makeArray.map((str) => ({ value: str, text: str}));
        this.setState({carMakeOfYear: carMakeOfYear})
+
        console.log(carMakeOfYear)
+       console.log(carModelofMake)
         // let carMakeOfYear= [...new Set(makeArray.map(d=>d.))]
       }
     );
@@ -74,6 +95,7 @@ handleOnChange = (e, data) => {
 
   render() {
     var carMakeOfYear = this.state.carMakeOfYear
+    var carModelofMake = this.state.carModelofMake
     return (
       <>
       <Dropdown 
@@ -82,9 +104,7 @@ handleOnChange = (e, data) => {
         search
         selection
         options={carYears}
-        onChange={this.handleOnChange}
-
-        
+        onChange={this.yearOnChange}
         />
       <Dropdown 
         placeholder='Select Make'
@@ -92,9 +112,19 @@ handleOnChange = (e, data) => {
         search
         selection
         options={carMakeOfYear}
+        onChange={this.makeOnChange}
+      />
+      <Dropdown 
+        placeholder='Select Model'
+        fluid
+        search
+        selection
+        options={carModelofMake}
+        onChange = {this.modelOnChange}
       />
       <h1>state=yearsChosen: {this.state.yearsChosen}</h1>
-      <h1>state=carChosen:{this.state.carChosen}</h1>
+      <h1>state=makeChosen:{this.state.makeChosen}</h1>
+      <h1>state=modelChosen:{this.state.modelChosen}</h1>
       
       </>
     )
@@ -109,17 +139,3 @@ const carYears = [
   {value: 2008,text: 2008}, {value: 2009,text: 2009}, {value: 2010, text: 2010}, {value: 2011, text: 2011}, {value: 2012, text: 2012}, {value: 2013, text: 2013}, {value: 2014, text:2014}, {value: 2015, text:2015},
   {value: 2016,text: 2016}, {value: 2017,text: 2017}, {value: 2018, text: 2018}, {value: 2019, text: 2019}, {value: 2020, text: 2020},
 ]
-
-{/* <Form.Field
-  control={Select}
-  label='Gender'
-  options={options}
-  placeholder='Gender'
-/> */}
-
-// const countryOptions = [
-//   { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
-//   { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
-//   { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
-//   { key: 'dz', value: 'dz', flag: 'dz', text: 'Algeria' },
-//   { key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },

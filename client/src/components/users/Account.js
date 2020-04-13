@@ -14,7 +14,7 @@ class Account extends React.Component {
         phone_number: '',
         postal_code: '',
         comm_prefs: null,
-      }};
+      }} ;
       
   componentDidMount(){
   

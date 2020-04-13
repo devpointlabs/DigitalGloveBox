@@ -21,7 +21,7 @@ const Cars = (props) => {
     .catch(err => {
       console.log(err)
     })
-  },[])
+  },[user.id])
 
 
   const renderCars = () =>{

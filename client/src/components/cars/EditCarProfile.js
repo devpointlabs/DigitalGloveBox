@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import axios from 'axios';
 import { Form, Button } from 'semantic-ui-react';
 
-const EditCarProfile = (props) =>{
+const EditCarProfile = (props) => {
 
   const [carEdit, setCarEdit] = useState({})
 
@@ -12,7 +12,7 @@ const EditCarProfile = (props) =>{
       setCarEdit(res.data)
     }).catch(err => {
       console.log(err)
-    })}, [])
+    })}, [props.match.params])
 
   const { user_id, id } = props.match.params;
 

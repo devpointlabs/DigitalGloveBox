@@ -1,15 +1,16 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useEffect,} from 'react'
 import axios from 'axios';
-import { Form, Button} from 'semantic-ui-react';
+import { Form, Button, } from 'semantic-ui-react';
 import { AuthContext } from '../../providers/AuthProvider';
 import {useFormInput,} from "../Hooks/useFormInput";
+import {Redirect} from 'react-router-dom'
 
 const AddCar = (props) =>{
   
-  const {user} = useContext(AuthContext)
-  const make = useFormInput("")
-  const year = useFormInput("")
-  const model = useFormInput("")
+  const { user } = useContext(AuthContext)
+  const [model, setModel] = useState("")
+  const [year, setYear] = useState("")
+  const [make, setMake] = useState("")
   const color = useFormInput("")
   const license_plate= useFormInput("")
   const policy_exp = useFormInput("")
@@ -19,44 +20,37 @@ const AddCar = (props) =>{
   const policy_number = useFormInput ("")
   const insurance_prov_num = useFormInput ("")
   const insurance_provider = useFormInput("")
+ 
+  const [redirect,setRedirect]= useState(null)
 
+ 
+    
+  useEffect(()=>{
+        setModel(props.model)
+        setYear(props.year)
+        setMake(props.make)
+  }, [props.model, props.make, props.year])
+
+    if (redirect) {
+      return <Redirect to={redirect} />
+    }
+      
     const handleSubmit = e => {
       e.preventDefault()
-      axios.post(`/api/users/${user.id}/cars`,{make:make.value,model:model.value,year:year.value,color:color.value,
+      axios.post(`/api/users/${user.id}/cars`,{make:make,model:model,year:year,color:color.value,
       license_plate:license_plate.value,policy_exp:policy_exp.value,
       roadside_ass,miles:miles.value,vin:vin.value,policy_number:policy_number.value,
       insurance_prov_num:insurance_prov_num.value,insurance_provider:insurance_provider.value})
       .then
-        (res => props.history.goBack())
+        (res => setRedirect({redirect:"/"}))
       .catch( (err) => {
         console.log(err)
       })
     }
-
+              
     return(
       <Form onSubmit={handleSubmit}>
-            <Form.Input
-              label="Year"
-              autoFocus
-              required
-              name='year'
-              placeholder='Year'
-              {...year}
-            />
-            <Form.Input
-              label="Make"       
-              name='make'
-              required
-              placeholder='Make'
-              {...make}
-            />
-            <Form.Input
-              label="Model"
-              name='model'
-              required
-              placeholder='Model'
-              {...model}
-            />
+      
             <Form.Input
               label="Color"
               name='color'

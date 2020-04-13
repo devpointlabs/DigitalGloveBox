@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import Car from './Car';
-import CarProfile from './CarProfile';
 
 const Cars = (props) => {
   
@@ -38,15 +37,17 @@ const Cars = (props) => {
   return(
 
     <Item>
-       <Link to={{pathname: `/add_car` }}>Add Car</Link>
-      {renderCars()}
+       {cars.length === 0 ?
+       <Link to={{pathname: `/CarApi` }}>You do not have Car Add Car</Link>
+       :
+       <>
+      <Link to={{pathname: `/CarApi` }}>Add Car</Link>
+       {renderCars()} </>}
     </Item>
   )
 }
 
 
-const paragraph = (
-  'All of your cars documents, information, and recent services in one convenient place!'
-)
+
 
 export default Cars

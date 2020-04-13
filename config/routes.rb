@@ -10,5 +10,6 @@ Rails.application.routes.draw do
       resources :cars
     end
 
+    post 'cars/all_cars', :to => 'cars#all_cars'
   end 
 end

@@ -13,8 +13,12 @@ import CarProfile from './components/cars/CarProfile'
 import Account from './components/users/Account'
 import EditCarProfile from './components/cars/EditCarProfile';
 import AddCar from './components/cars/AddCar';
+import carApi from './components/cars/CarApi'
+
 
 const App = () => {
+
+
   return (
    <>
    
@@ -29,6 +33,7 @@ const App = () => {
           <Route exact path='/car_profile/:id' component={CarProfile}/>
           <Route exact path='/add_car' component={AddCar}/>            
           <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
+          <Route exact path='/CarApi' component={carApi}/>                                
           <Route component={NoMatch}/>
         </Switch>
       </Container>

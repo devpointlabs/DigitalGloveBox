@@ -8,8 +8,8 @@ import DocumentForm from './DocumentForm'
 
 const DocumentUpload = (props) => {
 
-  const [car, setCar] = useState({})
-  const [toggleFormShow, setToggleFormShow] = useState(false)
+  const [ car, setCar] = useState({})
+  const [ toggleFormShow, setToggleFormShow ] = useState(false)
   const { id }  = props.match.params
   const user_id = props.auth.user.id
 
@@ -21,11 +21,11 @@ const DocumentUpload = (props) => {
     }
     )}, [user_id, id])
 
-  const toggleForm = () => {
-    if (toggleFormShow === true){
-      return ( <DocumentForm car_id={id} /> )
-    }
-  } 
+  // const toggleForm = () => {
+  //   if (toggleFormShow === true){
+  //     return ( <DocumentForm car_id={id} /> )
+  //   }
+  // }
 
   return (
     <>
@@ -36,8 +36,8 @@ const DocumentUpload = (props) => {
       <br />
       <DocumentNavbar car_id={id}/>
       <br />
-      <Button onClick={()=>{setToggleFormShow(!toggleFormShow)}}><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
-        {toggleForm()}
+      {/* <Button onClick={()=>{setToggleFormShow(!toggleFormShow)}}><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
+        {toggleForm()} */}
     </>
   )
 }

@@ -12,7 +12,7 @@ const DocumentsShow = (props) => {
   
   )}else{
   return docs.map( doc => (
-    <List divided relaxed>
+    <List divided relaxed key={`doc-${doc.id}`}>
     <List.Item >
       <List.Icon name='file' verticalAlign='middle' />
       <List.Content>

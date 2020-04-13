@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Button, Icon, Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
 import DocumentsShow from './DocumentsShow'
+import DocumentForm from './DocumentForm'
 
 const DocumentNavbar = (props) => {
   
   const [ category, setCategory] = useState('insurance')
   const [ docs, setDocs ] = useState([])
+  const [ toggleFormShow, setToggleFormShow ] = useState(false)
 
   const {car_id} = props
  
@@ -26,29 +28,34 @@ const DocumentNavbar = (props) => {
   }
 
   const renderCategoryDocs = () => {
-
     switch (category){  
       case "insurance":
-         categoryDocuments = docs.filter((doc) => doc.category === 'insurance')
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'insurance')
         break;
       case "registration":
-         categoryDocuments = docs.filter((doc) => doc.category === 'registration')
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'registration')
         break;
       case "service records":
-         categoryDocuments = docs.filter((doc) => doc.category === 'service records')
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'service records')
         break;
       case "other":
-         categoryDocuments = docs.filter((doc) => doc.category === 'other')
+         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'other')
         break;
       default: 
       categoryDocuments = docs
     }   
-    return(
-      <div>
-       <DocumentsShow docs={categoryDocuments} />
-      </div>
-    )   
-  }
+      return(
+        <div>
+          <DocumentsShow docs={categoryDocuments} />
+        </div>
+      )   
+    }
+
+    const toggleForm = () => {
+      if (toggleFormShow === true){
+        return ( <DocumentForm car_id={car_id} /> )
+      }
+    }
 
   return (
     <div>
@@ -75,6 +82,11 @@ const DocumentNavbar = (props) => {
         />
       </Menu>
       <br />
+      <Button onClick={()=>{setToggleFormShow(!toggleFormShow)}}><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
+      
+      {toggleForm()}
+      <br />
+      <br />
       {renderCategoryDocs()}
     </div>
   )
@@ -82,3 +94,6 @@ const DocumentNavbar = (props) => {
 }
 
 export default DocumentNavbar
+
+
+

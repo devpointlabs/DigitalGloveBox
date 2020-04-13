@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Form, Segment, Header, Button } from 'semantic-ui-react'
+import { Form, Segment, Header, Button, Dropdown } from 'semantic-ui-react'
 import axios from 'axios'
-
 import Filepond from './Filepond'
 
 const DocumentForm = (props) => {
@@ -26,8 +25,14 @@ const DocumentForm = (props) => {
         console.log(res);
       })}
 
+  const categoryOptions = [
+    {key:'insurance', text: 'Insurance', value: 'insurance'},
+    {key:'registration', text: 'Registration', value: 'registration'},
+    {key:'service records', text: 'Service Records', value: 'service records'},
+    {key:'other', text: 'Other', value: 'other'}
+  ]
+
   const togglePond = () => {
-    
     if (showPond === true){
       return(
       <Filepond document_id={id} car_id={car_id}/>
@@ -37,23 +42,25 @@ const DocumentForm = (props) => {
         <>
         <Header as='h3'>Please provide document info:</Header>
         <Form onSubmit={handleSubmit}>
-         
-            <Form.Input
-              label="Category"
-              required
-              name='category'
-              value={category}
-              placeholder='category'
-              onChange={(e) => setCategory(e.target.value)}
-            />
-             <Form.Input
-              label="Name"
-              required
-              name='name'
-              value={name}
-              placeholder='Name'
-              onChange={(e) => setName(e.target.value)}
-            />
+          <Dropdown
+            label="Category"
+            required
+            placeholder='Select Category'
+            name='category'
+            fluid
+            selection
+            options={categoryOptions}
+            onChange={(e, data) => setCategory(data.value)}
+          />
+          <br />
+          <Form.Input
+            label="Name"
+            required
+            name='name'
+            value={name}
+            placeholder='Name'
+            onChange={(e) => setName(e.target.value)}
+          />
             <Button type='submit'>Next</Button>
          </Form>
          

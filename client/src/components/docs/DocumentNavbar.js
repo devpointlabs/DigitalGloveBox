@@ -1,40 +1,84 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Menu } from 'semantic-ui-react'
+import axios from 'axios'
+import DocumentsShow from './DocumentsShow'
 
-export default class DocumentNavbar extends React.Component {
+const DocumentNavbar = (props) => {
   
-  state = { activeItem: 'INSURANCE' }
+  const [ category, setCategory] = useState('insurance')
+  const [ docs, setDocs ] = useState([])
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  const {car_id} = props
+ 
+  let categoryDocuments = null
 
-  render() {
-    const { activeItem } = this.state
+  useEffect( () => {
+    axios.get(`/api/cars/${car_id}/documents/`).then(res => {
+    return setDocs(res.data )
+     
+    }).catch(err => {
+      console.log(err)
+    }
+    )}, [])
 
-    return (
-      <div>
-        <Menu pointing secondary>
-          <Menu.Item
-            name='INSURANCE'
-            active={activeItem === 'insurance'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='REGISTRATION'
-            active={activeItem === 'registration'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='SERVICE RECORDS'
-            active={activeItem === 'service records'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='OTHER'
-            active={activeItem === 'other'}
-            onClick={this.handleItemClick}
-          />
-        </Menu>
-      </div>
-    )
+  const handleItemClick = (e, { name }) => {
+    setCategory(name);
   }
+
+  const renderCategoryDocs = () => {
+
+    switch (category){  
+      case "insurance":
+         categoryDocuments = docs.filter((doc) => doc.category === 'insurance')
+        break;
+      case "registration":
+         categoryDocuments = docs.filter((doc) => doc.category === 'registration')
+        break;
+      case "service records":
+         categoryDocuments = docs.filter((doc) => doc.category === 'service records')
+        break;
+      case "other":
+         categoryDocuments = docs.filter((doc) => doc.category === 'other')
+        break;
+      default: 
+      categoryDocuments = docs
+    }   
+    return(
+      <div>
+       <DocumentsShow docs={categoryDocuments} />
+      </div>
+    )   
+  }
+
+  return (
+    <div>
+      <Menu pointing secondary>
+        <Menu.Item
+          name='insurance'
+          active={category === 'insurance'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          name='registration'
+          active={category === 'registration'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          name='service records'
+          active={category === 'service records'}
+          onClick={handleItemClick}
+        />
+        <Menu.Item
+          name='other'
+          active={category === 'other'}
+          onClick={handleItemClick}
+        />
+      </Menu>
+      <br />
+      {renderCategoryDocs()}
+    </div>
+  )
+    
 }
+
+export default DocumentNavbar

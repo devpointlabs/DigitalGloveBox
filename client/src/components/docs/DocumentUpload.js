@@ -6,7 +6,6 @@ import { AuthConsumer } from '../../providers/AuthProvider'
 import Filepond from './Filepond'
 import DocumentForm from './DocumentForm'
 
-
 const DocumentUpload = (props) => {
 
   const [car, setCar] = useState({})
@@ -26,7 +25,7 @@ const DocumentUpload = (props) => {
     if (toggleFormShow === true){
       return ( <DocumentForm car_id={id} /> )
     }
-    } 
+  } 
 
   return (
     <>
@@ -35,12 +34,10 @@ const DocumentUpload = (props) => {
       <h1>{car.year} {car.make} {car.model}</h1>
       <img alt="user car">{car.image}</img>
       <br />
-      <DocumentNavbar />
+      <DocumentNavbar car_id={id}/>
       <br />
       <Button onClick={()=>{setToggleFormShow(!toggleFormShow)}}><Icon name="plus circle" />UPLOAD YOUR DOCUMENTS</Button>
         {toggleForm()}
-      {/* <Filepond allowMultiple={true} server={"http://localhost:3001"} car_id={ id }/> */}
-
     </>
   )
 }

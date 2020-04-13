@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
-
 import { AuthConsumer } from "../providers/AuthProvider"
 
 const Navbar = (props) => {
@@ -9,6 +8,7 @@ const Navbar = (props) => {
   const { auth: {user, handleLogout, }, location, history } = props
 
   const rightNavItems = () => {
+
     if (user){
       return (
         <Menu.Menu position='right'>
@@ -25,8 +25,6 @@ const Navbar = (props) => {
             />
           </Link>
         </Menu.Menu>
-
-        
 
       )} else {
           return(
@@ -59,13 +57,6 @@ const Navbar = (props) => {
             name='dashboard'
             id='dashboard'
             active={ location.pathname === '/' }
-          />
-        </Link>
-        <Link to='/add_car'>
-          <Menu.Item
-            name='addCar'
-            id='addCar'
-            active={ location.pathname === '/add_car' }
           />
         </Link>
           { rightNavItems()}

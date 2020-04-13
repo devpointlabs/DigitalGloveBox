@@ -1,19 +1,14 @@
 import React,{useState,useContext }from 'react';
 import { Image, Item,  } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../providers/AuthProvider';
-import CarProfile from './CarProfile'
+
 
 const Car = (props) => {
-  
-  // const [cars, setCars] = useState([])
-  // const {user} = useContext(AuthContext)
-  // const {car} = props
+
   
 
   return(
     <>
-    {/* <CarProfile car={props.car} {...props} /> */}
     <Item key={props.car.id}>
     {/* <Item.Image image={car.image} /> */}
     <Item.Content>

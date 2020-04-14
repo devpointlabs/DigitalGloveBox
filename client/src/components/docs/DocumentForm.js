@@ -34,7 +34,7 @@ const DocumentForm = (props) => {
   const togglePond = () => {
     if (showPond === true){
       return(
-      <Filepond document_id={id} car_id={car_id}/>
+      <Filepond route={`/api/cars/${car_id}/documents/${id}`}/>
       )
     }else{
       return(

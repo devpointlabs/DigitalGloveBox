@@ -16,7 +16,6 @@ const DocumentNavbar = (props) => {
   useEffect( () => {
     axios.get(`/api/cars/${car_id}/documents/`).then(res => {
     return setDocs(res.data )
-     
     }).catch(err => {
       console.log(err)
     }
@@ -29,16 +28,16 @@ const DocumentNavbar = (props) => {
   const renderCategoryDocs = () => {
     switch (category){  
       case "insurance":
-         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'insurance')
+         categoryDocuments = docs.filter((doc) => doc.category === 'insurance')
         break;
       case "registration":
-         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'registration')
+         categoryDocuments = docs.filter((doc) => doc.category === 'registration')
         break;
       case "service records":
-         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'service records')
+         categoryDocuments = docs.filter((doc) => doc.category === 'service records')
         break;
       case "other":
-         categoryDocuments = docs.filter((doc) => doc.category.toLowerCase() === 'other')
+         categoryDocuments = docs.filter((doc) => doc.category === 'other')
         break;
       default: 
       categoryDocuments = docs

@@ -6,6 +6,7 @@ import AddCar from './AddCar';
 class carApi extends React.Component {
   constructor(props) {
     super(props);
+    
     Parse.initialize(
       "VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD",
       "pcGAl1MYs6UOiRESbDkIpyl9evmaAkKEL8IM8hko"
@@ -67,7 +68,7 @@ class carApi extends React.Component {
      (results) => {
 
        let data = JSON.stringify(results);
-       let newData = JSON.parse(data)
+       let newData = JSON.parse(data) //turn to array
        
        let makeArray = [...new Set(newData.map( d => d.Make ))];
        let modelChosenArray = newData.filter((d) => {return d.Make == this.state.makeChosen})

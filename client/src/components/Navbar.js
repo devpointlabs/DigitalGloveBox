@@ -24,6 +24,13 @@ const Navbar = (props) => {
               active={location.pathname === '/account'}
             />
           </Link>
+          <Link to='/documents'>
+            <Menu.Item
+              id='documents'
+              name='documents'
+              active={location.pathname === '/account'}
+            />
+          </Link>
         </Menu.Menu>
 
       )} else {
@@ -51,7 +58,7 @@ const Navbar = (props) => {
 
   return(
     <div>
-      <Menu pointing secondary>
+      <Menu pointing secondary position="right">
         <Link to='/'>
           <Menu.Item
             name='dashboard'

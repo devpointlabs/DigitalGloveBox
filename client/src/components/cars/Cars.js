@@ -8,9 +8,7 @@ import Car from './Car';
 const Cars = (props) => {
   
   const [cars, setCars] = useState([])
-  const {user} = useContext(AuthContext)
-  console.log(cars)
-  
+  const {user} = useContext(AuthContext)  
 
   useEffect( () => {
     axios.get(`/api/users/${user.id}/cars`)
@@ -27,9 +25,9 @@ const Cars = (props) => {
   const renderCars = () =>{
     return cars.map( car => (      
       <div key = {`car-${car.id}`}>
-      <Car car={car}/>
+        <Car car={car}/>
       </div >
-    ))
+    ));
   }
 
  

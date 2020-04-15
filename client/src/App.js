@@ -15,6 +15,7 @@ import EditCarProfile from './components/cars/EditCarProfile';
 import AddCar from './components/cars/AddCar';
 import DocumentUpload from './components/docs/DocumentUpload';
 import carApi from './components/cars/CarApi'
+import TestNav from './components/TestNav';
 
 
 const App = () => {
@@ -23,7 +24,8 @@ const App = () => {
   return (
    <>
    
-    <Navbar />
+      <Navbar />
+      <TestNav />
     <FetchUser>
       <Container>
         <Switch>

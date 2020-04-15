@@ -16,7 +16,10 @@ class Account extends React.Component {
         postal_code: '',
         comm_prefs: null,
       }} ;
-      
+
+  
+
+
   componentDidMount(){
   
     const { auth: {user: { first_name, last_name, email, phone_number, postal_code, comm_prefs, image }}} = this.props;
@@ -85,7 +88,11 @@ class Account extends React.Component {
       <Fragment>
          <Grid.Column width={8}>
           <Header as="h1">Welcome {user.first_name} {user.last_name} </Header>
+
+          
+            {this.photoExists()}
           <Header as="h3">Here is your account information:</Header>
+
           <Header as="h5">Email - {user.email}</Header>
           <Header as="h5"> Phone Number - {user.phone_number}</Header>
           <Header as="h5"> Zip Code - {user.postal_code}</Header>
@@ -103,7 +110,7 @@ class Account extends React.Component {
   
   return (
     <>
-      {this.photoExists()}
+    
       <br />
     <Form onSubmit={this.handleSubmit}>
       <Grid.Column width={4}>
@@ -177,18 +184,20 @@ class Account extends React.Component {
     
     if(!user.image){
       return(
-      <div>
-        <span> You currently have no photo! Upload One: </span>
-        <Filepond route={`/api/users/${user.id}`}/> 
+      <div  style={{width:'250px', textAlign: 'center'} }>
+        <h5> You currently have no photo! Upload One: </h5>
+        <Filepond refresh={true} route={`/api/users/${user.id}`}/> 
       </div>)
 
     }
     return (
-      <div>
-      <h2> Would you like to update your Photo?</h2>
-       <img src={user.image} />
+      <div style={{width:'250px', textAlign: 'center'}} >
+      
+       <img width="250" height="auto"src={user.image}  />
        <br />
-       <Filepond route={`/api/users/${user.id}`}/> 
+
+       <h5> Would you like to update your Photo?</h5>
+       <Filepond refresh={true} route={`/api/users/${user.id}`}/> 
      </div>
      )
   }

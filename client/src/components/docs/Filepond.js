@@ -77,8 +77,10 @@ export default class Filepond extends React.Component {
           onupdatefiles={(fileItems) => {
             this.setState({
               files: fileItems.map((fileItem) => fileItem.file),
+              
             });
-            // this.refreshPage()
+            if(this.props.refresh){
+            this.refreshPage()}
           }}
           
 

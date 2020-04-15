@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Form, Grid, Container, Divider, Header, Button, } from 'semantic-ui-react';
 
 import { AuthConsumer, } from "../../providers/AuthProvider";
+import Filepond from '../docs/Filepond';
 
 class Account extends React.Component {
 
@@ -15,11 +16,15 @@ class Account extends React.Component {
         postal_code: '',
         comm_prefs: null,
       }} ;
-      
+
+  
+
+
   componentDidMount(){
   
-    const { auth: {user: { first_name, last_name, email, phone_number, postal_code, comm_prefs }}} = this.props;
+    const { auth: {user: { first_name, last_name, email, phone_number, postal_code, comm_prefs, image }}} = this.props;
     this.setState({ formValues: {first_name, last_name, email, phone_number,postal_code, comm_prefs} });
+    console.log(this.state)
   };
 
   toggleEdit = () => {
@@ -83,7 +88,11 @@ class Account extends React.Component {
       <Fragment>
          <Grid.Column width={8}>
           <Header as="h1">Welcome {user.first_name} {user.last_name} </Header>
+
+          
+            {this.photoExists()}
           <Header as="h3">Here is your account information:</Header>
+
           <Header as="h5">Email - {user.email}</Header>
           <Header as="h5"> Phone Number - {user.phone_number}</Header>
           <Header as="h5"> Zip Code - {user.postal_code}</Header>
@@ -95,9 +104,14 @@ class Account extends React.Component {
 
   editView = () => {
     const { auth: { user },} = this.props;
+    
+    console.log(user)
     const { formValues: { first_name, last_name, email, phone_number,postal_code, comm_prefs }} = this.state;
   
   return (
+    <>
+    
+      <br />
     <Form onSubmit={this.handleSubmit}>
       <Grid.Column width={4}>
       </Grid.Column>
@@ -152,12 +166,42 @@ class Account extends React.Component {
             onChange={this.handleChangeCheckbox}
             checked={comm_prefs}
           />
+   
+
+          <br />
 
         <Button>Update</Button>
       </Grid.Column>
     </Form>
+
+   
+      </>
   )
   }
+
+  photoExists = () => {
+    const { auth: { user } } = this.props;
+    
+    if(!user.image){
+      return(
+      <div  style={{width:'250px', textAlign: 'center'} }>
+        <h5> You currently have no photo! Upload One: </h5>
+        <Filepond refresh={true} route={`/api/users/${user.id}`}/> 
+      </div>)
+
+    }
+    return (
+      <div style={{width:'250px', textAlign: 'center'}} >
+      
+       <img width="250" height="auto"src={user.image}  />
+       <br />
+
+       <h5> Would you like to update your Photo?</h5>
+       <Filepond refresh={true} route={`/api/users/${user.id}`}/> 
+     </div>
+     )
+  }
+       
 
   render(){
     const { editing, } = this.state;
@@ -171,9 +215,10 @@ class Account extends React.Component {
           { editing ? this.editView() : this.accountView()}
           </Grid.Column>
         </Grid.Row>
-        </Grid>
+      </Grid>
         <br />
-            <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
+       
+        <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
       </Container>
 
     )

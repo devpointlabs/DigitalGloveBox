@@ -14,6 +14,7 @@ const Car = (props) => {
     <Item.Content>
       <Item.Header as='a'>{props.car.year} {props.car.make} {props.car.model}</Item.Header>
       <Item.Description>{paragraph}</Item.Description>
+      <img height="100px" width="auto" src={`${props.car.file}`} />
    
       <Link to={{pathname: `/car_profile/${props.car.id}` }}>Car Profile</Link>
     </Item.Content>

@@ -1,5 +1,5 @@
 class Api::CarsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user! 
   before_action :set_cars, only: [:show, :update, :destroy]
 
   def index
@@ -20,8 +20,24 @@ class Api::CarsController < ApplicationController
   end
 
   def update
-    @car.update_attributes(car_params)
-    render json: @car
+  
+      file = params[:filepond]
+      if file
+        begin
+          ext = File.extname(file.tempfile)
+          cloud_image = Cloudinary::Uploader.upload(file, :resource_type => :raw)
+        
+          @car.file = cloud_image['secure_url']
+        end
+      else
+        @car.update_attributes(car_params)
+      end
+      if @car.save
+        render json: @car
+      else
+        render json: { errors: @car.errors.full_messages }, status: 422
+      end
+
   end
 
   def destroy
@@ -31,11 +47,15 @@ class Api::CarsController < ApplicationController
   
   private 
   def set_cars
-    @car = current_user.cars.find(params[:id])
+    @car = Car.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:car_id])
   end
 
   def car_params
-    params.require(:car).permit(:make,:model,:year,:color,:license_plate,:policy_exp,:roadside_ass,:miles,:vin,:policy_number,:insurance_prov_num,:user_id,:insurance_provider)
+    params.require(:car).permit(:make,:model,:year,:color,:license_plate,:policy_exp,:roadside_ass,:miles,:vin,:policy_number,:insurance_prov_num,:user_id,:insurance_provider, :file)
   end 
 end
 

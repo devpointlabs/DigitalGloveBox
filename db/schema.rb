@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_223123) do
+ActiveRecord::Schema.define(version: 2020_04_14_212721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_223123) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "insurance_provider"
     t.string "policy_exp"
+    t.string "file"
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 

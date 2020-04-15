@@ -6,6 +6,7 @@ import '../App.css';
 import axios from 'axios'
 
 const Navbar = (props) => {
+
   const [cars, setCars] = useState([]);
   const { auth: {user, handleLogout, }, location, history, } = props
   
@@ -21,7 +22,7 @@ const Navbar = (props) => {
         console.log(err)
       })
     }
-    },)
+    },[])
 
     const renderCars = () =>{
       return cars.map( car => (      
@@ -112,19 +113,8 @@ const Navbar = (props) => {
 
   return(
     <div>
-<<<<<<< HEAD
-      <Menu pointing secondary position="right">
-        <Link to='/'>
-          <Menu.Item
-            name='dashboard'
-            id='dashboard'
-            active={ location.pathname === '/' }
-          />
-        </Link>
-=======
       <Menu pointing secondary>
         <p>DGB</p>
->>>>>>> 3c14a8939aa37060fcd23705f1704579ce5f7aaf
           { rightNavItems()}
       </Menu>
     </div>

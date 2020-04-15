@@ -1,4 +1,4 @@
-body {
+/* .body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -19,15 +19,13 @@ body {
 .dropdown {
   float: left;
   overflow: hidden;
-  color: black;
-  background-color: white;
 }
 
 .dropdown .dropbtn {
   font-size: 16px;  
   border: none;
   outline: none;
-  color: black;
+  color: white;
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
@@ -35,8 +33,7 @@ body {
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  /* background-color: red; */
-  text-decoration: underline;
+  background-color: red;
 }
 
 .dropdown-content {
@@ -63,4 +60,4 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
+} */

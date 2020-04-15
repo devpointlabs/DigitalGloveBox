@@ -5,7 +5,7 @@ import './App.css';
 import Dashboard from './components/Dashboard'
 import Login from './components/Login'
 import Register from './components/Register'
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import NoMatch from './components/NoMatch';
@@ -24,9 +24,9 @@ const App = () => {
   return (
    <>
    
-      <Navbar />
-      <TestNav />
+      {/* <Navbar /> */}
     <FetchUser>
+      <TestNav />
       <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Dashboard} />

@@ -1,10 +1,15 @@
 import React,{ useState, useEffect } from 'react'
 import axios from 'axios';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Icon } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import Filepond from '../docs/Filepond';
+
 
 const EditCarProfile = (props) => {
 
   const [carEdit, setCarEdit] = useState({})
+  
+  const [toggleForm, setToggleForm] = useState(false)
 
   useEffect( () => {
     const { user_id, id } = props.match.params;
@@ -36,8 +41,24 @@ const EditCarProfile = (props) => {
     })
   }
 
-  return(
-    <Form onSubmit={handleSubmit}>
+  const renderForms = () => {
+    if (toggleForm === true){
+    
+      return (
+        <div>
+          <br />
+          <span> <Icon name="plus circle" />Edit Your Car Photo</span> 
+        <Filepond route={`/api/users/${user_id}/cars/${id}`}/>
+        <br />
+        <Link to={{pathname: `/${user_id}/car_profile/${id}/edit`}}> 
+          <Button onClick={() => setToggleForm(false)}> Back to Car Edit Form</Button>
+        </Link> 
+      </div>)
+      } else {
+      return(
+      <>
+      <Button onClick={() => setToggleForm(true)}> Edit Car Photo</Button>
+      <Form onSubmit={handleSubmit}>
       <Form.Input
         label="License Plate"
         required
@@ -102,7 +123,31 @@ const EditCarProfile = (props) => {
       />
       <Button>Update</Button>
     </Form>
-  )
+    </>
+      )
+    }}
+
+    if(!carEdit.file){
+      return(
+      <>
+      <div  style={{width:'250px', textAlign: 'center'} }>
+        <h5> You currently have no photo! </h5>
+      </div>
+      {renderForms()}
+      </>
+      )}else {
+
+    return (
+    <>
+      <div style={{width:'250px', textAlign: 'center'}} >
+      
+       <img width="250" height="auto"src={carEdit.file}  />
+       <br />
+      </div>
+       {renderForms()}
+    </>
+     )
+    }
 }
 
 export default EditCarProfile

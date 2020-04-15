@@ -59,7 +59,7 @@ const CarProfile = (props) => {
         <Button>Document</Button>
       </Link>
       <h1>{car.year} {car.make} {car.model}</h1>
-      <img alt="user_car">{car.image}</img>
+      <img height="400px" width="auto" src={`${car.file}`} alt="user_car"/>
 
       <Table key={car.id}>
         <Table.Body>

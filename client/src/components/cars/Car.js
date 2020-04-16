@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
-  RowCenter,
+  leftHalf,
   Title,
   Paragraph,
   CarCard,
-  Button,
+  rightHalf,
   ImgCar,
 } from "../styles/DashBoard";
 
@@ -14,11 +14,14 @@ const Car = (props) => {
     <>
       <Link to={{ pathname: `/car_profile/${props.car.id}` }}>
         <CarCard key={props.car.id}>
+          <leftHalf>
           <ImgCar src={`${props.car.file}`} />
+          </leftHalf>
+          <rightHalf>
           <Title>
             {props.car.year} {props.car.make} {props.car.model}
           </Title>
-
+          </rightHalf>
           <Paragraph>{paragraph}</Paragraph>
         </CarCard>
       </Link>

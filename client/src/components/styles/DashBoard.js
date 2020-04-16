@@ -29,11 +29,7 @@ export const Paragraph = styled.p`
   font-size: 1em;
 `;
 
-export const QuakeCard = styled.div`
-  border: solid 1px orange;
-  border-radius: 4px;
-  padding: 1em;
-`;
+
 
 export const CarCard = styled.div`
   border: solid 3px white;
@@ -48,10 +44,12 @@ export const ImgCar = styled.img`
   width: 150px;
   margin-left: auto;
   margin-right: auto;
+  background-color: C0C0C8
+  
 `;
 
 export const Button = styled.button`
-  font-size: 1em;
+  font-size: 1.5em;
   border: solid 2px;
   padding: 0em 0.5em;
   border-radius: 3px;
@@ -62,6 +60,9 @@ export const Button = styled.button`
   &:hover {
     background-color: white;
     color: black;
+    border: solid 2px;
+    padding: 0em 0.5em;
+    border-radius: 3px;
   }
 `;
 export const DBackGround = styled.div`
@@ -73,3 +74,15 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: space-between;
 `;
+export const leftHalf = styled.div`
+background-color: #ff9e2c;
+position: absolute;
+left: 0px;
+width: 50%;
+`
+export const rightHalf = styled.div`
+background-color: #b6701e;
+  position: absolute;
+  right: 0px;
+  width: 50%;
+`

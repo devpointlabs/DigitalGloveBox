@@ -1,34 +1,32 @@
-import React,{useState,useContext }from 'react';
-import { Image, Item,  } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
-
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import {
+  RowCenter,
+  Title,
+  Paragraph,
+  CarCard,
+  Button,
+  ImgCar,
+} from "../styles/DashBoard";
 
 const Car = (props) => {
-
-  
-
-  return(
+  return (
     <>
-    <Item key={props.car.id}>
-    {/* <Item.Image image={car.image} /> */}
-    <Item.Content>
-      <Item.Header as='a'>{props.car.year} {props.car.make} {props.car.model}</Item.Header>
-      <Item.Description>{paragraph}</Item.Description>
-      <img height="100px" width="auto" src={`${props.car.file}`} />
-   
-      <Link to={{pathname: `/car_profile/${props.car.id}` }}>Car Profile</Link>
-    </Item.Content>
-  </Item>
-  </>
-  )
-}
+      <Link to={{ pathname: `/car_profile/${props.car.id}` }}>
+        <CarCard key={props.car.id}>
+          <ImgCar src={`${props.car.file}`} />
+          <Title>
+            {props.car.year} {props.car.make} {props.car.model}
+          </Title>
 
+          <Paragraph>{paragraph}</Paragraph>
+        </CarCard>
+      </Link>
+    </>
+  );
+};
 
+const paragraph =
+  "All of your cars documents, information, and recent services in one convenient place!";
 
-
-
-const paragraph = (
-  'All of your cars documents, information, and recent services in one convenient place!'
-)
-
-export default Car
+export default Car;

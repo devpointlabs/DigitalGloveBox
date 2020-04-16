@@ -16,6 +16,7 @@ import AddCar from './components/cars/AddCar';
 import DocumentUpload from './components/docs/DocumentUpload';
 import carApi from './components/cars/CarApi'
 import TestNav from './components/TestNav';
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -23,8 +24,6 @@ const App = () => {
 
   return (
    <>
-   
-      {/* <Navbar /> */}
     <FetchUser>
       <TestNav />
       <Container>
@@ -39,8 +38,9 @@ const App = () => {
           <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
           <Route exact path='/CarApi' component={carApi}/>                                
           <Route component={NoMatch}/>
-        </Switch>
+        </Switch> 
       </Container>
+      <Footer />
     </FetchUser>
    </>
   );

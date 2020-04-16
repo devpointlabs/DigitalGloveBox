@@ -59,11 +59,16 @@ const TestNav = (props) => {
             </NavItem>
           </Link>
 
-          <Link to='/account'>
-            <NavItem id='account' name='account' className='borderCenter' active={location.pathname === '/account'} >
-              Profile
-            </NavItem>
-          </Link>
+          <div className="dropdown" >
+            <button className="dropbtn">Profile
+              <i className="fa fa-caret-down"></i>
+            </button>
+            <div className="dropdown-content">
+              <a href="/carApi">Add a car</a>
+              <a href="/account">Account</a>
+              <a href="/emergency">Emergency Info</a>
+            </div>
+          </div>
           
           <Link>
             <NavItem name='logout' className='borderCenter' onClick={ () => handleLogout(history)}>
@@ -90,17 +95,18 @@ const TestNav = (props) => {
       )
     }  
   }
+  
   if(!cars) return null
     
     return (
       <div style={styles.mainNav}>
         <div style={styles.leftNavStyles}>
-          LOGO HERE
+          <h1 style={styles.logo}>LOGO HERE</h1>
         </div>
           { rightNavItems()}
       </div>
     )
-  }
+}
 
 
 export class ConnectedTestNavbar extends React.Component {
@@ -131,16 +137,22 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '70%',
-    padding: '.5em .5em',
-    // border: 'solid 2px black'
+    padding: '.5em 2em',
+    color: 'white',
+    // border: 'solid 2px white'
   },
   leftNavStyles: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '30%',
     padding: '.5em .5em',
-    // border: 'solid 1px green'   
   },
+  logo: {
+    color: 'white',
+    padding: '.2em',
+    margin: '0em .5em',
+    // border: 'solid 2px white'
+  }
 }
 
 

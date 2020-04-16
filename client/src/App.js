@@ -20,12 +20,12 @@ import Footer from './components/Footer';
 
 
 const App = () => {
-
-
+  
   return (
    <>
     <FetchUser>
       <TestNav />
+      <Footer>
       <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Dashboard} />
@@ -40,7 +40,7 @@ const App = () => {
           <Route component={NoMatch}/>
         </Switch> 
       </Container>
-      <Footer />
+      </Footer>
     </FetchUser>
    </>
   );

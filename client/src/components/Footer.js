@@ -3,9 +3,9 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer>
-    <div style={styles.footer}>
-      <p>Dev Point Labs</p>
-    </div>
+      <div style={styles.footer}>
+        <p>&copy; Dev Point Labs</p>
+      </div>
     </footer>
   )
 }
@@ -18,8 +18,6 @@ const styles = {
     backgroundColor: '#09091A',
     height: '7em',
     display: 'flex',
-    color: 'white',
-    position: 'absolute',
-    
+    color: 'white',    
   }
 }

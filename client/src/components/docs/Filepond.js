@@ -10,7 +10,6 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 export default class Filepond extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       files: [],
      };
@@ -25,7 +24,7 @@ export default class Filepond extends React.Component {
   }
 
   render() {
-    const { car_id, document_id } = this.props;
+    const { route } = this.props;
 
     return (
       <div className="App">
@@ -50,7 +49,7 @@ export default class Filepond extends React.Component {
               formData.append(fieldName, file, file.name);
 
               const request = new XMLHttpRequest();
-              request.open("PUT", `/api/cars/${car_id}/documents/${document_id}`);
+              request.open("PUT", route);
 
               request.upload.onprogress = (e) => {
                 progress(e.lengthComputable, e.loaded, e.total);
@@ -78,8 +77,10 @@ export default class Filepond extends React.Component {
           onupdatefiles={(fileItems) => {
             this.setState({
               files: fileItems.map((fileItem) => fileItem.file),
+              
             });
-            this.refreshPage()
+            if(this.props.refresh){
+            this.refreshPage()}
           }}
           
 

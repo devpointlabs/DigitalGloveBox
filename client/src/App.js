@@ -3,9 +3,9 @@ import {Switch, Route} from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 import './App.css';
 import Dashboard from './components/Dashboard'
-import Login from './components/users/Login'
-import Register from './components/users/Register'
-import Navbar from './components/Navbar';
+import Login from './components/Login'
+import Register from './components/Register'
+// import Navbar from './components/Navbar';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';
 import NoMatch from './components/NoMatch';
@@ -15,6 +15,8 @@ import EditCarProfile from './components/cars/EditCarProfile';
 import AddCar from './components/cars/AddCar';
 import DocumentUpload from './components/docs/DocumentUpload';
 import carApi from './components/cars/CarApi'
+import TestNav from './components/TestNav';
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -22,9 +24,8 @@ const App = () => {
 
   return (
    <>
-   
-    <Navbar />
     <FetchUser>
+      <TestNav />
       <Container>
         <Switch>
           <ProtectedRoute exact path="/" component={Dashboard} />
@@ -37,8 +38,9 @@ const App = () => {
           <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
           <Route exact path='/CarApi' component={carApi}/>                                
           <Route component={NoMatch}/>
-        </Switch>
+        </Switch> 
       </Container>
+      <Footer />
     </FetchUser>
    </>
   );

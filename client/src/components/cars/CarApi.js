@@ -1,11 +1,12 @@
 import React from 'react';
 import Parse from 'parse';
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Button } from 'semantic-ui-react'
 import AddCar from './AddCar';
 
 class carApi extends React.Component {
   constructor(props) {
     super(props);
+    
     Parse.initialize(
       "VtH137ysq3yyLOqa014TxxlIAVGwEbd9PvOYuTSD",
       "pcGAl1MYs6UOiRESbDkIpyl9evmaAkKEL8IM8hko"
@@ -20,6 +21,8 @@ class carApi extends React.Component {
       makeChosen:[],
       carModelofMake:[],
       modelChosen:[],
+      toggleCarForm: false
+      
     };
 
     let install = new Parse.Installation()
@@ -34,6 +37,10 @@ class carApi extends React.Component {
     )
   }
 
+  handleClick = () => {
+    let {toggleCarForm} = this.state
+    this.setState({...this.state, 'toggleCarForm': !toggleCarForm})
+  }
   yearOnChange = (e, data) => {
     this.setState(
       {yearsChosen:data.value}, ()=>{ 
@@ -67,7 +74,7 @@ class carApi extends React.Component {
      (results) => {
 
        let data = JSON.stringify(results);
-       let newData = JSON.parse(data)
+       let newData = JSON.parse(data) //turn to array
        
        let makeArray = [...new Set(newData.map( d => d.Make ))];
        let modelChosenArray = newData.filter((d) => {return d.Make == this.state.makeChosen})
@@ -85,11 +92,20 @@ class carApi extends React.Component {
  
   }
 
-  render() {
+  toggleForm = () => {
     var carMakeOfYear = this.state.carMakeOfYear
     var carModelofMake = this.state.carModelofMake
-    return (
+
+    if(this.state.toggleCarForm === true){
+      return (
       <>
+        <AddCar year={this.state.yearsChosen} make={this.state.makeChosen} model={this.state.modelChosen}/>
+       
+      </>
+      )
+    }else{
+    return( 
+    <>
       <Dropdown 
         placeholder='Select Year'
         fluid
@@ -120,11 +136,16 @@ class carApi extends React.Component {
         required
 
       />
-     
-      <AddCar year={this.state.yearsChosen} make={this.state.makeChosen} model={this.state.modelChosen}/>
-      </>
+       <Button onClick={this.handleClick}> Add Car Information </Button>
+       </>)
+  }}
+
+  render() {
+    return (
+      this.toggleForm()
     )
-  }
+  
+  } 
 }
 export default carApi;
 

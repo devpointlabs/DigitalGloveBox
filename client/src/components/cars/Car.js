@@ -1,27 +1,38 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
-  RowCenter,
+  LeftHalf,
   Title,
   Paragraph,
   CarCard,
-  Button,
+  RightHalf, 
   ImgCar,
+  Button
 } from "../styles/DashBoard";
 
 const Car = (props) => {
   return (
     <>
-      <Link to={{ pathname: `/car_profile/${props.car.id}` }}>
         <CarCard key={props.car.id}>
+          <LeftHalf>
+      <Link to={{ pathname: `/car_profile/${props.car.id}` }}>
           <ImgCar src={`${props.car.file}`} />
-          <Title>
-            {props.car.year} {props.car.make} {props.car.model}
-          </Title>
-
-          <Paragraph>{paragraph}</Paragraph>
-        </CarCard>
       </Link>
+          </LeftHalf>
+          <RightHalf>
+      <Link to={{ pathname: `/car_profile/${props.car.id}` }}>
+          <Title style={{display: 'flex', justifyContent: 'center'}}>
+            {props.car.year} {props.car.make} {props.car.model}
+            </Title>
+      </Link>
+            <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'center', textAlign: 'center', paddingLeft: '25%',paddingRight: '25%'}}>
+            <Paragraph >{paragraph}</Paragraph>
+            </div>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <Button>Edit Car</Button>
+            </div>
+          </RightHalf>
+        </CarCard>
     </>
   );
 };

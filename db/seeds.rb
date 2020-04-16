@@ -18,7 +18,7 @@ User.create(
 Car.create(
   make: 'Honda',
   model: 'Accord',
-  year: '1988',
+  year: '2018',
   color: 'Cyan',
   license_plate: 'X12-52S',
   policy_exp: '100',
@@ -27,7 +27,8 @@ Car.create(
   vin: '235236SG223236',
   policy_number: '235JSGgWR-G',
   insurance_prov_num: 'USAA12634134',
-  user_id: 1
+  user_id: 1,
+  file:"https://www.pngitem.com/middle/iwboRoR_2018-honda-accord-png-2019-honda-accord-sport/#"
     )
 
 puts 'Car Seeded'
@@ -35,7 +36,7 @@ puts 'Car Seeded'
 Car.create(
   make: 'Toyota',
   model: 'Corolla',
-  year: '1923',
+  year: '2020',
   color: 'Purple',
   license_plate: '123-41s',
   policy_exp: '02/22',
@@ -45,8 +46,26 @@ Car.create(
   policy_number: 'sfef2234-s',
   insurance_prov_num: 'USAA11231454',
   user_id: 1,
+  file:"https://www.mystrongad.com/seo-specials/lbt-19corolla-specials.png" 
+
   
     )
+
+    Car.create(
+      make: 'Telsa',
+      model: 'BrokeTruck',
+      year: '2022',
+      color: 'Dirt',
+      license_plate: 'NEO-123',
+      policy_exp: '23/55',
+      roadside_ass: true,
+      miles: 2314,
+      vin: 'ELON12345MUSK',
+      policy_number: '11352SFET',
+      insurance_prov_num: 'USAA0553322',
+      user_id: 2,
+      file: "https://crdms.images.consumerreports.org/c_lfill,w_555,q_auto,f_auto/prod/cars/cr/model-years/11213-2022-tesla-cybertruck"
+        )
 
 User.create( 
   first_name: 'Guacamole',

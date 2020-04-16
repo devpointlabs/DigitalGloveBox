@@ -1,53 +1,62 @@
-import React,{useState, useEffect, useContext }from 'react';
-import { Image, Item,  } from 'semantic-ui-react'
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../providers/AuthProvider';
-import Car from './Car';
+import React, { useState, useEffect, useContext } from "react";
+import { Image, Item } from "semantic-ui-react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Car from "./Car";
+import {
+  RowCenter,
+  Title,
+  Paragraph,
+  CarCard,
+  Button,
+  ImgCar,
+} from "../styles/DashBoard";
 
 const Cars = (props) => {
-  
-  const [cars, setCars] = useState([])
-  const {user} = useContext(AuthContext)
-  console.log(cars)
-  
+  const [cars, setCars] = useState([]);
+  const { user } = useContext(AuthContext);
+  console.log(cars);
 
-  useEffect( () => {
-    axios.get(`/api/users/${user.id}/cars`)
-    .then(res => {    
-      setCars(res.data)
-      console.log(res.data)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  },[user.id])
+  useEffect(() => {
+    axios
+      .get(`/api/users/${user.id}/cars`)
+      .then((res) => {
+        setCars(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [user.id]);
 
+  const renderCars = () => {
+    return cars.map((car) => (
+      <div key={`car-${car.id}`}>
+        <Car car={car} />
+        <br/>
+        <br/>
+      </div>
+    ));
+  };
 
-  const renderCars = () =>{
-    return cars.map( car => (      
-      <div key = {`car-${car.id}`}>
-      <Car car={car}/>
-      </div >
-    ))
-  }
-
- 
-  
-  return(
+  return (
 
     <Item>
-       {cars.length === 0 ?
-       <Link to={{pathname: `/CarApi` }}>You do not have Car Add Car</Link>
-       :
-       <>
-      <Link to={{pathname: `/CarApi` }}>Add Car</Link>
-       {renderCars()} </>}
+      {cars.length === 0 ? (
+        <Link to={{ pathname: `/CarApi` }}><Button>You do not have Car Add Car</Button></Link>
+      ) : (
+        <>
+          <Link to={{ pathname: `/CarApi` }}>
+            <Button>Add Car</Button>
+          </Link>
+          <br/>
+          <br/>
+          {renderCars()}{" "}
+        </>
+      )}
     </Item>
-  )
-}
+  );
+};
 
-
-
-
-export default Cars
+export default Cars;

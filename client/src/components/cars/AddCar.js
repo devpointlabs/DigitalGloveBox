@@ -1,5 +1,6 @@
 import React,{useState,useContext,useEffect,} from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 import { Form, Button, Icon } from 'semantic-ui-react';
 import { AuthContext } from '../../providers/AuthProvider';
 import {useFormInput,} from "../Hooks/useFormInput";
@@ -22,7 +23,7 @@ const AddCar = (props) =>{
   const insurance_prov_num = useFormInput ("")
   const insurance_provider = useFormInput("")
 
-  const [ toggleForm, setToggleForm ] = useState(false)
+  const [ toggleForm, setToggleForm ] = useState('car')
   const [id, setId] = useState()
   const [redirect,setRedirect]= useState(null)
 
@@ -34,9 +35,8 @@ const AddCar = (props) =>{
         setMake(props.make)
   }, [props.model, props.make, props.year])
 
-    if (redirect) {
-      return <Redirect to={redirect} />
-    }
+
+
       
     const handleSubmit = ( e ) => {
       e.preventDefault()
@@ -45,60 +45,45 @@ const AddCar = (props) =>{
       roadside_ass,miles:miles.value,vin:vin.value,policy_number:policy_number.value,
       insurance_prov_num:insurance_prov_num.value,insurance_provider:insurance_provider.value}, )
       .then(
-        res => (
-          setToggleForm(true),
-          setId(res.data.id)
-      )
+        res => {
+        
+          return(
+          setId(res.data.id),
+          setToggleForm('filepond')
+          )
+        }
            )
         // (res => setRedirect({redirect:"/"}))
       .catch( (err) => {
         console.log(err)
       })
     }
+
+    const handleCarSubmit= () =>{
+      setToggleForm('addInsurance')
+    }
    
 
     const renderForms = () => {
-      if (toggleForm === true){
+
+      if (toggleForm === 'filepond'){
+        if (redirect===true){
+          return <Redirect to={'/'} />
+        }else{
         return (
           <div>
             <br />
             <span> <Icon name="plus circle" />UPLOAD YOUR CAR PHOTO OR RETURN TO DASHBOARD</span> 
           <Filepond route={`/api/users/${user.id}/cars/${id}`}/>
           <br />
-          <Button onClick={()=>(setRedirect(true))}> Back to Car Profile</Button>
-        </div>)
-      } else{
+          <Link to={{pathname: '/'}}> 
+            <Button> Back to Car Profile</Button>
+          </Link> 
+        </div>)}
+      } else if(toggleForm === 'addInsurance'){
+
         return (
           <Form onSubmit={handleSubmit}>
-      
-              <Form.Input
-                label="Color"
-                name='color'
-                required
-                placeholder='Color'
-                {...color}
-              />
-              <Form.Input
-                label="License Plate"
-                required
-                name='license_plate'
-                placeholder='License Plate'
-                {...license_plate}
-              />
-              <Form.Input
-                label="Vin Number"
-                required
-                name='vin'
-                placeholder='Vin Number'
-                {...vin}
-              />
-              <Form.Input
-                label="Miles"
-                required
-                name='miles'
-                placeholder='Total Miles'
-                {...miles}
-              />
               <Form.Input
                 label="Policy Number"
                 optional = "true"
@@ -134,7 +119,47 @@ const AddCar = (props) =>{
               onChange={(e) => setRoadside_ass(!roadside_ass)}
               checked={roadside_ass}
             />
-          <Button >Add Photo</Button>
+          <Button onClick={()=>setRedirect(true)}>Save</Button> <Button >Save & Add Photo</Button>
+
+          
+        </Form>
+        )
+
+
+      } else{
+        return (
+          <Form onSubmit={handleCarSubmit}>
+      
+              <Form.Input
+                label="Color"
+                name='color'
+                required
+                placeholder='Color'
+                {...color}
+              />
+              <Form.Input
+                label="License Plate"
+                required
+                name='license_plate'
+                placeholder='License Plate'
+                {...license_plate}
+              />
+              <Form.Input
+                label="Vin Number"
+                required
+                name='vin'
+                placeholder='Vin Number'
+                {...vin}
+              />
+              <Form.Input
+                label="Miles"
+                required
+                name='miles'
+                placeholder='Total Miles'
+                {...miles}
+              />
+              
+          <Button >Add Insurance Info</Button>
           
         </Form>
         )}

@@ -2,6 +2,15 @@ import React from "react";
 import Parse from "parse";
 import { Dropdown, Button } from "semantic-ui-react";
 import AddCar from "./AddCar";
+import {
+  RowCenter,
+  Title,
+  Paragraph,
+  CarCard,
+ 
+  ImgCar,
+  CarsRow,
+} from "../styles/DashBoard";
 
 class carApi extends React.Component {
   constructor(props) {
@@ -105,6 +114,7 @@ class carApi extends React.Component {
     } else {
       return (
         <>
+        
           <Dropdown
             placeholder="Select Year"
             fluid

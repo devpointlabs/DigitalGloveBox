@@ -32,20 +32,20 @@ export const Paragraph = styled.p`
 
 
 export const CarCard = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   border: solid 3px white;
   border-radius: 4px;
-  padding: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 60%;
 `;
+
 export const ImgCar = styled.img`
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-  width: 150px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: C0C0C8
-  
+  width: 100%;
+  height: 100%;
+  background-color: #C0C0C8;
+  padding: 1em;
 `;
 
 export const Button = styled.button`
@@ -74,15 +74,19 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: space-between;
 `;
-export const leftHalf = styled.div`
-background-color: #ff9e2c;
-position: absolute;
-left: 0px;
-width: 50%;
+
+export const LeftHalf = styled.div`
+display: flex;
+flex-direction: column;
+background-color: #C0C0C8;
+flex: 50%;
+height: 100%;
 `
-export const rightHalf = styled.div`
-background-color: #b6701e;
-  position: absolute;
-  right: 0px;
-  width: 50%;
+
+export const RightHalf = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+background-color: white;
+  flex: 50%;
 `

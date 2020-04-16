@@ -32,7 +32,7 @@ const Cars = (props) => {
 
   const renderCars = () => {
     return cars.map((car) => (
-      <div key={`car-${car.id}`}>
+      <div key={`car-${car.id}`} style={styles.carsRow} >
         <Car car={car} />
         <br/>
         <br/>
@@ -41,6 +41,7 @@ const Cars = (props) => {
   };
 
   return (
+
     <Item>
       {cars.length === 0 ? (
         <Link to={{ pathname: `/CarApi` }}><Button>You do not have Car Add Car</Button></Link>
@@ -50,7 +51,7 @@ const Cars = (props) => {
             <Button>Add Car</Button>
           </Link>
           <br/>
-          <br/>
+            <br />
           {renderCars()}{" "}
         </>
       )}
@@ -59,3 +60,14 @@ const Cars = (props) => {
 };
 
 export default Cars;
+
+const styles = {
+  carsRow: {
+  display: 'flex', 
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: '3em'
+}
+}
+
+

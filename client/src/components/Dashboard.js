@@ -1,6 +1,7 @@
 import React from 'react'
-import connectedCar from './cars/Car'
 import Cars from './cars/Cars'
+import {DBackGround} from '../components/styles/DashBoard'
+
 
 const Dashboard = () => {
 

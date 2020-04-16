@@ -1,0 +1,28 @@
+$sub-color: grey;
+$main-color: black;
+
+
+h2{
+  text-align: center;
+}
+.group {
+  position: relative;
+  margin: 4rem 0; 
+  .form-label{
+    font-size: 1.6rem;
+  }
+  .form-input{
+      background: none;
+      background-color: white;
+      color: $sub-color;
+      font-size: 1.6rem;
+      padding: 10px 10px 10px 5px;
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid $sub-color;
+      margin: 25px 0;
+  }
+}
+

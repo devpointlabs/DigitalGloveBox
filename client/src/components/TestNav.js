@@ -22,7 +22,7 @@ const TestNav = (props) => {
         console.log(err)
       })
     }
-    },[])
+    },[props.match.params])
 
     const renderCars = () =>{
       return cars.map( car => (      
@@ -32,6 +32,9 @@ const TestNav = (props) => {
       ));
     }
     
+
+
+
     const rightNavItems = () => {
       
       if (user) {

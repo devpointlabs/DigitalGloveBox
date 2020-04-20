@@ -2,5 +2,29 @@
   "dependencies": {
     "filepond": "^4.13.0",
     "react-filepond": "^7.0.1"
-  }
+  },
+  "name": "DigitalGloveBox",
+  "description": "Woahhh this Project is the best ever thats why james chose it yo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devpointlabs/DigitalGloveBox.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devpointlabs/DigitalGloveBox/issues"
+  },
+  "homepage": "https://github.com/devpointlabs/DigitalGloveBox#readme"
 }

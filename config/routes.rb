@@ -12,4 +12,5 @@ Rails.application.routes.draw do
 
     post 'cars/all_cars', :to => 'cars#all_cars'
   end 
+  get '*other', to: 'static#index'
 end

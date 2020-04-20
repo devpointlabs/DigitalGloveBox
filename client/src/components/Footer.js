@@ -2,11 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer>
-      <div style={styles.footer}>
-        <p>&copy; Dev Point Labs</p>
-      </div>
-    </footer>
+    <footer style={styles.footer}><p>&copy; Dev Point Labs</p></footer> 
   )
 }
 
@@ -14,10 +10,14 @@ export default Footer
 
 const styles = {
   footer: {
+    position: 'fixed',
+    left: '0',
+    bottom: '0',
     width: '100%',
-    backgroundColor: '#09091A',
-    height: '7em',
-    display: 'flex',
-    color: 'white',    
-  }
+    backgroundColor: 'black',
+    color: 'white',
+    textAlign: 'center',
+    height: '6em',
+    marginTop: '-6em'
+  },
 }

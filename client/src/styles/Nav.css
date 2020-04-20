@@ -17,7 +17,7 @@
 .dropdown .dropbtn {
   border: none;
   outline: none;
-  color: white;
+  color: #C0C0C8;
   padding: 1.15em .5em;
   background-color: inherit;
   cursor: pointer;
@@ -26,7 +26,7 @@
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-  /* background-color: gray; */
+  color: white;
   /* text-decoration: underline gray; */
 }
 
@@ -60,25 +60,14 @@
   display: block;
 }
 
-
-.borderCenter {
+.activeStyle {
   position: relative;
 }
 
-.borderCenter::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  width: 60%;
-  height: 1px;
-  opacity: 0;
-  background-color: white;
-  transform: translate(-50%, 0);
-  transition: all 0.3s ease-in-out;
+.activeStyle:hover {
+  color: white
 }
 
-.borderCenter:hover::after {
-  width: 100%;
-  opacity: 1;
-}
+/* .activeStyle:active {
+  color: white
+} */

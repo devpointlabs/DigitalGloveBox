@@ -1,5 +1,9 @@
 import React, { Fragment } from 'react'
-import { Form, Grid, Container, Divider, Header, Button, } from 'semantic-ui-react';
+
+
+import { Button, AccountContainer, Form, FormInput } from '../../styled_component/styledComponents';
+
+
 
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import Filepond from '../docs/Filepond';
@@ -74,10 +78,10 @@ class Account extends React.Component {
     const { auth: { user } } = this.props;
     if (user.comm_prefs === true){
         return(
-      <Header as="h5"> You are subscribed to our communications! &#127752; </Header>)
+      <span> You are subscribed to our communications! &#127752; </span>)
     }else {
       return(
-      <Header as="h5"> You are not subscribed to our communications. </Header>)
+      <span> You are not subscribed to our communications. </span>)
     }
       
   }
@@ -85,20 +89,19 @@ class Account extends React.Component {
   accountView = () => {
     const { auth: { user } } = this.props;
     return (
-      <Fragment>
-         <Grid.Column width={8}>
-          <Header as="h1">Welcome {user.first_name} {user.last_name} </Header>
-
+ 
+        <div style={{ margin: 'auto', width: "50%",}}>
+          <h1 style={{textAlign: "center"}}>Welcome {user.first_name} {user.last_name} </h1>
           
             {this.photoExists()}
-          <Header as="h3">Here is your account information:</Header>
+          <h3>Here is your account information:</h3>
 
-          <Header as="h5">Email - {user.email}</Header>
-          <Header as="h5"> Phone Number - {user.phone_number}</Header>
-          <Header as="h5"> Zip Code - {user.postal_code}</Header>
+          <h5>Email - {user.email}</h5>
+          <h5> Phone Number - {user.phone_number}</h5>
+          <h5> Zip Code - {user.postal_code}</h5>
           {this.optInView()}
-        </Grid.Column>
-      </Fragment>
+       </div>
+ 
     )
   }
 
@@ -109,14 +112,10 @@ class Account extends React.Component {
     const { formValues: { first_name, last_name, email, phone_number,postal_code, comm_prefs }} = this.state;
   
   return (
-    <>
-    
-      <br />
+
     <Form onSubmit={this.handleSubmit}>
-      <Grid.Column width={4}>
-      </Grid.Column>
-      <Grid.Column width={8}>
-      <Form.Input
+    
+      <FormInput
             label="First Name"
             required
             autoFocus
@@ -125,7 +124,7 @@ class Account extends React.Component {
             placeholder='First Name'
             onChange={this.handleChange}
           />
-          <Form.Input
+          <FormInput
             label="Last Name"
             required
             name='last_name'
@@ -133,7 +132,7 @@ class Account extends React.Component {
             placeholder='Last Name'
             onChange={this.handleChange}
           />
-          <Form.Input
+          <FormInput
             label="Email"
             required
             name='email'
@@ -143,7 +142,7 @@ class Account extends React.Component {
             onChange={this.handleChange}
           />
 
-          <Form.Input
+          <FormInput
             label="Phone Number"
             optional
             name='phone_number'
@@ -151,7 +150,7 @@ class Account extends React.Component {
             placeholder='(XXX) XXX XXXX'
             onChange={this.handleChange}
           />
-          <Form.Input
+          <FormInput
             label="Zip Code"
             optional
             name='postal_code'
@@ -160,22 +159,16 @@ class Account extends React.Component {
             onChange={this.handleChange}
           />
 
-          <Form.Checkbox
+          <FormInput
             label="Check if you'd like to receive rich content on how to better manage your car"
             name='comm_prefs'
+            type='checkbox'
             onChange={this.handleChangeCheckbox}
             checked={comm_prefs}
           />
-   
-
-          <br />
 
         <Button>Update</Button>
-      </Grid.Column>
-    </Form>
-
-   
-      </>
+        </Form>
   )
   }
 
@@ -193,7 +186,7 @@ class Account extends React.Component {
     return (
       <div style={{width:'250px', textAlign: 'center'}} >
       
-       <img width="250" height="auto"src={user.image}  />
+       <img style={{borderRadius: "3px"}} width="250" height="auto"src={user.image}  />
        <br />
 
        <h5> Would you like to update your Photo?</h5>
@@ -207,19 +200,11 @@ class Account extends React.Component {
     const { editing, } = this.state;
 
     return(
-      <Container>
-      <Divider hidden />
-      <Grid>
-        <Grid.Row>
-          <Grid.Column>
+      <AccountContainer>
           { editing ? this.editView() : this.accountView()}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-        <br />
-       
+      
         <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
-      </Container>
+      </AccountContainer>
 
     )
   }

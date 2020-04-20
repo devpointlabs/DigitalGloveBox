@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Icon } from "semantic-ui-react";
+import { Table, Icon } from "semantic-ui-react";
+import { Button } from '../../styled_component/styledComponents';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";

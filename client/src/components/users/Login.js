@@ -41,7 +41,7 @@ class Login extends React.Component {
         
             <FormInput 
             required
-            label='Password'
+            label='Password*'
             name='password'
             value={password}
             placeholder='Password'

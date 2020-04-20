@@ -94,13 +94,14 @@ class Register extends React.Component {
             type='password'
             onChange={this.handleChange}
           />
-{/* 
+
           <FormInput
             label="Check if you'd like to receive rich content on how to better manage your car"
             name='comm_prefs'
+            type='checkbox'
             onChange={this.handleChangeCheckbox}
             checked={comm_prefs}
-          /> */}
+          />
           <Button type='submit'>Submit</Button>
         </Form>
         

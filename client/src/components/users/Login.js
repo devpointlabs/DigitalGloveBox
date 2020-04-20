@@ -2,10 +2,9 @@ import React from 'react';
 
 import { AuthConsumer, } from "../../providers/AuthProvider";
 
-import { Button, Form, FormInput, FormLabel } from '../../styled_component/styledComponents';
+import { Button, Form, FormInput, UserContainer } from '../../styled_component/styledComponents';
 
- 
-import './login.scss'
+
 
 class Login extends React.Component {
   state = { email: '', password: '' }
@@ -25,12 +24,12 @@ class Login extends React.Component {
     const { email, password, } = this.state;
   
     return (
-      <div class="container">
-        <Form class="group" onSubmit={this.handleSubmit}>
-          <h2>Welcome Back! Please Sign In.</h2>
+      <UserContainer>
+        <Form onSubmit={this.handleSubmit}>
+          <h2 style={{"text-align": "center"}} >Welcome Back! Please Sign In.</h2>
             
             <FormInput 
-              label="Email"
+              label="Email*"
               type="email" 
               required 
               autoFocus  
@@ -51,9 +50,9 @@ class Login extends React.Component {
              />
      
 
-          <Button type="submit">Sign In</Button>
-        </Form>
-      </div>
+            <Button type="submit">Sign In</Button>
+          </Form>
+        </UserContainer>
 
       //   <Header as='h1' textAlign='center'>Login</Header>
       //   <Form onSubmit={this.handleSubmit}>

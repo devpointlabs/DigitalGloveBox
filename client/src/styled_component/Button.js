@@ -45,6 +45,6 @@ export const Button = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 100px';
   ${getButtonStyles}
 `;

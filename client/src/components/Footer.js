@@ -14,9 +14,10 @@ const styles = {
     left: '0',
     bottom: '0',
     width: '100%',
-    backgroundColor: '#09091A',
+    backgroundColor: 'black',
     color: 'white',
     textAlign: 'center',
-    height: '7em',
+    height: '6em',
+    marginTop: '-6em'
   },
 }

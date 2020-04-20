@@ -3,8 +3,8 @@ import {Switch, Route} from 'react-router-dom'
 import { Container } from 'semantic-ui-react';
 import './App.css';
 import Dashboard from './components/Dashboard'
-import Login from './components/Login'
-import Register from './components/Register'
+import Login from './components/users/Login'
+import Register from './components/users/Register'
 // import Navbar from './components/Navbar';
 import FetchUser from './components/FetchUser';
 import ProtectedRoute from './components/ProtectedRoute';

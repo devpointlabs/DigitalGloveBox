@@ -16,7 +16,9 @@ import carApi from './components/cars/CarApi'
 import TestNav from './components/TestNav';
 import Background from './components/Background';
 import Footer from './components/Footer';
+import ContactUs from './components/ContactUs/ContactUs'
 import Emergency from './components/users/Emergency';
+
 
 
 const App = () => {
@@ -36,7 +38,8 @@ const App = () => {
             <Route exact path='/car_profile/:id' component={CarProfile}/>
             <Route exact path='/add_car' component={AddCar}/>            
             <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
-            <Route exact path='/CarApi' component={carApi}/>
+            <Route exact path='/CarApi' component={carApi}/>                                
+            <Route exact path='/contact_us' component={ContactUs}/>                                
             <Route exact path='/emergency' component={Emergency}/>                                
             <Route component={NoMatch}/>
           </Switch> 

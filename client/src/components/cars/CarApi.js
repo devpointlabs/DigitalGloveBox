@@ -1,6 +1,8 @@
 import React from "react";
 import Parse from "parse";
-import { Dropdown, Button } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
+import { FormContainer, Button ,DropDown} from '../../styled_component/styledComponents';
+
 import AddCar from "./AddCar";
 import {
   RowCenter,
@@ -114,8 +116,8 @@ class carApi extends React.Component {
     } else {
       return (
         <>
-        
-          <Dropdown
+          <FormContainer> 
+          <DropDown
             placeholder="Select Year"
             fluid
             search
@@ -124,7 +126,8 @@ class carApi extends React.Component {
             onChange={this.yearOnChange}
             required
           />
-          <Dropdown
+          <DropDown
+            type="dropdown"
             placeholder="Select Make"
             fluid
             search
@@ -133,7 +136,8 @@ class carApi extends React.Component {
             onChange={this.makeOnChange}
             required
           />
-          <Dropdown
+          <DropDown
+            type="dropdown"
             placeholder="Select Model"
             fluid
             search
@@ -143,6 +147,7 @@ class carApi extends React.Component {
             required
           />
           <Button onClick={this.handleClick}> Add Car Information </Button>
+          </FormContainer> 
         </>
       );
     }
@@ -155,7 +160,7 @@ class carApi extends React.Component {
 export default carApi;
 
 const carYears = [
-  { value: 1992, text: 1992 },
+  { value: 1992, },
   { value: 1993, text: 1993 },
   { value: 1994, text: 1994 },
   { value: 1995, text: 1995 },

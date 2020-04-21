@@ -27,7 +27,7 @@ export default class Filepond extends React.Component {
     const { route } = this.props;
 
     return (
-      <div className="App">
+      <div className="App"  >
         <FilePond
           ref={(ref) => (this.pond = ref)}
           files={this.state.files}

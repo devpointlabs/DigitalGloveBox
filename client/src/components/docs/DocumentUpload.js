@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import DocumentNavbar from './DocumentNavbar'
 import { AuthConsumer } from '../../providers/AuthProvider'
+import { DocsContainer } from '../../styles/DocStyles'
+
 
 const DocumentUpload = (props) => {
 
@@ -18,15 +20,15 @@ const DocumentUpload = (props) => {
     )}, [user_id, id])
 
   return (
-    <>
+    <DocsContainer>
       <h1>Documents</h1>
-      <h4>Upload and store all of you car-related documents, including your service records, insurance file and more.</h4>
+      <h4>Upload and store all of you car-related documents, including your service records, insurance files and more.</h4>
       <h1>{car.year} {car.make} {car.model}</h1>
       <img alt="user car">{car.image}</img>
       <br />
       <DocumentNavbar car_id={id}/>
       <br />
-    </>
+    </DocsContainer>
   )
 }
 
@@ -39,3 +41,5 @@ const ConnectedDocumentUpload = (props) => (
 )
 
 export default ConnectedDocumentUpload
+
+

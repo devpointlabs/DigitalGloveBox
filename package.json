@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "filepond": "^4.13.0",
+    "node-sass": "^4.13.1",
     "react-filepond": "^7.0.1"
   },
   "name": "DigitalGloveBox",

@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
-import { Form, Header, Button, Dropdown } from 'semantic-ui-react'
+import { FormInput, Button, Form} from '../../styled_component/styledComponents';
+import Select, { components }  from 'react-select';
+
 import axios from 'axios'
 import Filepond from './Filepond'
+
+import './DocumentForm.css'
+
 
 const DocumentForm = (props) => {
 
@@ -25,10 +30,10 @@ const DocumentForm = (props) => {
       })}
 
   const categoryOptions = [
-    {key:'insurance', text: 'Insurance', value: 'insurance'},
-    {key:'registration', text: 'Registration', value: 'registration'},
-    {key:'service records', text: 'Service Records', value: 'service records'},
-    {key:'other', text: 'Other', value: 'other'}
+    {label: 'Insurance', value: 'insurance'},
+    {label: 'Registration', value: 'registration'},
+    {label: 'Service Records', value: 'service records'},
+    {label: 'Other', value: 'other'}
   ]
 
   const togglePond = () => {
@@ -39,21 +44,20 @@ const DocumentForm = (props) => {
     }else{
       return(
         <>
-        <Header as='h3'>Please provide document info:</Header>
+        <h3 >Please provide document info:</h3>
         <Form onSubmit={handleSubmit}>
-          <Dropdown
-            label="Category"
-            required
-            placeholder='Select Category'
-            name='category'
-            fluid
-            selection
+          <label className="formLabel"> Select Category*</label>
+      
+          <Select className="formDropdown"
+            onChange={({value}) => setCategory(value)}
             options={categoryOptions}
-            onChange={(e, data) => setCategory(data.value)}
+            autoFocus={true}
+            required
+
           />
           <br />
-          <Form.Input
-            label="Document Name"
+          <FormInput
+            label="Document Name*"
             required
             name='name'
             value={name}
@@ -75,3 +79,5 @@ const DocumentForm = (props) => {
 }
 
 export default DocumentForm
+
+

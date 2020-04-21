@@ -1,7 +1,9 @@
 import React from "react";
 import Parse from "parse";
-import { Dropdown } from "semantic-ui-react";
-import { FormContainer, Button ,DropDown} from '../../styled_component/styledComponents';
+
+import Select, { components }  from 'react-select';
+
+import { FormContainer, Button } from '../../styled_component/styledComponents';
 
 import AddCar from "./AddCar";
 import {
@@ -13,6 +15,12 @@ import {
   ImgCar,
   CarsRow,
 } from "../styles/DashBoard";
+
+const SingleValue = ({ children, ...props }) => (
+  <components.SingleValue {...props}>
+    {children}
+  </components.SingleValue>
+);
 
 class carApi extends React.Component {
   constructor(props) {
@@ -28,11 +36,12 @@ class carApi extends React.Component {
       cars: [],
       make: [],
       carMakeOfYear: [],
-      yearsChosen: [],
+      yearsChosen: '',
       makeChosen: [],
       carModelofMake: [],
       modelChosen: [],
       toggleCarForm: false,
+      selectedOption: null,
     };
 
     let install = new Parse.Installation();
@@ -58,28 +67,43 @@ class carApi extends React.Component {
     let { toggleCarForm } = this.state;
     this.setState({ ...this.state, toggleCarForm: !toggleCarForm });
   };
-  yearOnChange = (e, data) => {
-    this.setState({ yearsChosen: data.value }, () => {
+  yearOnChange = (selectedOption) => {
+    console.log(selectedOption)
+    this.setState({ yearsChosen: selectedOption.value });
+    console.log(this.state.yearsChosen)
+    return (() => {
+      this.carApi();})
+      // this.setState({ selectedOption });
+      
+      
+    }
+
+    
+    
+  handleChange = ({value, label}) => {
+    console.log(`Option selected:`, value);
+    this.setState({ ...this.state, selectedOption: value}, () => {
+      this.carApi()})
+
+    }
+  
+
+  makeOnChange = ({value, label}) => {
+    this.setState({ makeChosen: value }, () => {
       this.carApi();
     });
   };
 
-  makeOnChange = (e, data) => {
-    this.setState({ makeChosen: data.value }, () => {
-      this.carApi();
-    });
-  };
-
-  modelOnChange = (e, data) => {
-    this.setState({ modelChosen: data.value });
+  modelOnChange = ({value, label}) => {
+    this.setState({ modelChosen: value });
   };
 
   carApi = () => {
     const Car_Model_List = Parse.Object.extend("Car_Model_List");
     const query = new Parse.Query(Car_Model_List);
     query.limit(1000);
-    query.equalTo("Year", this.state.yearsChosen);
-
+    query.equalTo("Year", this.state.selectedOption);
+    debugger
     query.find().then((results) => {
       let data = JSON.stringify(results);
       let newData = JSON.parse(data);
@@ -91,13 +115,15 @@ class carApi extends React.Component {
 
       let modelArray = [...new Set(modelChosenArray.map((d) => d.Model))];
 
-      let carModelofMake = modelArray.map((str) => ({ value: str, text: str }));
+      let carModelofMake = modelArray.map((str) => ({ value: str, label: str }));
       this.setState({ carModelofMake: carModelofMake });
 
-      var carMakeOfYear = makeArray.map((str) => ({ value: str, text: str }));
+      var carMakeOfYear = makeArray.map((str) => ({ value: str, label: str }));
       this.setState({ carMakeOfYear: carMakeOfYear });
     });
   };
+
+
 
   toggleForm = () => {
     var carMakeOfYear = this.state.carMakeOfYear;
@@ -107,17 +133,27 @@ class carApi extends React.Component {
       return (
         <>
           <AddCar
-            year={this.state.yearsChosen}
+            year={this.state.selectedOption}
             make={this.state.makeChosen}
             model={this.state.modelChosen}
           />
         </>
       );
     } else {
+ 
+}
       return (
         <>
           <FormContainer> 
-          <DropDown
+          {console.log(`Option selected:`, this.state.selectedOption)}
+
+          import Select, { components }  from 'react-select';
+          <Select 
+            onChange={this.handleChange}
+            options={options}
+            autoFocus={true}
+          />
+          {/* <DropDown
             placeholder="Select Year"
             fluid
             search
@@ -125,33 +161,24 @@ class carApi extends React.Component {
             options={carYears}
             onChange={this.yearOnChange}
             required
-          />
-          <DropDown
-            type="dropdown"
-            placeholder="Select Make"
-            fluid
-            search
-            selection
+          /> */}
+          <Select
             options={carMakeOfYear}
             onChange={this.makeOnChange}
-            required
+            
           />
-          <DropDown
-            type="dropdown"
-            placeholder="Select Model"
-            fluid
-            search
-            selection
+          <Select
+            
             options={carModelofMake}
             onChange={this.modelOnChange}
-            required
+    
           />
           <Button onClick={this.handleClick}> Add Car Information </Button>
           </FormContainer> 
         </>
       );
     }
-  };
+  
 
   render() {
     return this.toggleForm();
@@ -159,34 +186,34 @@ class carApi extends React.Component {
 }
 export default carApi;
 
-const carYears = [
-  { value: 1992, },
-  { value: 1993, text: 1993 },
-  { value: 1994, text: 1994 },
-  { value: 1995, text: 1995 },
-  { value: 1996, text: 1996 },
-  { value: 1997, text: 1997 },
-  { value: 1998, text: 1998 },
-  { value: 1999, text: 1999 },
-  { value: 2000, text: 2000 },
-  { value: 2001, text: 2001 },
-  { value: 2002, text: 2002 },
-  { value: 2003, text: 2003 },
-  { value: 2004, text: 2004 },
-  { value: 2005, text: 2005 },
-  { value: 2006, text: 2006 },
-  { value: 2007, text: 2007 },
-  { value: 2008, text: 2008 },
-  { value: 2009, text: 2009 },
-  { value: 2010, text: 2010 },
-  { value: 2011, text: 2011 },
-  { value: 2012, text: 2012 },
-  { value: 2013, text: 2013 },
-  { value: 2014, text: 2014 },
-  { value: 2015, text: 2015 },
-  { value: 2016, text: 2016 },
-  { value: 2017, text: 2017 },
-  { value: 2018, text: 2018 },
-  { value: 2019, text: 2019 },
-  { value: 2020, text: 2020 },
+const options = [
+  { value: 1992, label: 1992 },
+  { value: 1993, label: 1993 },
+  { value: 1994, label: 1994 },
+  { value: 1995, label: 1995 },
+  { value: 1996, label: 1996 },
+  { value: 1997, label: 1997 },
+  { value: 1998, label: 1998 },
+  { value: 1999, label: 1999 },
+  { value: 2000, label: 2000 },
+  { value: 2001, label: 2001 },
+  { value: 2002, label: 2002 },
+  { value: 2003, label: 2003 },
+  { value: 2004, label: 2004 },
+  { value: 2005, label: 2005 },
+  { value: 2006, label: 2006 },
+  { value: 2007, label: 2007 },
+  { value: 2008, label: 2008 },
+  { value: 2009, label: 2009 },
+  { value: 2010, label: 2010 },
+  { value: 2011, label: 2011 },
+  { value: 2012, label: 2012 },
+  { value: 2013, label: 2013 },
+  { value: 2014, label: 2014 },
+  { value: 2015, label: 2015 },
+  { value: 2016, label: 2016 },
+  { value: 2017, label: 2017 },
+  { value: 2018, label: 2018 },
+  { value: 2019, label: 2019 },
+  { value: 2020, label: 2020 },
 ];

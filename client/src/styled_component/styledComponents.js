@@ -221,6 +221,7 @@ export const ProfileContainer = styled.div`
 `;
 
 export const UserContainer = styled.div`
+  background-color: white;
   margin: 5vh auto 5vh auto;
   width: 70%;
   border: 1px solid black;

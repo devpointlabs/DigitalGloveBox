@@ -32,7 +32,7 @@ export const ImgCar = styled.img`
   width: 100%;
   height: 100%;
   background-color: #C0C0C8;
-  padding: 1em;
+ 
 `;
 
 export const Button = styled.button`

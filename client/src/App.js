@@ -16,6 +16,7 @@ import carApi from './components/cars/CarApi'
 import TestNav from './components/TestNav';
 import Background from './components/Background';
 import Footer from './components/Footer';
+import ContactUs from './components/ContactUs/ContactUs'
 import Emergency from './components/users/Emergency';
 
 

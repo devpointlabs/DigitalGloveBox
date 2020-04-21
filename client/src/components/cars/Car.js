@@ -7,8 +7,9 @@ import {
   CarCard,
   RightHalf, 
   ImgCar,
-  Button
 } from "../styles/DashBoard";
+import { Button } from '../../styled_component/styledComponents';
+
 
 const Car = (props) => {
   return (

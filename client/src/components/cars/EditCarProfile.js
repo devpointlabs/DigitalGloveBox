@@ -1,8 +1,9 @@
 import React,{ useState, useEffect } from 'react'
 import axios from 'axios';
-import { Form, Button, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Filepond from '../docs/Filepond';
+import { Button, FormContainer, Form, FormInput } from '../../styled_component/styledComponents';
 
 
 const EditCarProfile = (props) => {
@@ -57,72 +58,75 @@ const EditCarProfile = (props) => {
       } else {
       return(
       <>
+      
       <Button onClick={() => setToggleForm(true)}> Edit Car Photo</Button>
-      <Form onSubmit={handleSubmit}>
-      <Form.Input
-        label="License Plate"
-        required
-        autoFocus
-        name='license_plate'
-        value={carEdit.license_plate}
-        placeholder='License Plate'
-        onChange={handleChange}
-      />
-      <Form.Input
-        label="VIN Number"
-        required
-        name='vin'
-        value={carEdit.vin}
-        placeholder='Vin Number'
-        onChange={handleChange}
-      />
-      <Form.Input
-        label="Miles"
-        required
-        name='miles'
-        value={carEdit.miles}
-        placeholder='Total Miles'
-        onChange={handleChange}
-      />
-      <Form.Input
-        label="Insurance Provider"
-        required
-        name='insurance_provider'
-        value={carEdit.insurance_provider}
-        placeholder='Insurance Provider'
-        onChange={handleChange}
-      />
-      <Form.Input
-        label="Policy Number"
-        optional
-        name='policy_number'
-        value={carEdit.policy_number}
-        placeholder='Policy Number'
-        onChange={handleChange}
-      />
-      <Form.Input
-        label="Policy Expiration"
-        type = 'date'
-        name='policy_exp'
-        value={carEdit.policy_exp}
-        placeholder='XX/XX'
-        onChange={handleChange}
-      />
-      <Form.Input
-        label="Insurance Provider Number"
-        name='insurance_prov_num'
-        value={carEdit.insurance_prov_num}
-        placeholder='Insurance Provider Number'
-        onChange={handleChange}
-      />
-      <Form.Checkbox
-        label="Roadside Assistance? Check for yes."
-        name='roadside_ass'
-        onChange={handleChangeCheckbox}
-        checked={carEdit.roadside_ass}
-      />
-      <Button>Update</Button>
-    </Form>
+        <Form onSubmit={handleSubmit}>
+        <FormInput
+          label="License Plate"
+          required
+          autoFocus
+          name='license_plate'
+          value={carEdit.license_plate}
+          placeholder='License Plate'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="VIN Number"
+          required
+          name='vin'
+          value={carEdit.vin}
+          placeholder='Vin Number'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Miles"
+          required
+          name='miles'
+          value={carEdit.miles}
+          placeholder='Total Miles'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Insurance Provider"
+          required
+          name='insurance_provider'
+          value={carEdit.insurance_provider}
+          placeholder='Insurance Provider'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Policy Number"
+          optional
+          name='policy_number'
+          value={carEdit.policy_number}
+          placeholder='Policy Number'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Policy Expiration"
+          type = 'date'
+          name='policy_exp'
+          value={carEdit.policy_exp}
+          placeholder='XX/XX'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Insurance Provider Number"
+          name='insurance_prov_num'
+          value={carEdit.insurance_prov_num}
+          placeholder='Insurance Provider Number'
+          onChange={handleChange}
+        />
+        <FormInput
+          label="Roadside Assistance? Check for yes."
+          name='roadside_ass'
+          type='checkbox'
+          onChange={handleChangeCheckbox}
+          checked={carEdit.roadside_ass}
+        />
+        <Button>Update</Button>
+      </Form>
+   
     </>
       )
     }}
@@ -130,21 +134,25 @@ const EditCarProfile = (props) => {
     if(!carEdit.file){
       return(
       <>
-      <div  style={{width:'250px', textAlign: 'center'} }>
-        <h5> You currently have no photo! </h5>
+      <FormContainer> 
+      <div  style={{width:'250px', margin: 'auto'}}>
+        <h3 style={{textAlign: 'center'}}> You currently have no photo! </h3>
       </div>
       {renderForms()}
+      </FormContainer> 
       </>
       )}else {
 
     return (
     <>
-      <div style={{width:'250px', textAlign: 'center'}} >
+    <FormContainer> 
+      <div style={{width:'250px', margin: 'auto',}} >
       
-       <img width="250" height="auto"src={carEdit.file}  />
+       <img style={{borderRadius: "3px"}} width="250" height="auto"src={carEdit.file}  />
        <br />
       </div>
        {renderForms()}
+    </FormContainer> 
     </>
      )
     }

@@ -9,10 +9,11 @@ import {
   Title,
   Paragraph,
   CarCard,
-  Button,
   ImgCar,
   CarsRow,
 } from "../styles/DashBoard";
+
+import { Button } from '../../styled_component/styledComponents';
 
 const Cars = (props) => {
   const [cars, setCars] = useState([]);

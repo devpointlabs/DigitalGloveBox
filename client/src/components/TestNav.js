@@ -27,7 +27,7 @@ const TestNav = (props) => {
     const renderCars = () =>{
       return cars.map( car => (      
         <div key = {`car-${car.id}`}>
-          <a href={`/car_profile/${car.id}`}>{car.year} {car.make}</a>
+          <a href={`/car_profile/${car.id}/documents`}>{car.year} {car.make}</a>
         </div >
       ));
     }

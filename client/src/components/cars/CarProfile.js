@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Table, Icon } from "semantic-ui-react";
-import { Button } from '../../styled_component/styledComponents';
+import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
+import { ProfileButton, ProfileContainer } from '../../styled_component/styledComponents';
+import '../styles/CarProfile.css'
 
 const CarProfile = (props) => {
+
   const [car, setCar] = useState({});
   console.log(props);
   const { id } = props.match.params;
@@ -25,74 +27,61 @@ const CarProfile = (props) => {
       .catch((e) => console.log(e));
   };
 
+
   const roadsideAssCheck = () => {
     if (car.roadside_ass === true) {
       return (
-        <Table.Cell>
-          Roadside Assistance{" "}
-          <p>
-            <Icon name="check square" />
-          </p>
-        </Table.Cell>
+        <div>Roadside Assistance{" "}<p><Icon name="check square" /></p></div>
       );
     } else {
       return (
-        <Table.Cell>
-          Roadside Assistance{" "}
-          <p>
-            <Icon name="x" />
-          </p>
-        </Table.Cell>
+        <div>Roadside Assistance{" "}<p><Icon name="x" /></p></div>
       );
     }
   };
 
   return (
-    <div>
+    <ProfileContainer>
       <h1>Car Profile</h1>
-      <Link to={{ pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
-        <Button>Edit</Button>
-      </Link>
-
-      <Button onClick={deleteCar}>Delete</Button>
-      
-      <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
-        <Button>Document</Button>
-      </Link>
-      <h1>{car.year} {car.make} {car.model}</h1>
-      <img height="400px" width="auto" src={`${car.file}`} alt="user_car"/>
-
-      <Table key={car.id}>
-        <Table.Body>
-          <Table.Row textAlign="left">
-            <Table.Cell>
-              License Plate <p>{car.license_plate}</p>
-            </Table.Cell>
-            <Table.Cell>
-              VIN <p>{car.vin}</p>
-            </Table.Cell>
-            <Table.Cell>
-              Miles <p>{car.miles}</p>
-            </Table.Cell>
-          </Table.Row>
-          <Table.Row textAlign="left">
-            <Table.Cell>
-              Insurance Provider <p>{car.insurance_provider}</p>
-            </Table.Cell>
-            <Table.Cell>
-              Policy Expiry <p>{car.policy_exp}</p>
-            </Table.Cell>
-            <Table.Cell>
-              Policy Number <p>{car.policy_number}</p>
-            </Table.Cell>
-            {roadsideAssCheck()}
-            <Table.Cell>
-              Insurance Provider Number <p>{car.insurance_prov_num}</p>
-            </Table.Cell>
-          </Table.Row>
-        </Table.Body>
-      </Table>
+      <hr className="solid"></hr>
+      <div style={styles.header}>
+        <div style={styles.leftHeader}>
+          <h1>{car.year} {car.make} {car.model}</h1>
+        </div>
+        <div style={styles.rightHeader}>
+          <Link to={{ pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
+            <ProfileButton><Icon name="edit" size='large' /></ProfileButton>
+          </Link>
+            
+        <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
+          <ProfileButton><Icon name="file alternate outline" size='large' /></ProfileButton>
+        </Link>
+        <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton> 
+      </div>
     </div>
+
+      <img className="centerImage" src={`${car.file}`} alt="user_car"/>
+    
+    <table key={car.id}>
+      <tr>
+        <td>License Plate<p>{car.license_plate}</p></td>
+        <td>VIN<p>{car.vin}</p></td>
+        <td>Miles<p>{car.miles}</p></td>
+      </tr>
+      </table>
+
+      <hr className="solid"></hr>
+
+      <table key={car.id}>
+      <tr>
+        <td>Insurance Provider<p>{car.insurance_provider}</p></td>
+        <td>Policy Expiry<p>{car.policy_exp}</p></td>
+        <td>Policy Number<p>{car.policy_number}</p></td>
+        <td>{roadsideAssCheck()}</td>
+        <td>Insurance Provider Number<p>{car.insurance_prov_num}</p></td>
+      </tr>
+    </table>
+    </ProfileContainer>
   );
 };
 
@@ -101,3 +90,23 @@ const ConnectedCarProfile = (props) => (
 );
 
 export default ConnectedCarProfile;
+
+const styles = {
+  header: {
+    display: 'flex',
+    width: 'auto',
+    marginBottom: '2em',
+    marginTop: '2em',
+  },
+  rightHeader: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    width: '30%',
+  },
+  leftHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '70%',
+    padding: '.5em .5em',
+  },
+}

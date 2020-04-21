@@ -224,7 +224,7 @@ export const UserContainer = styled.div`
   margin: 5vh auto 5vh auto;
   width: 70%;
   border: 1px solid black;
-  padding: 10px 30px 10px 30px;
+  padding: 40px 30px 20px 30px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
@@ -233,9 +233,10 @@ export const FormContainer = styled.div`
   margin: 5vh auto 5vh auto;
   width: 70%;
   border: 1px solid black;
-  padding: 10px 30px 10px 30px;
+  padding: 60px 30px 20px 30px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
 `;
 
 export const AccountContainer = styled.div`
@@ -245,6 +246,7 @@ export const AccountContainer = styled.div`
   padding: 10px 30px 10px 30px;
   border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
 `;
 
 export const FormCarContainer = styled.div`

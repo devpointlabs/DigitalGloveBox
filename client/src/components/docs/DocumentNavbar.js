@@ -44,7 +44,7 @@ const DocumentNavbar = (props) => {
     }   
       return(
         <div>
-          <DocumentsShow docs={categoryDocuments} />
+          <DocumentsShow docs={categoryDocuments} car_id={car_id}/>
         </div>
       )   
     }

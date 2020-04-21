@@ -147,7 +147,6 @@ class carApi extends React.Component {
           <FormContainer> 
           {console.log(`Option selected:`, this.state.selectedOption)}
 
-          import Select, { components }  from 'react-select';
           <Select 
             onChange={this.handleChange}
             options={options}

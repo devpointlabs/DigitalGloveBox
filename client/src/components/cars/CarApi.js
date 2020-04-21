@@ -1,26 +1,11 @@
 import React from "react";
 import Parse from "parse";
 
-import Select, { components }  from 'react-select';
+import Select from 'react-select';
 
 import { FormContainer, Button } from '../../styled_component/styledComponents';
 
 import AddCar from "./AddCar";
-import {
-  RowCenter,
-  Title,
-  Paragraph,
-  CarCard,
- 
-  ImgCar,
-  CarsRow,
-} from "../styles/DashBoard";
-
-const SingleValue = ({ children, ...props }) => (
-  <components.SingleValue {...props}>
-    {children}
-  </components.SingleValue>
-);
 
 class carApi extends React.Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import React from 'react'
 //Form Input
 
-export const FormInput  = ({required, autofocus, label, type, name, value, placeholder, onChange}) => {
+export const FormInput  = ({required, autofocus, label, type, name, value, placeholder, onChange, checked}) => {
   
   const formInputComponent = () =>{
     if(required && autofocus){
@@ -14,6 +14,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
       value={value}
       placeholder={placeholder}
       onChange={onChange} 
+      checked={checked}
       />)
     } else if (required && !autofocus){
       return (<FormInputComponent 
@@ -23,6 +24,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
         value={value}
         placeholder={placeholder}
         onChange={onChange} 
+        checked={checked}
         />)
     } else if(!required && autofocus){
       return (<FormInputComponent 
@@ -32,6 +34,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
       value={value}
       placeholder={placeholder}
       onChange={onChange} 
+      checked={checked}
       />)
     }else {
       return (<FormInputComponent 
@@ -40,6 +43,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
         value={value}
         placeholder={placeholder}
         onChange={onChange} 
+        checked={checked}
       />)
     }
 

@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
 
 
-import { Button, AccountContainer, Form, FormInput } from '../../styled_component/styledComponents';
+import { Button, Form, FormInput } from '../../styled_component/styledComponents';
 
 
 
 import { AuthConsumer, } from "../../providers/AuthProvider";
 import Filepond from '../docs/Filepond';
+import { AccountStyles } from '../../styles/AccountStyles';
 
 class Account extends React.Component {
 
@@ -89,19 +90,16 @@ class Account extends React.Component {
   accountView = () => {
     const { auth: { user } } = this.props;
     return (
- 
-        <div style={{ margin: 'auto', width: "50%"}}>
-          <h1 style={{textAlign: "center"}}>Welcome {user.first_name} {user.last_name} </h1>
-          
-            {this.photoExists()}
-          <h3>Here is your account information:</h3>
+        <div style={{textAlign:'center'}}>
+          <h1>{user.first_name} {user.last_name}</h1>
+          <div style={{display:'flex', justifyContent:'center'}}> {this.photoExists()} </div>
+          <h3>Your account information:</h3>
 
           <h5>Email - {user.email}</h5>
           <h5> Phone Number - {user.phone_number}</h5>
           <h5> Zip Code - {user.postal_code}</h5>
           {this.optInView()}
-       </div>
- 
+        </div>
     )
   }
 
@@ -200,11 +198,11 @@ class Account extends React.Component {
     const { editing, } = this.state;
 
     return(
-      <AccountContainer>
+      <AccountStyles>
           { editing ? this.editView() : this.accountView()}
       
         <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
-      </AccountContainer>
+      </AccountStyles>
 
     )
   }

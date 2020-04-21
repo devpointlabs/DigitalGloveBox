@@ -24,7 +24,7 @@ const DocumentUpload = (props) => {
       <h1>Documents</h1>
       <h4>Upload and store all of you car-related documents, including your service records, insurance files and more.</h4>
       <h1>{car.year} {car.make} {car.model}</h1>
-      <img alt="user car">{car.image}</img>
+      <img className="centerImage" src={`${car.file}`} alt="user_car"/>
       <br />
       <DocumentNavbar car_id={id}/>
       <br />

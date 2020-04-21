@@ -66,9 +66,9 @@ export default Cars;
 const styles = {
   carsRow: {
   display: 'flex', 
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: '3em'
+  justifyContent: 'center',
+  width: '100%',
+  marginBottom: '3em'
 }
 }
 

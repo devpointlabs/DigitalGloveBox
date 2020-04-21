@@ -91,6 +91,3 @@ const DocumentNavbar = (props) => {
 }
 
 export default DocumentNavbar
-
-
-

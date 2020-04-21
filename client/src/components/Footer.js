@@ -17,7 +17,7 @@ const styles = {
     backgroundColor: 'black',
     color: 'white',
     textAlign: 'center',
-    height: '6em',
+    height: '4em',
     marginTop: '-6em'
   },
 }

@@ -103,7 +103,6 @@ class carApi extends React.Component {
     const query = new Parse.Query(Car_Model_List);
     query.limit(1000);
     query.equalTo("Year", this.state.selectedOption);
-    debugger
     query.find().then((results) => {
       let data = JSON.stringify(results);
       let newData = JSON.parse(data);

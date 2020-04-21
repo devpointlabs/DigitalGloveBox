@@ -1,26 +1,11 @@
 import React from "react";
 import Parse from "parse";
 
-import Select, { components }  from 'react-select';
+import Select from 'react-select';
 
 import { FormContainer, Button } from '../../styled_component/styledComponents';
 
 import AddCar from "./AddCar";
-import {
-  RowCenter,
-  Title,
-  Paragraph,
-  CarCard,
- 
-  ImgCar,
-  CarsRow,
-} from "../styles/DashBoard";
-
-const SingleValue = ({ children, ...props }) => (
-  <components.SingleValue {...props}>
-    {children}
-  </components.SingleValue>
-);
 
 class carApi extends React.Component {
   constructor(props) {
@@ -103,7 +88,6 @@ class carApi extends React.Component {
     const query = new Parse.Query(Car_Model_List);
     query.limit(1000);
     query.equalTo("Year", this.state.selectedOption);
-    debugger
     query.find().then((results) => {
       let data = JSON.stringify(results);
       let newData = JSON.parse(data);

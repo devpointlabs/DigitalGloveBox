@@ -5,8 +5,8 @@ const Emergency = () => (
   <EmergencyStyles>
     <h1>Emergency Information</h1>
     <h4>Question: I’m in an accident. What should I do?</h4>
-      <p>STEP 1: Stop. If your vehicle is involved in an accident and you don’t stop, you may be subject to criminal prosecution.</p>
-      <p>STEP 2: If it is safe to do so, get out of your car. If you have access to a digital camera or a cell phone, you should use it to take pictures of the scene.</p>
+      <p><b>STEP 1</b>: Stop your vehicle. If your vehicle is involved in an accident and you don’t stop, you may be subject to criminal prosecution.</p>
+      <p><b>STEP 2</b>: If it is safe to do so, get out of your car. If you have access to a digital camera or a cell phone, you should use it to take pictures of the scene.</p>
     <h4>REMEMBER</h4>
     <div style={{textAlign:'left'}}>
       <ul>
@@ -62,6 +62,35 @@ const Emergency = () => (
             <li>Registered Owner of Vehicle</li>
             <li>Insurance Co. Name, Policy No., Expiry Date</li>
             <li>Damage to Vehicle</li>
+          </ul>
+        </div>
+      </div>
+    <h4>Question: Is this damage covered under insurance?</h4>
+      <p>Call your insurance company as soon as possible after the accident. Inform them what happened and ask for next steps.</p>
+    <h4>Question: How can I be prepared for any emergency on the road?</h4>
+      <p>Always keep a basic vehicle first aid or emergency kit in the trunk of your vehicle. You can easily create an emergency kit for your vehicle by filling a plastic storage container with the following items: </p>
+      <div style={styles.row}>
+        <div style={styles.column}>
+          <ul>
+            <li>pen and paper</li>
+            <li>a basic first aid kid</li>
+            <li>a disposable camera</li>
+            <li>emergency flares, warning triangles, or cones</li>
+            <li>a fire extinguisher</li>
+            <li>a flashlight and extra batteries</li>
+            <li>bottled water</li>
+          </ul>
+        </div>
+        <div style={styles.column}>
+          <ul>
+            <li>jumper cables</li>
+            <li>a tire repair kit and pump</li>
+            <li>a small toolkit</li>
+            <li>a towel</li>
+            <li>a pair of work gloves</li>
+            <li>some non-perishable food</li>
+            <li>hand wipes</li>
+            <li>a thermal blanket</li>
           </ul>
         </div>
       </div>

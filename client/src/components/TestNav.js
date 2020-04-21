@@ -105,7 +105,7 @@ const TestNav = (props) => {
       <div>
       <div style={styles.mainNav}>
         <div style={styles.leftNavStyles}>
-          <h1 style={styles.logo}>LOGO HERE</h1>
+          <h1 style={styles.logo}>DGB</h1>
         </div>
           { rightNavItems()}
       </div>

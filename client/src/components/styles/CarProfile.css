@@ -1,0 +1,21 @@
+table {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: row;
+}
+
+td {
+  /* display: flex; */
+  flex-direction: row;
+  flex: none;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+hr.solid {
+  border-top: 1px solid black;
+}
+
+.profileheader {
+  display: flex
+}

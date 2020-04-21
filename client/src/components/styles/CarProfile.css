@@ -1,21 +1,42 @@
-table {
-  /* border: 1px solid black; */
-  display: flex;
-  flex-direction: row;
-}
-
-td {
-  /* display: flex; */
-  flex-direction: row;
-  flex: none;
-  flex-wrap: wrap;
-  padding: 1em;
+.centerImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  height: auto;
+  width: 100%;
 }
 
 hr.solid {
-  border-top: 1px solid black;
+  border-top: 1.5px solid #C0C0C8;
 }
 
-.profileheader {
-  display: flex
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+td {
+  width: 40em;
+  text-align: left;
+  padding: 1em;
+  vertical-align: top;
+}
+
+@media screen and (max-width: 900px) {
+  table {
+    border: 0;
+  }
+  
+  td {
+    display: block;
+    font-size: 1em;
+    text-align: left;
+  }
 }

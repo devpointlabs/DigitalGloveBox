@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "semantic-ui-react";
-import { Table, Icon } from "semantic-ui-react";
-import { Button } from '../../styled_component/styledComponents';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AuthConsumer } from "../../providers/AuthProvider";
-import { ProfileButton, Line, Form, FormInput, FormLabel, ProfileContainer } from '../../styled_component/styledComponents';
-import styled from "styled-components";
+import { ProfileButton, ProfileContainer } from '../../styled_component/styledComponents';
 import '../styles/CarProfile.css'
 
 const CarProfile = (props) => {
@@ -47,8 +44,6 @@ const CarProfile = (props) => {
     <ProfileContainer>
       <h1>Car Profile</h1>
       <hr className="solid"></hr>
-
-
       <div style={styles.header}>
         <div style={styles.leftHeader}>
           <h1>{car.year} {car.make} {car.model}</h1>
@@ -57,25 +52,20 @@ const CarProfile = (props) => {
           <Link to={{ pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
             <ProfileButton><Icon name="edit" size='large' /></ProfileButton>
           </Link>
-
-        <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton>
-      
+        <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton>     
         <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
           <ProfileButton><Icon name="file alternate outline" size='large' /></ProfileButton>
         </Link>
       </div>
     </div>
 
-
-    <div style={styles.image}>
-      <img src={`${car.file}`} alt="user_car"/>
-    </div>
-
+      <img className="centerImage" src={`${car.file}`} alt="user_car"/>
+    
     <table key={car.id}>
       <tr>
-        <td>License Plate <p>{car.license_plate}</p></td>
-        <td>VIN <p>{car.vin}</p></td>
-        <td>Miles <p>{car.miles}</p></td>
+        <td>License Plate<p>{car.license_plate}</p></td>
+        <td>VIN<p>{car.vin}</p></td>
+        <td>Miles<p>{car.miles}</p></td>
       </tr>
       </table>
 
@@ -83,11 +73,11 @@ const CarProfile = (props) => {
 
       <table key={car.id}>
       <tr>
-        <td>Insurance Provider <p>{car.insurance_provider}</p></td>
-        <td>Policy Expiry <p>{car.policy_exp}</p></td>
-        <td>Policy Number <p>{car.policy_number}</p></td>
+        <td>Insurance Provider<p>{car.insurance_provider}</p></td>
+        <td>Policy Expiry<p>{car.policy_exp}</p></td>
+        <td>Policy Number<p>{car.policy_number}</p></td>
         <td>{roadsideAssCheck()}</td>
-        <td>Insurance Provider Number <p>{car.insurance_prov_num}</p></td>
+        <td>Insurance Provider Number<p>{car.insurance_prov_num}</p></td>
       </tr>
     </table>
     </ProfileContainer>
@@ -117,11 +107,5 @@ const styles = {
     justifyContent: 'space-between',
     width: '70%',
     padding: '.5em .5em',
-  },
-  image: {
-    display: 'flex',
-    border: '1px solid black',
-    height: "auto",
-    width: "auto",
   },
 }

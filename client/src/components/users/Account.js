@@ -90,7 +90,7 @@ class Account extends React.Component {
     const { auth: { user } } = this.props;
     return (
  
-        <div style={{ margin: 'auto', width: "50%",}}>
+        <div style={{ margin: 'auto', width: "50%"}}>
           <h1 style={{textAlign: "center"}}>Welcome {user.first_name} {user.last_name} </h1>
           
             {this.photoExists()}

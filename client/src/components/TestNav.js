@@ -52,7 +52,7 @@ const TestNav = (props) => {
               <i className="fa fa-caret-down"></i>
             </button>
             <div className="dropdown-content">
-              {cars.length !==0 ? renderCars() : <a>No cars dum dum</a>}
+              {cars.length !==0 ? renderCars() : <a>No Cars Yet!</a>}
             </div>
           </div>
    
@@ -105,7 +105,7 @@ const TestNav = (props) => {
       <div>
       <div style={styles.mainNav}>
         <div style={styles.leftNavStyles}>
-          <h1 style={styles.logo}>LOGO HERE</h1>
+          <h1 style={styles.logo}>DGB</h1>
         </div>
           { rightNavItems()}
       </div>

@@ -6,5 +6,5 @@ export const NavItem = styled.div`
 font-size: 1em;
 padding: 1em;
 margin: 0em 2em;
-color: #C0C0C8;
+color: #d2e0e0;
 `

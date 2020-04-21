@@ -7,7 +7,7 @@ import { Button } from '../../styled_component/styledComponents';
  const ContactUs =() => {
 
 return(
-  <div >
+  <div style={styles.carsRow}>
   <CarCard>
     <LeftHalf>
       <ImgCar src=''/>
@@ -73,7 +73,7 @@ return(
   <br/>
   <CarCard>
     <LeftHalf>
-      <ImgCar src=''/>
+      <ImgCar src="https://res.cloudinary.com/dvnkqa41b/image/upload/v1587508561/Qi_l7ps73.jpg"/>
     </LeftHalf>
     <RightHalf>
       <Link to ={''}>
@@ -101,11 +101,11 @@ return(
 
 export default ContactUs
 
-// const styles = {
-//   carsRow: {
+const styles = {
+  carsRow: {
   
-//     justifyContent: 'center',
-//     width: '100%',
-//     marginBottom: '3em'
-// }
-// }
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: '3em'
+}
+}

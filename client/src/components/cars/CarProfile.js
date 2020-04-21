@@ -52,10 +52,11 @@ const CarProfile = (props) => {
           <Link to={{ pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
             <ProfileButton><Icon name="edit" size='large' /></ProfileButton>
           </Link>
-        <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton>     
+            
         <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
           <ProfileButton><Icon name="file alternate outline" size='large' /></ProfileButton>
         </Link>
+        <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton> 
       </div>
     </div>
 

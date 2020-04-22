@@ -98,7 +98,7 @@ const ContactUs = () => {
       <br />
       <ContactCard  style={styles.margin}>
         <LeftHalf>
-          <ImgCar src="" />
+          <ImgCar src="https://res.cloudinary.com/dvnkqa41b/image/upload/v1587591543/P1049473_k2oigb.jpg" />
         </LeftHalf>
         <RightHalf>
           <Link to={""}>

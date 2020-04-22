@@ -3,24 +3,28 @@ import {
   LeftHalf,
   Title,
   Paragraph,
-  CarCard,
+  ContactCard,
   RightHalf,
   ImgCar,
-} from "../styles/DashBoard";
+  ContactButton
+} from "../styles/DashBoard"; 
 import { Link } from "react-router-dom";
-import { Button } from "../../styled_component/styledComponents";
 
 const ContactUs = () => {
   return (
-    <div style={styles.carsRow}>
-      <CarCard>
+    <div>
+      <div style={styles.titleCont}>
+        <Title>About the Developers</Title>
+      </div>
+    <div style={styles.centerCards}>
+      <ContactCard  style={styles.margin}>
         <LeftHalf>
-          <ImgCar src="" />
+          <ImgCar src="https://res.cloudinary.com/dvnkqa41b/image/upload/v1587586262/Emily_Pena_wnz31p.png" />
         </LeftHalf>
         <RightHalf>
           <Link to={""}>
             <Title style style={{ display: "flex", justifyContent: "center" }}>
-              Emily
+              Emily Pena
             </Title>
           </Link>
           <div
@@ -35,22 +39,30 @@ const ContactUs = () => {
           >
             <Paragraph>About Emily</Paragraph>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+
+            
+          <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
             <Link to={{ pathname: "" }}>
-              <Button>Go to Emily ProfilePage</Button>
+              <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
+                {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
             </Link>
+              <Link to=''>
+                <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
+              </Link>
           </div>
+            </div>
         </RightHalf>
-      </CarCard>
+      </ContactCard>
       <br />
-      <CarCard>
+      <ContactCard  style={styles.margin}>
         <LeftHalf>
-          <ImgCar src="" />
+          <ImgCar src="https://res.cloudinary.com/dvnkqa41b/image/upload/v1587586247/Web-Seth_Wheeler-5801-Edit_t2eo8l.jpg" />
         </LeftHalf>
         <RightHalf>
           <Link to={""}>
             <Title style style={{ display: "flex", justifyContent: "center" }}>
-              Seth
+              Seth Wheeler
             </Title>
           </Link>
           <div
@@ -64,25 +76,34 @@ const ContactUs = () => {
             }}
           >
             <Paragraph>
-             about Seth
+              About Seth
+             {/* Seth Wheeler is an Army Veteran with a passion for technology that makes the world a better place. He is openly seeking new opportunities in full-stack development */}
             </Paragraph>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+
+            
+          <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
             <Link to={{ pathname: "" }}>
-              <Button>Go to Seth ProfilePage</Button>
+              <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
+                {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
             </Link>
+              <Link to=''>
+                <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
+              </Link>
           </div>
+            </div>
         </RightHalf>
-      </CarCard>
+      </ContactCard>
       <br />
-      <CarCard>
+      <ContactCard  style={styles.margin}>
         <LeftHalf>
           <ImgCar src="" />
         </LeftHalf>
         <RightHalf>
           <Link to={""}>
             <Title style style={{ display: "flex", justifyContent: "center" }}>
-              Thomas
+              Thomas Gaston
             </Title>
           </Link>
           <div
@@ -97,22 +118,30 @@ const ContactUs = () => {
           >
             <Paragraph>About Thomas</Paragraph>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+           <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+
+            
+          <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
             <Link to={{ pathname: "" }}>
-              <Button>Go to Thomas ProfilePage</Button>
+              <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
+                {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
             </Link>
+              <Link to=''>
+                <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
+              </Link>
           </div>
+            </div>
         </RightHalf>
-      </CarCard>
+      </ContactCard>
       <br />
-      <CarCard>
+      <ContactCard style={styles.margin}>
         <LeftHalf>
           <ImgCar src="https://res.cloudinary.com/dvnkqa41b/image/upload/v1587508561/Qi_l7ps73.jpg" />
         </LeftHalf>
         <RightHalf>
           <Link to={""}>
             <Title style style={{ display: "flex", justifyContent: "center" }}>
-              Qi
+              Qi Cao
             </Title>
           </Link>
           <div
@@ -125,16 +154,24 @@ const ContactUs = () => {
               paddingRight: "25%",
             }}
           >
-            <Paragraph> I’ve always loved to build things. Still do. To me, building
-              violins and building software are really the same </Paragraph>
+            <Paragraph> About Qi  </Paragraph>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+           <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+
+            
+          <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
             <Link to={{ pathname: "" }}>
-              <Button>Go to Qi ProfilePage</Button>
+              <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
+                {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
             </Link>
+              <Link to=''>
+                <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
+              </Link>
           </div>
+            </div>
         </RightHalf>
-      </CarCard>
+      </ContactCard>
+    </div>
     </div>
   );
 };
@@ -148,4 +185,23 @@ const styles = {
     width: "100%",
     marginBottom: "3em",
   },
+  centerCards: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center'
+  },
+  colCards: {
+    display: 'flex',
+    flexFlow: 'column wrap',
+    justifyContent: 'space-evenly'
+  },
+  margin: {
+    margin: '2em'
+  },
+  titleCont: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center',
+    padding: '2em 0em'
+  }
 };

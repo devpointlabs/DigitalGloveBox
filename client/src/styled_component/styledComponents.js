@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import React from 'react'
 //Form Input
 
-export const FormInput  = ({required, autofocus, label, type, name, value, placeholder, onChange}) => {
+export const FormInput  = ({required, autofocus, label, type, name, value, placeholder, onChange, checked}) => {
   
   const formInputComponent = () =>{
     if(required && autofocus){
@@ -14,6 +14,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
       value={value}
       placeholder={placeholder}
       onChange={onChange} 
+      checked={checked}
       />)
     } else if (required && !autofocus){
       return (<FormInputComponent 
@@ -23,6 +24,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
         value={value}
         placeholder={placeholder}
         onChange={onChange} 
+        checked={checked}
         />)
     } else if(!required && autofocus){
       return (<FormInputComponent 
@@ -32,6 +34,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
       value={value}
       placeholder={placeholder}
       onChange={onChange} 
+      checked={checked}
       />)
     }else {
       return (<FormInputComponent 
@@ -40,6 +43,7 @@ export const FormInput  = ({required, autofocus, label, type, name, value, place
         value={value}
         placeholder={placeholder}
         onChange={onChange} 
+        checked={checked}
       />)
     }
 
@@ -240,15 +244,15 @@ export const FormContainer = styled.div`
   background-color: white;
 `;
 
-export const AccountContainer = styled.div`
-  margin: 5vh auto 5vh auto;
-  width: 50%;
-  border: 1px solid black;
-  padding: 10px 30px 10px 30px;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
-`;
+// export const AccountContainer = styled.div`
+//   margin: 5vh auto 5vh auto;
+//   width: 50%;
+//   border: 1px solid black;
+//   padding: 10px 30px 10px 30px;
+//   border-radius: 4px;
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   background-color: white;
+// `;
 
 export const FormCarContainer = styled.div`
   height: 100vh;

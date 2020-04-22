@@ -137,9 +137,8 @@ class carApi extends React.Component {
             onChange={this.handleChange}
             options={options}
             autoFocus={true}
-            required
-          >
-          </Select>
+            require
+          />
           {/* <DropDown
             placeholder="Select Year"
             fluid
@@ -152,13 +151,13 @@ class carApi extends React.Component {
           <Select
             options={carMakeOfYear}
             onChange={this.makeOnChange}
-            required
+            require
           />
           <Select
             
             options={carModelofMake}
             onChange={this.modelOnChange}
-            required
+            require
           />
           <Button onClick={this.handleClick}> Add Car Information </Button>
           </FormContainer> 

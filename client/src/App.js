@@ -18,7 +18,7 @@ import Background from './components/Background';
 import Footer from './components/Footer';
 import ContactUs from './components/ContactUs/ContactUs'
 import Emergency from './components/users/Emergency';
-
+import LandingPage from './components/LandingPage'
 
 
 const App = () => {
@@ -28,9 +28,11 @@ const App = () => {
     <FetchUser>
       <TestNav />
       <Background />
-        <div style={styles.container}>
+       
           <Switch>
-            <ProtectedRoute exact path="/" component={Dashboard} />
+            <Route exact path='/' component={LandingPage}/>
+            <div style={styles.container}>
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <ProtectedRoute exact path='/account' component={Account}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
@@ -42,8 +44,9 @@ const App = () => {
             <Route exact path='/contact_us' component={ContactUs}/>                                
             <Route exact path='/emergency' component={Emergency}/>                                
             <Route component={NoMatch}/>
+            </div>
           </Switch> 
-        </div>
+       
       <Footer />
     </FetchUser>
    </>

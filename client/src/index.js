@@ -5,7 +5,6 @@ import { initMiddleware, } from 'devise-axios';
 import { AuthProvider, } from "./providers/AuthProvider";
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
 initMiddleware();

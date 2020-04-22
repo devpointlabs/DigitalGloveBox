@@ -41,8 +41,8 @@ const TestNav = (props) => {
       return(
         <div style={styles.rightNavStyles} >
 
-          <Link to='/'>
-            <NavItem name='dashboard' id='dashboard' className='borderCenter activeStyle' active={ location.pathname === '/' }>
+          <Link to='/dashboard'>
+            <NavItem name='dashboard' id='dashboard' className='borderCenter activeStyle' active={ location.pathname === '/dashboard' }>
               Dashboard
             </NavItem>
           </Link>
@@ -105,7 +105,9 @@ const TestNav = (props) => {
       <div>
       <div style={styles.mainNav}>
         <div style={styles.leftNavStyles}>
-          <h1 style={styles.logo}>DGB</h1>
+        <Link style={styles.link} to='/'>
+          <img style={styles.logo} src={"../DGBWhite.png"} />
+        </Link> 
         </div>
           { rightNavItems()}
       </div>
@@ -151,11 +153,16 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     width: '30%',
-    padding: '.5em .5em',
+    
   },
+
   logo: {
-    color: 'white',
-    padding: '.2em',
-    margin: '0em .5em',
-  }
+    width: '100%',   
+  },
+  link: {
+    width: '55px',
+    cursor: 'pointer',
+    margin: '0px 0px 0px 10px'
+
+  } 
 }

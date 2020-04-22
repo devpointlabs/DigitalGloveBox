@@ -70,14 +70,14 @@ const AddCar = (props) =>{
 
       if (toggleForm === 'filepond'){
         if (redirect===true){
-          return <Redirect to={'/'} />
+          return <Redirect to={'/dashboard'} />
         }else{
         return (
           <FormContainer>
             <span> <Icon name="plus circle" />UPLOAD YOUR CAR PHOTO OR RETURN TO DASHBOARD</span> 
           <Filepond route={`/api/users/${user.id}/cars/${id}`}/>
           <br />
-          <Link to={{pathname: '/'}}> 
+          <Link to={{pathname: '/dashboard'}}> 
             <Button> Back to Car Profile</Button>
           </Link> 
         </FormContainer>)}

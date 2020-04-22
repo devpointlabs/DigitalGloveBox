@@ -6,6 +6,9 @@ import { AuthConsumer } from "../../providers/AuthProvider";
 import { ProfileButton, ProfileContainer } from '../../styled_component/styledComponents';
 import '../styles/CarProfile.css'
 
+import 'semantic-ui-css/semantic.min.css';
+
+
 const CarProfile = (props) => {
 
   const [car, setCar] = useState({});

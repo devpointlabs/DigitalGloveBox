@@ -4,6 +4,9 @@ import axios from 'axios'
 import DocumentsShow from './DocumentsShow'
 import DocumentForm from './DocumentForm'
 
+import 'semantic-ui-css/semantic.min.css';
+
+
 const DocumentNavbar = (props) => {
   
   const [ category, setCategory] = useState('insurance')

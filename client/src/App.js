@@ -18,7 +18,7 @@ import Background from './components/Background';
 import Footer from './components/Footer';
 import ContactUs from './components/ContactUs/ContactUs'
 import Emergency from './components/users/Emergency';
-
+import LandingPage from './components/LandingPage'
 
 
 const App = () => {
@@ -30,7 +30,8 @@ const App = () => {
       <Background />
         <div style={styles.container}>
           <Switch>
-            <ProtectedRoute exact path="/" component={Dashboard} />
+            <Route exact path='/' component={LandingPage}/>
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
             <ProtectedRoute exact path='/account' component={Account}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>

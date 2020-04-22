@@ -8,7 +8,7 @@ const Dashboard = () => {
   return(
     <>
       <div>
-        <h1>Dashboard</h1>
+        <h1 style={styles.center}>Dashboard</h1>
         <Cars />
       </div>
     </>
@@ -16,3 +16,10 @@ const Dashboard = () => {
 }
 
 export default Dashboard
+
+const styles = {
+  center: {
+    textAlign: 'center',
+    paddingTop: '1em',
+  }
+}

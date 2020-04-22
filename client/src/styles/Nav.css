@@ -21,8 +21,7 @@
   padding: 1.15em .5em;
   background-color: inherit;
   cursor: pointer;
-  /* font-family: inherit; */
-  /* margin: 0; */
+
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
@@ -68,6 +67,19 @@
   color: white
 }
 
-/* .activeStyle:active {
-  color: white
+
+/* 
+<Link style={styles.link} to='/'>
+<img style={styles.logo} src={"../DGBGrey.png"} />
+</Link> */
+
+/* logo: {
+  width: '100%',
+  cursor: 'pointer',
+  border: '1px solid white',
+},
+link: {
+  width: '10%',
+  cursor: 'pointer',
+  border: '1px solid red',
 } */

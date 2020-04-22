@@ -6,7 +6,8 @@ import {
   ContactCard,
   RightHalf,
   ImgCar,
-  ContactButton
+  ContactButton,
+  ContactLink
 } from "../styles/DashBoard"; 
 import { Link } from "react-router-dom";
 
@@ -43,13 +44,13 @@ const ContactUs = () => {
 
             
           <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
-            <Link to={{ pathname: "" }}>
+            <a href ='https://github.com/empena'>
               <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
                 {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
-            </Link>
-              <Link to=''>
+            </a>
+              <a href='https://www.linkedin.com/in/emilypena/'>
                 <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
-              </Link>
+              </a>
           </div>
             </div>
         </RightHalf>
@@ -84,13 +85,13 @@ const ContactUs = () => {
 
             
           <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
-            <Link to={{ pathname: "" }}>
+            <a href ='https://github.com/wheelsa'>
               <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
                 {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
-            </Link>
-              <Link to=''>
+            </a>
+              <a href ='https://www.linkedin.com/in/wheelerseth/'>
                 <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
-              </Link>
+              </a>
           </div>
             </div>
         </RightHalf>
@@ -122,13 +123,13 @@ const ContactUs = () => {
 
             
           <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
-            <Link to={{ pathname: "" }}>
+            <a href ='https://github.com/T-Gaston'>
               <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
                 {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
-            </Link>
-              <Link to=''>
+            </a>
+              <a href = 'https://www.linkedin.com/in/Thomas-Gaston'>
                 <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
-              </Link>
+              </a>
           </div>
             </div>
         </RightHalf>
@@ -160,13 +161,13 @@ const ContactUs = () => {
 
             
           <div style={{ display: "flex", justifyContent: "space-around", width: '50%' }}>
-            <Link to={{ pathname: "" }}>
+            <a href ='https://github.com/alanqicao'>
               <img src="https://img.icons8.com/ios-filled/80/000000/github.png" style={{width: '3em'}}/>
                 {/* <ContactButton>o to Emily ProfilePag e<ContactButton> */}
-            </Link>
-              <Link to=''>
+            </a>
+              <a href ='https://www.linkedin.com/in/alanqicao/'>
                 <img src="https://img.icons8.com/dotty/80/000000/linkedin.png" style={{ width: '3em'}}/>
-              </Link>
+              </a>
           </div>
             </div>
         </RightHalf>

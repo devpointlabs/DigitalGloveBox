@@ -64,7 +64,10 @@ export const Button = styled.button`
     border-radius: 5px;
   }
 `;
+export const ContactLink = styled.link`
+display: none;
 
+`
 export const ContactButton = styled.button`
   font-size: 1em;
   width: 1005:

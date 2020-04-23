@@ -46,7 +46,7 @@ const Cars = (props) => {
 
     <Item>
       {cars.length === 0 ? (
-        <Link to={{ pathname: `/CarApi` }}><Button>You do not have Car Add Car</Button></Link>
+        <Link to={{ pathname: `/CarApi` }}><Button>Add Your First Car</Button></Link>
       ) : (
         <>
           <Link to={{ pathname: `/CarApi` }}>

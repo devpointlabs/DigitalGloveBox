@@ -167,10 +167,24 @@ class carApi extends React.Component {
   
 
   render() {
-    return this.toggleForm();
+    return (
+      <div style={styles.container}>
+        {this.toggleForm()}
+      </div>
+    )
   }
 }
 export default carApi;
+
+const styles = {
+  container: {
+    padding: '5em 10% 6em',
+    height: '100%',
+    position: 'relative',
+    minHeight: '100%',
+    overflow: 'auto',
+  },
+}
 
 const options = [
   { value: 1992, label: 1992 },

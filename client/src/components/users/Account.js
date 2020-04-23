@@ -198,12 +198,13 @@ class Account extends React.Component {
     const { editing, } = this.state;
 
     return(
-      <AccountStyles>
-          { editing ? this.editView() : this.accountView()}
-      
-        <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
-      </AccountStyles>
-
+      <div style={styles.container}>
+        <AccountStyles>
+            { editing ? this.editView() : this.accountView()}
+        
+          <Button onClick={this.toggleEdit}>{editing ? 'Cancel' : 'Edit'}</Button>
+        </AccountStyles>
+      </div>
     )
   }
 }
@@ -219,3 +220,14 @@ const ConnectedAccount = (props) => (
 )
 
 export default ConnectedAccount
+
+
+const styles = {
+  container: {
+    padding: '5em 10% 6em',
+    height: '100%',
+    position: 'relative',
+    minHeight: '100%',
+    overflow: 'auto',
+  },
+}

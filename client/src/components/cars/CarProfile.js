@@ -44,47 +44,49 @@ const CarProfile = (props) => {
   };
 
   return (
-    <ProfileContainer>
-      <h1>Car Profile</h1>
-      <hr className="solid"></hr>
-      <div style={styles.header}>
-        <div style={styles.leftHeader}>
-          <h1>{car.year} {car.make} {car.model}</h1>
-        </div>
-        <div style={styles.rightHeader}>
-          <Link to={{ pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
-            <ProfileButton><Icon name="edit" size='large' /></ProfileButton>
+    <div style={styles.container}>
+      <ProfileContainer>
+        <h1>Car Profile</h1>
+        <hr className="solid"></hr>
+        <div style={styles.header}>
+          <div style={styles.leftHeader}>
+            <h1>{car.year} {car.make} {car.model}</h1>
+          </div>
+          <div style={styles.rightHeader}>
+            <Link to={{ pathname: `/${user_id}/car_profile/${id}/edit`, car: car }}>
+              <ProfileButton><Icon name="edit" size='large' /></ProfileButton>
+            </Link>
+              
+          <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
+            <ProfileButton><Icon name="file alternate outline" size='large' /></ProfileButton>
           </Link>
-            
-        <Link to={{pathname: `/car_profile/${id}/documents`, car: car }}>
-          <ProfileButton><Icon name="file alternate outline" size='large' /></ProfileButton>
-        </Link>
-        <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton> 
+          <ProfileButton onClick={deleteCar}><Icon name="trash alternate outline" size='large' /></ProfileButton> 
+        </div>
       </div>
-    </div>
 
-      <img className="centerImage" src={`${car.file}`} alt="user_car"/>
-    
-    <table key={car.id}>
-      <tr>
-        <td>License Plate<p>{car.license_plate}</p></td>
-        <td>VIN<p>{car.vin}</p></td>
-        <td>Miles<p>{car.miles}</p></td>
-      </tr>
-      </table>
-
-      <hr className="solid"></hr>
-
+        <img className="centerImage" src={`${car.file}`} alt="user_car"/>
+      
       <table key={car.id}>
-      <tr>
-        <td>Insurance Provider<p>{car.insurance_provider}</p></td>
-        <td>Policy Expiry<p>{car.policy_exp}</p></td>
-        <td>Policy Number<p>{car.policy_number}</p></td>
-        <td>{roadsideAssCheck()}</td>
-        <td>Insurance Provider Number<p>{car.insurance_prov_num}</p></td>
-      </tr>
-    </table>
-    </ProfileContainer>
+        <tr>
+          <td>License Plate<p>{car.license_plate}</p></td>
+          <td>VIN<p>{car.vin}</p></td>
+          <td>Miles<p>{car.miles}</p></td>
+        </tr>
+        </table>
+
+        <hr className="solid"></hr>
+
+        <table key={car.id}>
+        <tr>
+          <td>Insurance Provider<p>{car.insurance_provider}</p></td>
+          <td>Policy Expiry<p>{car.policy_exp}</p></td>
+          <td>Policy Number<p>{car.policy_number}</p></td>
+          <td>{roadsideAssCheck()}</td>
+          <td>Insurance Provider Number<p>{car.insurance_prov_num}</p></td>
+        </tr>
+      </table>
+      </ProfileContainer>
+    </div>
   );
 };
 
@@ -111,5 +113,12 @@ const styles = {
     justifyContent: 'space-between',
     width: '70%',
     padding: '.5em .5em',
+  },
+  container: {
+    padding: '5em 10% 6em',
+    height: '100%',
+    position: 'relative',
+    minHeight: '100%',
+    overflow: 'auto',
   },
 }

@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   return (
-    <div>
+    <div style={styles.container}>
       <div style={styles.titleCont}>
         <Title>About the Developers</Title>
       </div>
@@ -173,7 +173,7 @@ const ContactUs = () => {
         </RightHalf>
       </ContactCard>
     </div>
-    </div>
+  </div>
   );
 };
 
@@ -204,5 +204,12 @@ const styles = {
     flexFlow: 'row wrap',
     justifyContent: 'center',
     padding: '2em 0em'
-  }
+  },
+  container: {
+    padding: '5em 10% 6em',
+    height: '100%',
+    position: 'relative',
+    minHeight: '100%',
+    overflow: 'auto',
+  },
 };

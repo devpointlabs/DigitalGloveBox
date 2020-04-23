@@ -28,39 +28,25 @@ const App = () => {
     <FetchUser>
       <TestNav />
       <Background />
-       
           <Switch>
             <Route exact path='/' component={LandingPage}/>
-            <div style={styles.container}>
-            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-            <ProtectedRoute exact path='/account' component={Account}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/register' component={Register}/>
-            <Route exact path='/car_profile/:id/documents' component={DocumentUpload}/>
-            <Route exact path='/car_profile/:id' component={CarProfile}/>
-            <Route exact path='/add_car' component={AddCar}/>            
-            <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
-            <Route exact path='/CarApi' component={carApi}/>                                
-            <Route exact path='/contact_us' component={ContactUs}/>                                
-            <Route exact path='/emergency' component={Emergency}/>                                
-            <Route component={NoMatch}/>
-            </div>
+              <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+              <ProtectedRoute exact path='/account' component={Account}/>
+              <Route exact path='/login' component={Login}/>
+              <Route exact path='/register' component={Register}/>
+              <Route exact path='/car_profile/:id/documents' component={DocumentUpload}/>
+              <Route exact path='/car_profile/:id' component={CarProfile}/>
+              <Route exact path='/add_car' component={AddCar}/>            
+              <Route exact path='/:user_id/car_profile/:id/edit' component={EditCarProfile}/>            
+              <Route exact path='/CarApi' component={carApi}/>                                
+              <Route exact path='/contact_us' component={ContactUs}/>                                
+              <Route exact path='/emergency' component={Emergency}/>
+              <Route component={NoMatch}/>
           </Switch> 
-       
-      <Footer />
+        <Footer />
     </FetchUser>
    </>
   );
 };
 
 export default App;
-
-const styles = {
-  container: {
-    padding: '5em 10% 6em',
-    height: '100%',
-    position: 'relative',
-    minHeight: '100%',
-    overflow: 'auto',
-  }
-}

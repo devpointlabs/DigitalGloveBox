@@ -171,12 +171,20 @@ const AddCar = (props) =>{
     }
               
     return(
-      <>
+      <div style={styles.container}>
         {renderForms()}
-      </>
+      </div>
     )
 }
 
 export default AddCar
 
-
+const styles = {
+  container: {
+    padding: '5em 10% 6em',
+    height: '100%',
+    position: 'relative',
+    minHeight: '100%',
+    overflow: 'auto',
+  },
+}

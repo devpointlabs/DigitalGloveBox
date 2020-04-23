@@ -49,15 +49,15 @@ const EditCarProfile = (props) => {
         <div>
           <br />
           <span> <Icon name="plus circle" />Edit Your Car Photo</span> 
-        <Filepond route={`/api/users/${user_id}/cars/${id}`}/>
-        <br />
-        <Link to={{pathname: `/${user_id}/car_profile/${id}/edit`}}> 
-          <Button onClick={() => setToggleForm(false)}> Back to Car Edit Form</Button>
-        </Link> 
-      </div>)
+          <Filepond route={`/api/users/${user_id}/cars/${id}`}/>
+          <br />
+          <Link to={{pathname: `/${user_id}/car_profile/${id}/edit`}}> 
+            <Button onClick={() => setToggleForm(false)}> Back to Car Edit Form</Button>
+          </Link> 
+        </div>)
       } else {
       return(
-      <>
+    <>
       
       <Button onClick={() => setToggleForm(true)}> Edit Car Photo</Button>
         <Form onSubmit={handleSubmit}>
@@ -133,29 +133,39 @@ const EditCarProfile = (props) => {
 
     if(!carEdit.file){
       return(
-      <>
-      <FormContainer> 
-      <div  style={{width:'250px', margin: 'auto'}}>
-        <h3 style={{textAlign: 'center'}}> You currently have no photo! </h3>
+      <div style={styles.container}>
+        <FormContainer> 
+          <div  style={{width:'250px', margin: 'auto'}}>
+            <h3 style={{textAlign: 'center'}}> You currently have no photo! </h3>
+          </div>
+          {renderForms()}
+        </FormContainer> 
       </div>
-      {renderForms()}
-      </FormContainer> 
-      </>
       )}else {
 
     return (
-    <>
-    <FormContainer> 
-      <div style={{width:'250px', margin: 'auto',}} >
-      
-       <img style={{borderRadius: "3px"}} width="250" height="auto"src={carEdit.file}  />
-       <br />
-      </div>
-       {renderForms()}
-    </FormContainer> 
-    </>
+    <div style={styles.container}>
+      <FormContainer> 
+        <div style={{width:'250px', margin: 'auto',}} >
+        
+        <img style={{borderRadius: "3px"}} width="250" height="auto"src={carEdit.file}  />
+        <br />
+        </div>
+        {renderForms()}
+      </FormContainer> 
+    </div>
      )
     }
 }
 
 export default EditCarProfile
+
+const styles = {
+  container: {
+    padding: '5em 10% 6em',
+    height: '100%',
+    position: 'relative',
+    minHeight: '100%',
+    overflow: 'auto',
+  },
+}
